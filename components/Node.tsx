@@ -1,50 +1,60 @@
-import { Box } from "@mui/material";
+import { Box, ClickAwayListener } from "@mui/material";
+import { useContext, useState } from "react";
 
-import Arrow from "./Arrow";
-import NodeButton from "./NodeButton";
+import { LineWidthPercentageContext } from "../context/LineWidthPercentageContext";
+import NodeOrientation from "./NodeOrientation";
 
-function Node({
-  up,
-  key,
-  id,
-  lineWidth,
-  nodeNum,
-}: {
-  up: boolean;
-  key: number;
+const nodeSide = 20;
+const maxContainerWidth = "1200px";
+
+interface NodeProps {
+  orientation: "up" | "down";
   id: number;
-  lineWidth: number;
   nodeNum: number;
-}) {
-  console.log(lineWidth);
+}
+
+const Node = ({ orientation, id, nodeNum }: NodeProps) => {
+  const lineWidthPercentage = useContext(LineWidthPercentageContext);
+  const [openTimer, setOpenTimer] = useState(false);
+
+  const nodePrimaryPositionX = (lineWidth: string) =>
+    `calc(-5px - ${nodeSide}px * ${id} + (${lineWidth} * ${
+      (lineWidthPercentage - 1) / 100
+    } / ${nodeNum}) * ${id})`;
+
+  const boxStyles = {
+    left: {
+      xs: nodePrimaryPositionX("(100vw - 32px)"),
+      sm: nodePrimaryPositionX("(100vw - 48px)"),
+      lg: nodePrimaryPositionX(maxContainerWidth),
+    },
+    position: "relative",
+    display: "inline-block",
+  };
 
   return (
-    <Box
-      sx={{
-        left: `${-5 + (lineWidth / nodeNum) * id}px`,
-        position: "relative",
-        display: "inline-block",
-      }}
-      key={key}
-    >
-      {up ? (
-        <Box
-          sx={{
-            bottom: "-14px",
-            position: "relative",
-          }}
-        >
-          <NodeButton />
-          <Arrow top />
-        </Box>
-      ) : (
-        <Box sx={{ top: "-11px", position: "relative" }}>
-          <Arrow top={false} />
-          <NodeButton />
-        </Box>
-      )}
-    </Box>
+    <ClickAwayListener onClickAway={() => setOpenTimer(false)}>
+      <Box sx={boxStyles}>
+        {orientation === "up" ? (
+          <NodeOrientation
+            offsetBottom={-13}
+            orientation={orientation}
+            flexDirection="column"
+            openTimer={openTimer}
+            nodeSide={nodeSide}
+          />
+        ) : (
+          <NodeOrientation
+            offsetBottom={13}
+            orientation={orientation}
+            flexDirection="column-reverse"
+            openTimer={openTimer}
+            nodeSide={nodeSide}
+          />
+        )}
+      </Box>
+    </ClickAwayListener>
   );
-}
+};
 
 export default Node;

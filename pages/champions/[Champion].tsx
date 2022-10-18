@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import ComponentAdding from "../../components/ComponentAdding";
 
-function ChampionDetails() {
+const ChampionDetails = () => {
   const router = useRouter();
   const { Champion } = router.query;
 
@@ -21,5 +21,5 @@ function ChampionDetails() {
       <ComponentAdding heading="Graphs" component="slider" />
     </Container>
   );
-}
+};
 export default ChampionDetails;

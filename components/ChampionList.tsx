@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function ChampionList() {
+const ChampionList = () => {
   const [champion, setChampion] = useState([]);
 
   useEffect(() => {
@@ -36,6 +36,6 @@ function ChampionList() {
       ))}
     </Grid>
   );
-}
+};
 
 export default ChampionList;

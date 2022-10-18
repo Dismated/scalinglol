@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-function Arrow({ top }: { top: boolean }) {
+const Arrow = ({ orientation }: { orientation: "up" | "down" }) => {
   const theme = useTheme();
 
   const borderX = "5px solid transparent";
@@ -14,7 +14,7 @@ function Arrow({ top }: { top: boolean }) {
         height: 0,
         borderLeft: borderX,
         borderRight: borderX,
-        ...(top
+        ...(orientation === "up"
           ? {
               borderTop: borderY,
             }
@@ -24,6 +24,6 @@ function Arrow({ top }: { top: boolean }) {
       }}
     />
   );
-}
+};
 
 export default Arrow;

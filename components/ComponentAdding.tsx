@@ -8,7 +8,7 @@ interface ComponentAddingProps {
   component: "slider" | "graph";
 }
 
-function ComponentAdding({ heading, component }: ComponentAddingProps) {
+const ComponentAdding = ({ heading, component }: ComponentAddingProps) => {
   const [arr, setArr] = useState<number[]>([0]);
 
   return (
@@ -33,6 +33,6 @@ function ComponentAdding({ heading, component }: ComponentAddingProps) {
       </Button>
     </>
   );
-}
+};
 
 export default ComponentAdding;

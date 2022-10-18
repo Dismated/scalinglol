@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 
 import ChampionList from "../components/ChampionList";
 
-// eslint-disable-next-line react/function-component-definition
 const Home: NextPage = () => (
   <Container>
     <AppBar>
