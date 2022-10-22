@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
 
-import { LineWidthPercentageContext } from "../context/LineWidthPercentageContext";
+import { LineWidthPercentageContext } from "../contexts/LineWidthPercentageContext";
 
 const Line = () => {
   const widthPercentage = useContext(LineWidthPercentageContext);

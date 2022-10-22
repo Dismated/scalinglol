@@ -1,22 +1,16 @@
 import { Box, FormControl, InputBase } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-
 import Line from "./Line";
-import LineWidthPercentageProvider from "../context/LineWidthPercentageContext";
+import LineWidthPercentageProvider from "../contexts/LineWidthPercentageContext";
+import MatchLengthProvider from "../contexts/MatchLengthContext";
 import Node from "./Node";
 
-const InputBaseStyles = {
+const inputBaseStyles = {
   borderStyle: "solid",
   borderWidth: "1px",
   borderColor: "primary.main",
   borderRadius: "4px",
   color: "primary.main",
-};
-
-const timerToSeconds = (timer: string) => {
-  const [minutes, seconds] = timer.split(":");
-  const time = parseInt(minutes, 10) * 60 + parseInt(seconds, 10);
-  return time;
 };
 
 const MultiNodeSlider = () => {
@@ -38,26 +32,28 @@ const MultiNodeSlider = () => {
 
   return (
     <LineWidthPercentageProvider>
-      <Box sx={{ m: "10px" }}>
-        {generateNodes(itemNodes, "up")}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Line />
-          <FormControl>
-            <InputBase
-              value={matchLength}
-              onChange={(event) => handleMatchLengthChange(event)}
-              sx={InputBaseStyles}
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  width: "100%",
-                },
-              }}
-            />
-          </FormControl>
+      <MatchLengthProvider value={matchLength}>
+        <Box sx={{ m: "10px" }}>
+          {generateNodes(itemNodes, "up")}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Line />
+            <FormControl>
+              <InputBase
+                value={matchLength}
+                onChange={(event) => handleMatchLengthChange(event)}
+                sx={inputBaseStyles}
+                inputProps={{
+                  style: {
+                    textAlign: "center",
+                    width: "100%",
+                  },
+                }}
+              />
+            </FormControl>
+          </Box>
+          {generateNodes(lvlNodes, "down")}
         </Box>
-        {generateNodes(lvlNodes, "down")}
-      </Box>
+      </MatchLengthProvider>
     </LineWidthPercentageProvider>
   );
 };

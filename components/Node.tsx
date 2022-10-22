@@ -1,26 +1,25 @@
 import { Box, ClickAwayListener } from "@mui/material";
 import { useContext, useState } from "react";
-
-import { LineWidthPercentageContext } from "../context/LineWidthPercentageContext";
+import Draggable from "react-draggable";
+import { LineWidthPercentageContext } from "../contexts/LineWidthPercentageContext";
 import NodeOrientation from "./NodeOrientation";
 
 const nodeSide = 20;
 const maxContainerWidth = "1200px";
-
 interface NodeProps {
   orientation: "up" | "down";
   id: number;
   nodeNum: number;
 }
 
-const Node = ({ orientation, id, nodeNum }: NodeProps) => {
+const Node = ({ ...rest }: NodeProps) => {
   const lineWidthPercentage = useContext(LineWidthPercentageContext);
-  const [openTimer, setOpenTimer] = useState(false);
+  const [timerIsOpen, setTimerIsOpen] = useState(false);
 
   const nodePrimaryPositionX = (lineWidth: string) =>
-    `calc(-5px - ${nodeSide}px * ${id} + (${lineWidth} * ${
+    `calc(-5px - ${nodeSide}px * ${rest.id} + (${lineWidth} * ${
       (lineWidthPercentage - 1) / 100
-    } / ${nodeNum}) * ${id})`;
+    } / ${rest.nodeNum}) * ${rest.id})`;
 
   const boxStyles = {
     left: {
@@ -33,26 +32,35 @@ const Node = ({ orientation, id, nodeNum }: NodeProps) => {
   };
 
   return (
-    <ClickAwayListener onClickAway={() => setOpenTimer(false)}>
-      <Box sx={boxStyles}>
-        {orientation === "up" ? (
-          <NodeOrientation
-            offsetBottom={-13}
-            orientation={orientation}
-            flexDirection="column"
-            openTimer={openTimer}
-            nodeSide={nodeSide}
-          />
-        ) : (
-          <NodeOrientation
-            offsetBottom={13}
-            orientation={orientation}
-            flexDirection="column-reverse"
-            openTimer={openTimer}
-            nodeSide={nodeSide}
-          />
-        )}
-      </Box>
+    <ClickAwayListener onClickAway={() => setTimerIsOpen(false)}>
+      {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+      <>
+        <Draggable axis="x" handle=".handle">
+          <Box onClick={() => setTimerIsOpen(true)} sx={boxStyles}>
+            {rest.orientation === "up" ? (
+              <NodeOrientation
+                offsetBottom={-13}
+                offsetTimer={-32}
+                offsetMoveIcon={51}
+                flexDirection="column"
+                timerIsOpen={timerIsOpen}
+                nodeSide={nodeSide}
+                {...rest}
+              />
+            ) : (
+              <NodeOrientation
+                offsetBottom={13}
+                offsetTimer={29}
+                offsetMoveIcon={-40}
+                flexDirection="column-reverse"
+                timerIsOpen={timerIsOpen}
+                nodeSide={nodeSide}
+                {...rest}
+              />
+            )}
+          </Box>
+        </Draggable>
+      </>
     </ClickAwayListener>
   );
 };
