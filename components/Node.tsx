@@ -1,8 +1,9 @@
 import { Box, ClickAwayListener } from "@mui/material";
-import { useContext, useState } from "react";
-import Draggable from "react-draggable";
+import Draggable, { DraggableEvent } from "react-draggable";
+import { SetStateAction, useContext, useRef, useState } from "react";
 import { LineWidthPercentageContext } from "../contexts/LineWidthPercentageContext";
 import NodeOrientation from "./NodeOrientation";
+import useWindowSize from "../hooks/useWindowSize";
 
 const nodeSide = 20;
 const maxContainerWidth = "1200px";
@@ -15,6 +16,17 @@ interface NodeProps {
 const Node = ({ ...rest }: NodeProps) => {
   const lineWidthPercentage = useContext(LineWidthPercentageContext);
   const [timerIsOpen, setTimerIsOpen] = useState(false);
+  const [x, setX] = useState(0);
+
+  const handleDrag = (
+    event: DraggableEvent,
+    dragElement: {
+      x: SetStateAction<number>;
+    }
+  ) => {
+    setX(dragElement.x);
+  };
+  const nodeRef = useRef(null);
 
   const nodePrimaryPositionX = (lineWidth: string) =>
     `calc(-5px - ${nodeSide}px * ${rest.id} + (${lineWidth} * ${
@@ -34,9 +46,19 @@ const Node = ({ ...rest }: NodeProps) => {
   return (
     <ClickAwayListener onClickAway={() => setTimerIsOpen(false)}>
       {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-      <>
-        <Draggable axis="x" handle=".handle">
-          <Box onClick={() => setTimerIsOpen(true)} sx={boxStyles}>
+      <Box sx={{ display: "inline-block" }}>
+        <Draggable
+          axis="x"
+          handle=".handle"
+          onDrag={handleDrag}
+          position={{ x, y: 0 }}
+          nodeRef={nodeRef}
+        >
+          <Box
+            onClick={() => setTimerIsOpen(true)}
+            sx={boxStyles}
+            ref={nodeRef}
+          >
             {rest.orientation === "up" ? (
               <NodeOrientation
                 offsetBottom={-13}
@@ -60,7 +82,7 @@ const Node = ({ ...rest }: NodeProps) => {
             )}
           </Box>
         </Draggable>
-      </>
+      </Box>
     </ClickAwayListener>
   );
 };
