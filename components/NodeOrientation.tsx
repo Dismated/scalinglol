@@ -1,14 +1,12 @@
 import { Box, FormControl, InputBase } from "@mui/material";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
 
-import { secondsToTimer, timerToSeconds } from "../helpers/TimerAndSeconds";
+import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import Arrow from "./Arrow";
-import { MatchLengthContext } from "../contexts/MatchLengthContext";
 import NodeButton from "./NodeButton";
-import { WindowWidthContext } from "../contexts/WindowWidthContext";
 
-type NodeOrientationProps = {
+interface NodeOrientationProps {
   offsetBottom: number;
   offsetTimer: number;
   offsetMoveIcon: number;
@@ -16,9 +14,9 @@ type NodeOrientationProps = {
   flexDirection: "column" | "column-reverse";
   timerIsOpen: boolean;
   nodeSide: number;
-  nodeNum: number;
-  id: number;
-};
+  time: number;
+  setTime: Dispatch<SetStateAction<number>>;
+}
 
 const inputBaseStyles = {
   borderStyle: "solid",
@@ -38,19 +36,20 @@ const NodeOrientation = ({
   flexDirection,
   timerIsOpen,
   nodeSide,
-  nodeNum,
-  id,
+  time,
+  setTime,
 }: NodeOrientationProps) => {
-  const matchLength = useContext(MatchLengthContext);
-  const [time, setTime] = useState(
-    secondsToTimer((timerToSeconds(matchLength) / nodeNum) * id)
-  );
-
+  const [displayTime, setDisplayTime] = useState(secondsToTimer(time));
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setTime(event.target.value);
+    setDisplayTime(event.target.value);
+    if (/^\d{2}:\d{2}$/.test(event.target.value))
+      setTime(timerToSeconds(event.target.value));
   };
+
+  const handleSubmit = () => {};
+
   return (
     <Box
       sx={{
@@ -62,9 +61,12 @@ const NodeOrientation = ({
     >
       {timerIsOpen ? (
         <>
-          <FormControl sx={{ position: "absolute", top: `${offsetTimer}px` }}>
+          <FormControl
+            sx={{ position: "absolute", top: `${offsetTimer}px` }}
+            onSubmit={handleSubmit}
+          >
             <InputBase
-              value={time}
+              value={displayTime}
               onChange={handleChange}
               sx={inputBaseStyles}
               inputProps={{

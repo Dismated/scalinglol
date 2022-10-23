@@ -7,18 +7,28 @@ import { WindowWidthContext } from "../contexts/WindowWidthContext";
 
 const nodeSide = 20;
 const maxContainerWidth = 1200;
+
 interface NodeProps {
   orientation: "up" | "down";
   id: number;
   nodeNum: number;
+  matchLength: number;
 }
 
-const Node = ({ ...rest }: NodeProps) => {
+const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
   const lineWidthPercentage = useContext(LineWidthPercentageContext);
   const windowWidth = useContext(WindowWidthContext) || 0;
+  const windowWidth32Pad = windowWidth - 32;
+  const windowWidth48Pad = windowWidth - 48;
+
   const [timerIsOpen, setTimerIsOpen] = useState(false);
+  const [time, setTime] = useState((matchLength / nodeNum) * id);
   const [x, setX] = useState(0);
   const [xToWindowWidthRatio, setXToWindowWidthRatio] = useState(0);
+
+  const nodeRef = useRef(null);
+
+  const startOfTheLineX = -5 - nodeSide * id;
 
   useEffect(() => {
     setX(xToWindowWidthRatio * windowWidth);
@@ -34,17 +44,20 @@ const Node = ({ ...rest }: NodeProps) => {
     setXToWindowWidthRatio(x / windowWidth);
     setX(dragElement.x);
   };
-  const nodeRef = useRef(null);
 
-  const nodePrimaryPositionX = (lineWidth: number) =>
-    -5 -
-    nodeSide * rest.id +
-    ((lineWidth * (lineWidthPercentage - 1)) / 100 / rest.nodeNum) * rest.id;
+  const lineWidth = (containerWidth: number) =>
+    (containerWidth * lineWidthPercentage) / 100;
+
+  const pxPerSec = (containerWidth: number) =>
+    lineWidth(containerWidth) / matchLength;
+
+  const nodePrimaryPositionX = (containerWidth: number) =>
+    startOfTheLineX + time * pxPerSec(containerWidth);
 
   const boxStyles = {
     left: {
-      xs: nodePrimaryPositionX(windowWidth - 32),
-      sm: nodePrimaryPositionX(windowWidth - 48),
+      xs: nodePrimaryPositionX(windowWidth32Pad),
+      sm: nodePrimaryPositionX(windowWidth48Pad),
       lg: nodePrimaryPositionX(maxContainerWidth),
     },
     position: "relative",
@@ -67,7 +80,7 @@ const Node = ({ ...rest }: NodeProps) => {
             sx={boxStyles}
             ref={nodeRef}
           >
-            {rest.orientation === "up" ? (
+            {orientation === "up" ? (
               <NodeOrientation
                 offsetBottom={-13}
                 offsetTimer={-32}
@@ -75,7 +88,9 @@ const Node = ({ ...rest }: NodeProps) => {
                 flexDirection="column"
                 timerIsOpen={timerIsOpen}
                 nodeSide={nodeSide}
-                {...rest}
+                time={time}
+                setTime={setTime}
+                orientation={orientation}
               />
             ) : (
               <NodeOrientation
@@ -85,7 +100,9 @@ const Node = ({ ...rest }: NodeProps) => {
                 flexDirection="column-reverse"
                 timerIsOpen={timerIsOpen}
                 nodeSide={nodeSide}
-                {...rest}
+                time={time}
+                setTime={setTime}
+                orientation={orientation}
               />
             )}
           </Box>

@@ -4,6 +4,7 @@ import Line from "./Line";
 import LineWidthPercentageProvider from "../contexts/LineWidthPercentageContext";
 import MatchLengthProvider from "../contexts/MatchLengthContext";
 import Node from "./Node";
+import { timerToSeconds } from "../helpers/TimerConversions";
 
 const inputBaseStyles = {
   borderStyle: "solid",
@@ -14,6 +15,7 @@ const inputBaseStyles = {
 };
 
 const MultiNodeSlider = () => {
+  // make minimal match time 15:00 and maximum 60:00
   const [matchLength, setMatchLength] = useState("30:00");
 
   const itemNodes = Array.from(Array(6).keys());
@@ -21,7 +23,13 @@ const MultiNodeSlider = () => {
 
   const generateNodes = (arr: number[], orientation: "up" | "down") =>
     arr.map((e) => (
-      <Node key={e} orientation={orientation} id={e} nodeNum={arr.length} />
+      <Node
+        key={e}
+        orientation={orientation}
+        id={e}
+        nodeNum={arr.length}
+        matchLength={timerToSeconds(matchLength)}
+      />
     ));
 
   const handleMatchLengthChange = (
