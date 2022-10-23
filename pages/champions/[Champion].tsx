@@ -24,7 +24,7 @@ const ChampionDetails = () => {
         <>
           <ComponentAdding heading="Attack" component="slider" />
           <ComponentAdding heading="Defence" component="slider" />
-          <ComponentAdding heading="Graphs" component="slider" />
+          <ComponentAdding heading="Graphs" component="graph" />
         </>
       </WindowWidthProvider>
     </Container>

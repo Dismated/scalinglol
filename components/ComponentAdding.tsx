@@ -1,6 +1,7 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 
+import LineChart from "./LineChart";
 import MultiNodeSlider from "./MultiNodeSlider";
 
 interface ComponentAddingProps {
@@ -15,22 +16,48 @@ const ComponentAdding = ({ heading, component }: ComponentAddingProps) => {
     <>
       <Typography variant="h4">{heading}</Typography>
       {arr?.map((e) => {
-        if (component === "slider") return <MultiNodeSlider key={e} />;
-        return null;
+        if (component === "slider")
+          return (
+            <Box key={e}>
+              <MultiNodeSlider />
+              <Button
+                onClick={() => setArr(arr.concat(arr[arr.length - 1] + 1))}
+                sx={{
+                  borderWidth: "1px",
+                  borderColor: "inherit",
+                  borderStyle: "dashed",
+                  marginTop: "10px",
+                  height: "50px",
+                  width: "100%",
+                }}
+              >
+                +
+              </Button>
+            </Box>
+          );
+        return (
+          <Grid container key={e}>
+            <Grid item>
+              <LineChart />
+            </Grid>
+            <Grid item>
+              <Button
+                onClick={() => setArr(arr.concat(arr[arr.length - 1] + 1))}
+                sx={{
+                  borderWidth: "1px",
+                  borderColor: "inherit",
+                  borderStyle: "dashed",
+                  marginTop: "10px",
+                  height: "50px",
+                  width: "100%",
+                }}
+              >
+                +
+              </Button>
+            </Grid>
+          </Grid>
+        );
       })}
-      <Button
-        onClick={() => setArr(arr.concat(arr[arr.length - 1] + 1))}
-        sx={{
-          borderWidth: "1px",
-          borderColor: "inherit",
-          borderStyle: "dashed",
-          marginTop: "10px",
-          height: "50px",
-          width: "100%",
-        }}
-      >
-        +
-      </Button>
     </>
   );
 };
