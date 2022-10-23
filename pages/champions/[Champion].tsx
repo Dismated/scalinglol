@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import ComponentAdding from "../../components/ComponentAdding";
+import WindowWidthProvider from "../../contexts/WindowWidthContext";
 import useWindowSize from "../../hooks/useWindowSize";
 
 const ChampionDetails = () => {
   const router = useRouter();
   const { Champion } = router.query;
 
-  const windowSize = useWindowSize();
-  console.log(windowSize);
+  const windowWidth = useWindowSize();
 
   return (
     <Container>
@@ -20,9 +20,13 @@ const ChampionDetails = () => {
         </Link>
       </Button>
       <Typography variant="h3">{Champion}</Typography>
-      <ComponentAdding heading="Attack" component="slider" />
-      <ComponentAdding heading="Defence" component="slider" />
-      <ComponentAdding heading="Graphs" component="slider" />
+      <WindowWidthProvider value={windowWidth?.width}>
+        <>
+          <ComponentAdding heading="Attack" component="slider" />
+          <ComponentAdding heading="Defence" component="slider" />
+          <ComponentAdding heading="Graphs" component="slider" />
+        </>
+      </WindowWidthProvider>
     </Container>
   );
 };
