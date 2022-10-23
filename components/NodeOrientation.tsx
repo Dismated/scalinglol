@@ -1,10 +1,10 @@
 import { Box, FormControl, InputBase } from "@mui/material";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
 
-import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import Arrow from "./Arrow";
 import NodeButton from "./NodeButton";
+import { timerToSeconds } from "../helpers/TimerConversions";
 
 interface NodeOrientationProps {
   offsetBottom: number;
@@ -14,8 +14,10 @@ interface NodeOrientationProps {
   flexDirection: "column" | "column-reverse";
   timerIsOpen: boolean;
   nodeSide: number;
-  time: number;
   setTime: Dispatch<SetStateAction<number>>;
+  setX: Dispatch<SetStateAction<number>>;
+  displayTime: string;
+  setDisplayTime: Dispatch<SetStateAction<string>>;
 }
 
 const inputBaseStyles = {
@@ -36,16 +38,19 @@ const NodeOrientation = ({
   flexDirection,
   timerIsOpen,
   nodeSide,
-  time,
   setTime,
+  setX,
+  displayTime,
+  setDisplayTime,
 }: NodeOrientationProps) => {
-  const [displayTime, setDisplayTime] = useState(secondsToTimer(time));
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setDisplayTime(event.target.value);
-    if (/^\d{2}:\d{2}$/.test(event.target.value))
+    if (/^\d{2}:\d{2}$/.test(event.target.value)) {
       setTime(timerToSeconds(event.target.value));
+      setX(0);
+    }
   };
 
   const handleSubmit = () => {};

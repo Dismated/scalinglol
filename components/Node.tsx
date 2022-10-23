@@ -1,9 +1,10 @@
 import { Box, ClickAwayListener } from "@mui/material";
 import Draggable, { DraggableEvent } from "react-draggable";
-import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { LineWidthPercentageContext } from "../contexts/LineWidthPercentageContext";
 import NodeOrientation from "./NodeOrientation";
 import { WindowWidthContext } from "../contexts/WindowWidthContext";
+import { secondsToTimer } from "../helpers/TimerConversions";
 
 const nodeSide = 20;
 const maxContainerWidth = 1200;
@@ -18,17 +19,26 @@ interface NodeProps {
 const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
   const lineWidthPercentage = useContext(LineWidthPercentageContext);
   const windowWidth = useContext(WindowWidthContext) || 0;
-  const windowWidth32Pad = windowWidth - 32;
-  const windowWidth48Pad = windowWidth - 48;
 
   const [timerIsOpen, setTimerIsOpen] = useState(false);
   const [time, setTime] = useState((matchLength / nodeNum) * id);
+  const [displayTime, setDisplayTime] = useState(secondsToTimer(time));
   const [x, setX] = useState(0);
   const [xToWindowWidthRatio, setXToWindowWidthRatio] = useState(0);
 
   const nodeRef = useRef(null);
 
   const startOfTheLineX = -5 - nodeSide * id;
+
+  const containerWidth = () => {
+    if (windowWidth >= maxContainerWidth) return maxContainerWidth;
+    if (windowWidth >= 600) return windowWidth - 48;
+    return windowWidth - 32;
+  };
+
+  const lineWidth = () => (containerWidth() * lineWidthPercentage) / 100;
+
+  const pxPerSec = () => lineWidth() / matchLength;
 
   useEffect(() => {
     setX(xToWindowWidthRatio * windowWidth);
@@ -38,28 +48,18 @@ const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
   const handleDrag = (
     event: DraggableEvent,
     dragElement: {
-      x: SetStateAction<number>;
+      x: number;
     }
   ): void => {
     setXToWindowWidthRatio(x / windowWidth);
     setX(dragElement.x);
+    setDisplayTime(secondsToTimer(time + dragElement.x / pxPerSec()));
   };
 
-  const lineWidth = (containerWidth: number) =>
-    (containerWidth * lineWidthPercentage) / 100;
-
-  const pxPerSec = (containerWidth: number) =>
-    lineWidth(containerWidth) / matchLength;
-
-  const nodePrimaryPositionX = (containerWidth: number) =>
-    startOfTheLineX + time * pxPerSec(containerWidth);
+  const nodePrimaryPositionX = () => startOfTheLineX + time * pxPerSec();
 
   const boxStyles = {
-    left: {
-      xs: nodePrimaryPositionX(windowWidth32Pad),
-      sm: nodePrimaryPositionX(windowWidth48Pad),
-      lg: nodePrimaryPositionX(maxContainerWidth),
-    },
+    left: nodePrimaryPositionX(),
     position: "relative",
     display: "inline-block",
   };
@@ -88,9 +88,11 @@ const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
                 flexDirection="column"
                 timerIsOpen={timerIsOpen}
                 nodeSide={nodeSide}
-                time={time}
                 setTime={setTime}
                 orientation={orientation}
+                setX={setX}
+                displayTime={displayTime}
+                setDisplayTime={setDisplayTime}
               />
             ) : (
               <NodeOrientation
@@ -100,9 +102,11 @@ const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
                 flexDirection="column-reverse"
                 timerIsOpen={timerIsOpen}
                 nodeSide={nodeSide}
-                time={time}
                 setTime={setTime}
                 orientation={orientation}
+                setX={setX}
+                displayTime={displayTime}
+                setDisplayTime={setDisplayTime}
               />
             )}
           </Box>
