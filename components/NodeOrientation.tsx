@@ -53,8 +53,6 @@ const NodeOrientation = ({
     }
   };
 
-  const handleSubmit = () => {};
-
   return (
     <Box
       sx={{
@@ -66,10 +64,7 @@ const NodeOrientation = ({
     >
       {timerIsOpen ? (
         <>
-          <FormControl
-            sx={{ position: "absolute", top: `${offsetTimer}px` }}
-            onSubmit={handleSubmit}
-          >
+          <FormControl sx={{ position: "absolute", top: `${offsetTimer}px` }}>
             <InputBase
               value={displayTime}
               onChange={handleChange}

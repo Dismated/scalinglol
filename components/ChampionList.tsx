@@ -24,7 +24,7 @@ const ChampionList = () => {
           <Link href={`/champions/${c.name}`}>
             <a>
               <Image
-                src={`http://ddragon.leagueoflegends.com/cdn/12.19.1/img/champion/${c.image.full}`}
+                src={`/../public/championIcons/${c.name}.png`}
                 alt={c.name}
                 width="50"
                 height="50"
