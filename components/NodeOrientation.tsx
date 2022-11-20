@@ -1,96 +1,86 @@
-import { Box, FormControl, InputBase } from "@mui/material";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Box } from "@mui/material";
 
 import Arrow from "./Arrow";
 import NodeButton from "./NodeButton";
-import { timerToSeconds } from "../helpers/TimerConversions";
+import NodeLvlUp from "./NodeLvlUp";
+import NodeTimer from "./NodeTimer";
+import { useAppSelector } from "../hooks/preTypedHooks";
 
 interface NodeOrientationProps {
-  offsetBottom: number;
+  orientation: "up" | "down";
   offsetTimer: number;
   offsetMoveIcon: number;
-  orientation: "up" | "down";
   flexDirection: "column" | "column-reverse";
-  timerIsOpen: boolean;
+  nodeSettingsAreOpen: boolean;
   nodeSide: number;
-  setTime: Dispatch<SetStateAction<number>>;
+  x: number;
   setX: Dispatch<SetStateAction<number>>;
+  pxPerSec: () => number;
   displayTime: string;
   setDisplayTime: Dispatch<SetStateAction<string>>;
+  id: number;
+  heading: "Attack" | "Defence" | "Graphs";
+  setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const inputBaseStyles = {
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  borderRadius: "4px",
-  color: "primary.main",
-  left: "-15px",
-  width: "40px",
-};
-
 const NodeOrientation = ({
-  offsetBottom,
+  orientation,
   offsetTimer,
   offsetMoveIcon,
-  orientation,
   flexDirection,
-  timerIsOpen,
+  nodeSettingsAreOpen,
   nodeSide,
-  setTime,
+  x,
   setX,
+  pxPerSec,
   displayTime,
   setDisplayTime,
+  id,
+  heading,
+  setNodeSettingsAreOpen,
 }: NodeOrientationProps) => {
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setDisplayTime(event.target.value);
-    if (/^\d{2}:\d{2}$/.test(event.target.value)) {
-      setTime(timerToSeconds(event.target.value));
-      setX(0);
-    }
-  };
+  const [lvlUped, setLvlUped] = useState("");
+  const switchValue = useAppSelector((state) => {
+    if (heading === "Attack") return state.attackSwitch;
+    return state.defenceSwitch;
+  });
 
   return (
     <Box
       sx={{
-        bottom: `${offsetBottom}px`,
         position: "relative",
         display: "flex",
         flexDirection: { flexDirection },
       }}
     >
-      {timerIsOpen ? (
-        <>
-          <FormControl sx={{ position: "absolute", top: `${offsetTimer}px` }}>
-            <InputBase
-              value={displayTime}
-              onChange={handleChange}
-              sx={inputBaseStyles}
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  width: "100%",
-                },
-              }}
-            />
-          </FormControl>
-          <OpenWithOutlinedIcon
-            className="handle"
-            color="primary"
-            fontSize="small"
-            sx={{
-              cursor: "pointer",
-              position: "absolute",
-              left: "16px",
-              bottom: `${offsetMoveIcon}px`,
-            }}
+      {nodeSettingsAreOpen ? (
+        switchValue === "timer" ? (
+          <NodeTimer
+            offsetTimer={offsetTimer}
+            offsetMoveIcon={offsetMoveIcon}
+            displayTime={displayTime}
+            setDisplayTime={setDisplayTime}
+            x={x}
+            setX={setX}
+            pxPerSec={pxPerSec}
+            id={id}
+            orientation={orientation}
+            setNodeSettingsAreOpen={setNodeSettingsAreOpen}
           />
-        </>
-      ) : null}
-      <NodeButton nodeSide={nodeSide} />
+        ) : (
+          <NodeLvlUp
+            setNodeSettingsAreOpen={setNodeSettingsAreOpen}
+            orientation={orientation}
+            lvlUped={lvlUped}
+            setLvlUped={setLvlUped}
+            id={id}
+          />
+        )
+      ) : (
+        <Box />
+      )}
+      <NodeButton nodeSide={nodeSide} lvlUped={lvlUped} id={id} />
       <Arrow orientation={orientation} />
     </Box>
   );

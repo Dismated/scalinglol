@@ -1,6 +1,8 @@
-import { Box, Button, InputBase, Typography } from "@mui/material";
+import { Box, InputBase, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import Slot from "./Slot";
+import { setSpells } from "../reducers/spellsReducer";
+import { useAppDispatch } from "../hooks/preTypedHooks";
 
 const inputBaseStyles = {
   borderStyle: "solid",
@@ -14,16 +16,20 @@ const inputBaseStyles = {
 
 const Combo = ({ champion }: { champion: string }) => {
   const [slots, setSlots] = useState(1);
+  const dispatch = useAppDispatch();
 
   const handleSlotsChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setSlots(Number(event.target.value));
+    const spellArr = new Array(Number(event.target.value));
+    spellArr.fill({ name: "", section: "", count: 1 });
+    dispatch(setSpells(spellArr));
   };
 
   const generateSlots = (num: number) => {
     const arr = Array.from(Array(num).keys());
-    return arr.map((e) => <Slot champion={champion} key={e} />);
+    return arr.map((e) => <Slot champion={champion} id={e} key={e} />);
   };
 
   return (

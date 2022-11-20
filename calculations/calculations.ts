@@ -1,13 +1,11 @@
 interface AbilityDmgType {
-  dmgType: "magic" | "physical" | "true";
   initialDmg: number;
   dmgPerSkillLvl: number;
   apModifier: number;
   ap: number;
   adModifier: number;
   ad: number;
-  counts: boolean;
-  basicAttack: number;
+  count: number;
   onHit: number;
   skillLvl: number;
   champLvl: number;
@@ -15,29 +13,29 @@ interface AbilityDmgType {
 }
 
 const abilityDmg = ({
-  dmgType,
-  initialDmg,
-  apModifier,
-  ap,
-  adModifier,
+  initialDmg = 0,
+  apModifier = 0,
+  ap = 0,
+  adModifier = 0,
   ad,
-  counts,
-  onHit,
-  dmgPerSkillLvl,
-  skillLvl,
-  dmgPerChampLvl,
-  champLvl,
+  count,
+  onHit = 0,
+  dmgPerSkillLvl = 0,
+  skillLvl = 0,
+  dmgPerChampLvl = 0,
+  champLvl = 0,
 }: AbilityDmgType) => {
-  const dmg =
-    (initialDmg +
-      dmgPerSkillLvl * (skillLvl - 1) +
-      apModifier * ap +
-      adModifier * ad +
-      ad +
-      onHit +
-      dmgPerChampLvl * (champLvl - 1)) *
-    counts;
-  return { dmgType, dmg };
+  const dmg = skillLvl
+    ? (initialDmg +
+        dmgPerSkillLvl * (skillLvl - 1) +
+        apModifier * ap +
+        adModifier * ad +
+        ad +
+        onHit +
+        dmgPerChampLvl * (champLvl - 1)) *
+      count
+    : 0;
+  return dmg;
 };
 
 export default abilityDmg;

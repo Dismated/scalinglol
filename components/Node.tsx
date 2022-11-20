@@ -1,10 +1,10 @@
 import { Box, ClickAwayListener } from "@mui/material";
 import Draggable, { DraggableEvent } from "react-draggable";
-import { useContext, useEffect, useRef, useState } from "react";
-import { LineWidthPercentageContext } from "../contexts/LineWidthPercentageContext";
+import { useEffect, useRef, useState } from "react";
+
+import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import NodeOrientation from "./NodeOrientation";
-import { WindowWidthContext } from "../contexts/WindowWidthContext";
-import { secondsToTimer } from "../helpers/TimerConversions";
+import { useAppSelector } from "../hooks/preTypedHooks";
 
 const nodeSide = 20;
 const maxContainerWidth = 1200;
@@ -12,17 +12,22 @@ const maxContainerWidth = 1200;
 interface NodeProps {
   orientation: "up" | "down";
   id: number;
-  nodeNum: number;
-  matchLength: number;
+  heading: "Attack" | "Defence" | "Graphs";
 }
 
-const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
-  const lineWidthPercentage = useContext(LineWidthPercentageContext);
-  const windowWidth = useContext(WindowWidthContext) || 0;
+const Node = ({ id, orientation, heading }: NodeProps) => {
+  const windowWidth = useAppSelector((state) => state.windowWidth);
+  const matchLength = timerToSeconds(
+    useAppSelector((state) => state.matchLength)
+  );
+  const itemTime = useAppSelector((state) => state.itemTime);
+  const skillTime = useAppSelector((state) => state.skillTime);
+  const nodeTimeArr = orientation === "up" ? itemTime : skillTime;
 
-  const [timerIsOpen, setTimerIsOpen] = useState(false);
-  const [time, setTime] = useState((matchLength / nodeNum) * id);
-  const [displayTime, setDisplayTime] = useState(secondsToTimer(time));
+  const [nodeSettingsAreOpen, setNodeSettingsAreOpen] = useState(false);
+  const [displayTime, setDisplayTime] = useState(
+    secondsToTimer(nodeTimeArr[id])
+  );
   const [x, setX] = useState(0);
   const [xToWindowWidthRatio, setXToWindowWidthRatio] = useState(0);
 
@@ -36,9 +41,7 @@ const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
     return windowWidth - 32;
   };
 
-  const lineWidth = () => (containerWidth() * lineWidthPercentage) / 100;
-
-  const pxPerSec = () => lineWidth() / matchLength;
+  const pxPerSec = () => containerWidth() / matchLength;
 
   useEffect(() => {
     setX(xToWindowWidthRatio * windowWidth);
@@ -53,19 +56,22 @@ const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
   ): void => {
     setXToWindowWidthRatio(x / windowWidth);
     setX(dragElement.x);
-    setDisplayTime(secondsToTimer(time + dragElement.x / pxPerSec()));
+    setDisplayTime(
+      secondsToTimer(nodeTimeArr[id] + dragElement.x / pxPerSec())
+    );
   };
 
-  const nodePrimaryPositionX = () => startOfTheLineX + time * pxPerSec();
+  const nodePrimaryPositionX = () =>
+    startOfTheLineX + nodeTimeArr[id] * pxPerSec();
 
   const boxStyles = {
-    left: nodePrimaryPositionX(),
+    left: nodePrimaryPositionX,
     position: "relative",
     display: "inline-block",
   };
 
   return (
-    <ClickAwayListener onClickAway={() => setTimerIsOpen(false)}>
+    <ClickAwayListener onClickAway={() => setNodeSettingsAreOpen(false)}>
       {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
       <Box sx={{ display: "inline-block" }}>
         <Draggable
@@ -76,37 +82,43 @@ const Node = ({ orientation, id, nodeNum, matchLength }: NodeProps) => {
           nodeRef={nodeRef}
         >
           <Box
-            onClick={() => setTimerIsOpen(true)}
+            onClick={() => setNodeSettingsAreOpen(true)}
             sx={boxStyles}
             ref={nodeRef}
           >
             {orientation === "up" ? (
               <NodeOrientation
-                offsetBottom={-13}
+                orientation={orientation}
                 offsetTimer={-32}
                 offsetMoveIcon={51}
                 flexDirection="column"
-                timerIsOpen={timerIsOpen}
+                nodeSettingsAreOpen={nodeSettingsAreOpen}
+                heading={heading}
                 nodeSide={nodeSide}
-                setTime={setTime}
-                orientation={orientation}
+                x={x}
                 setX={setX}
+                pxPerSec={pxPerSec}
                 displayTime={displayTime}
                 setDisplayTime={setDisplayTime}
+                id={id}
+                setNodeSettingsAreOpen={setNodeSettingsAreOpen}
               />
             ) : (
               <NodeOrientation
-                offsetBottom={13}
+                orientation={orientation}
                 offsetTimer={29}
                 offsetMoveIcon={-40}
                 flexDirection="column-reverse"
-                timerIsOpen={timerIsOpen}
+                nodeSettingsAreOpen={nodeSettingsAreOpen}
+                heading={heading}
                 nodeSide={nodeSide}
-                setTime={setTime}
-                orientation={orientation}
+                x={x}
                 setX={setX}
+                pxPerSec={pxPerSec}
                 displayTime={displayTime}
                 setDisplayTime={setDisplayTime}
+                id={id}
+                setNodeSettingsAreOpen={setNodeSettingsAreOpen}
               />
             )}
           </Box>

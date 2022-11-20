@@ -172,38 +172,36 @@
       "dmgCrit": 175
     },
     "spells": {
-      "AlistarQ": [
-        {
+      "AlistarQ": {
+        "basic": {
           "dmgType": "magic",
           "initialDmg": 60,
           "dmgPerSkillLvl": 40,
           "apModifier": 0.5
         }
-      ],
-      "AlistarW": [
-        {
+      },
+      "AlistarW": {
+        "basic": {
           "dmgType": "magic",
           "initialDmg": 55,
           "dmgPerSkillLvl": 55,
           "apModifier": 0.7
         }
-      ],
-      "AlistarE": [
-        {
-          "part": "active",
+      },
+
+      "AlistarE": {
+        "basic": {
           "dmgType": "magic",
           "initialDmg": 8,
           "dmgPerSkillLvl": 3,
-          "apModifier": 0.04,
-          "counts": true
+          "apModifier": 0.04
         },
-        {
-          "part": "basic attack",
+        "basicAttack": {
           "dmgType": "magic",
           "initialDmg": 20,
           "dmgPerChampLvl": 15
         }
-      ]
+      }
     }
   },
   "Amumu": {
