@@ -1,58 +1,17 @@
-import {
-  Box,
-  Button,
-  ClickAwayListener,
-  InputBase,
-  Typography,
-} from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
-import champStats from "../champStats/champStats.json";
-import { setSpells } from "../reducers/spellsReducer";
+import { ChampNameType } from "../types/types";
+import SpellCountSelector from "./SpellCountSelector";
+import SpellSectionSelector from "./SpellSectionSelector";
+import SpellSelector from "./SpellSelector";
+import stats from "../champStats/champStats.json";
+import { useAppSelector } from "../hooks/preTypedHooks";
 
-const stats: {
-  [key: string]: any;
-} = champStats;
-
-const slotButtonStyles = {
-  width: "50px",
-  height: "50px",
-  padding: 0,
-  borderStyle: "dashed",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  borderRadius: "4px",
-  display: "inline-block",
-};
-
-const spellsButtonStyles = {
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  height: "50px",
-  width: "50px",
-};
-
-const spellStyles = {
-  position: "relative",
-  bottom: "50px",
-  display: "inline-block",
-  backgroundColor: "#121212",
-};
-
-const spellPartStyles = {
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  position: "relative",
-  bottom: "36px",
-  display: "inline-block",
-};
+const champStats: ChampNameType = { ...stats };
 
 const Slot = ({ champion, id }: { champion: string; id: number }) => {
-  const dispatch = useAppDispatch();
   const [slotPressed, setSlotPressed] = useState(false);
   const [spellPressed, setSpellPressed] = useState(false);
   const [spellPartPressed, setSpellPartPressed] = useState(false);
@@ -66,110 +25,51 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
     setSlotPressed(true);
   };
 
-  const handleSpellClick = (spellName: string) => {
-    setSlotPressed(false);
-    setSpellPressed(true);
-    newSpells[id].name = spellName;
-    dispatch(setSpells(newSpells));
-  };
-  const handleSpellClickAway = () => {
-    setSlotPressed(false);
-  };
+  const borderStyle = newSpells[id].name ? "solid" : "dashed";
 
-  const handleSpellPartClick = (spellPartName: string) => {
-    setSpellPartPressed(true);
-    newSpells[id].section = spellPartName;
-    dispatch(setSpells(newSpells));
-  };
-
-  const handleSpellPartClickAway = () => {
-    setSpellPressed(false);
-  };
-
-  const handleCountClickAway = () => {
-    setSpellPartPressed(false);
-  };
-
-  const handleCountChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    newSpells[id].count = Number(event.target.value);
-    dispatch(setSpells(newSpells));
+  const slotButtonStyles = {
+    width: "50px",
+    height: "50px",
+    padding: 0,
+    borderStyle,
+    borderWidth: "1px",
+    borderColor: "primary.main",
+    borderRadius: "4px",
+    display: "inline-block",
   };
 
   return (
     <>
       <Box sx={{ display: "inline-block", position: "absolute" }}>
         {slotPressed
-          ? Object.keys(stats[champion].spells).map((spell: any) => (
-              <ClickAwayListener key={spell} onClickAway={handleSpellClickAway}>
-                <Box sx={spellStyles}>
-                  <Typography
-                    sx={{
-                      "z-index": 10,
-                      position: "absolute",
-                    }}
-                  >
-                    {spell[spell.length - 1]}
-                  </Typography>
-                  <Button
-                    sx={spellsButtonStyles}
-                    onClick={() => handleSpellClick(spell)}
-                  >
-                    <Image
-                      src={`/../public/spellIcons/${spell}.png`}
-                      alt={spell}
-                      width="50"
-                      height="50"
-                    />
-                  </Button>
-                </Box>
-              </ClickAwayListener>
+          ? Object.keys(champStats[champion].spells).map((spell) => (
+              <SpellSelector
+                key={spell}
+                setSlotPressed={setSlotPressed}
+                setSpellPressed={setSpellPressed}
+                id={id}
+                spell={spell}
+              />
             ))
           : null}
         {spellPressed
-          ? Object.keys(stats[champion].spells[spells[id].name]).map(
-              (spellPart: any) => (
-                <ClickAwayListener
+          ? Object.keys(champStats[champion].spells[spells[id].name]).map(
+              (spellPart) => (
+                <SpellSectionSelector
                   key={spellPart}
-                  onClickAway={handleSpellPartClickAway}
-                >
-                  <Button
-                    onClick={() => handleSpellPartClick(spellPart)}
-                    sx={spellPartStyles}
-                  >
-                    {spellPart}
-                  </Button>
-                </ClickAwayListener>
+                  spellPart={spellPart}
+                  setSpellPartPressed={setSpellPartPressed}
+                  id={id}
+                  setSpellPressed={setSpellPressed}
+                />
               )
             )
           : null}
         {spellPartPressed ? (
-          <ClickAwayListener onClickAway={handleCountClickAway}>
-            <Box>
-              <InputBase
-                onChange={handleCountChange}
-                placeholder="count"
-                sx={{
-                  "z-index": 10,
-                  borderStyle: "solid",
-                  borderWidth: "1px",
-                  borderColor: "primary.main",
-                  borderRadius: "5px",
-                  position: "relative",
-                  bottom: "32px",
-                  width: "40px",
-                  left: "12px",
-                }}
-                inputProps={{
-                  style: {
-                    textAlign: "center",
-                    width: "100%",
-                  },
-                }}
-              />
-            </Box>
-          </ClickAwayListener>
+          <SpellCountSelector
+            id={id}
+            setSpellPartPressed={setSpellPartPressed}
+          />
         ) : null}
       </Box>
       <Button sx={slotButtonStyles} onClick={handleSlotClick}>

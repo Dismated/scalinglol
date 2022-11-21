@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   FormControl,
@@ -6,15 +7,20 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/preTypedHooks";
+import { ChampNameType } from "../../types/types";
 import Combo from "../../components/Combo";
 import ComponentAdding from "../../components/ComponentAdding";
 import { setMatchLength } from "../../reducers/matchLengthReducer";
 import { setWindowWidth } from "../../reducers/windowWidthReducer";
+import stats from "../../champStats/champStats.json";
 import useWindowSize from "../../hooks/useWindowSize";
+
+const champStats: ChampNameType = { ...stats };
 
 const inputBaseStyles = {
   borderStyle: "solid",
@@ -25,8 +31,8 @@ const inputBaseStyles = {
 };
 
 const ChampionDetails = () => {
-  const router = useRouter();
-  const { Champion } = router.query;
+  const { query, isReady } = useRouter();
+  const champion = query.Champion as string;
 
   const windowWidth = useWindowSize();
 
@@ -41,6 +47,7 @@ const ChampionDetails = () => {
   ) => {
     dispatch(setMatchLength(event.target.value));
   };
+  if (!isReady) return <>Loading...</>;
 
   return (
     <Container>
@@ -49,7 +56,21 @@ const ChampionDetails = () => {
           <a>{"<--Back"}</a>
         </Link>
       </Button>
-      <Typography variant="h3">{Champion}</Typography>
+      <Box>
+        <Box sx={{ display: "inline-block" }}>
+          <Image
+            src={`/../public/championIcons/${champion}.png`}
+            alt={champion}
+            width="100"
+            height="100"
+          />
+        </Box>
+        <Box sx={{ display: "inline-block" }}>
+          <Typography variant="h3">{champion}</Typography>
+          <Typography variant="h5">{champStats[champion].title}</Typography>
+        </Box>
+      </Box>
+
       <>
         <Typography variant="h4">Match Length</Typography>
         <FormControl>
@@ -65,21 +86,21 @@ const ChampionDetails = () => {
             }}
           />
         </FormControl>
-        <Combo champion={Champion} />
+        <Combo champion={champion} />
         <ComponentAdding
           heading="Attack"
           component="slider"
-          champion={Champion}
+          champion={champion}
         />
         <ComponentAdding
           heading="Defence"
           component="slider"
-          champion={Champion}
+          champion={champion}
         />
         <ComponentAdding
           heading="Graphs"
           component="graph"
-          champion={Champion}
+          champion={champion}
         />
       </>
     </Container>

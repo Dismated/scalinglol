@@ -9,7 +9,6 @@ const LineChart = ({ champion }: { champion: string }) => {
   const skillTime = useAppSelector((state) => state.skillTime);
   const spells = useAppSelector((state) => state.spells);
   const lvlUp = useAppSelector((state) => state.lvlUp);
-  console.log(spells);
 
   const dmg =
     spells[0]?.count > 1
@@ -17,7 +16,7 @@ const LineChart = ({ champion }: { champion: string }) => {
           spells.reduce((acc, spell) => {
             console.log(spell);
 
-            const stats = champStats.Alistar.stats;
+            const stats = { ...champStats.Alistar.stats };
             const spellStats =
               champStats[champion].spells[spell.name][spell.section];
 
