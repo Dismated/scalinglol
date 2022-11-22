@@ -9,28 +9,22 @@ export interface ChampStatsType {
   image: string;
   stats: { [key: string]: number };
   spells: Record<string, SpellsType>;
+  available: boolean;
 }
 
-export interface SpellsType {
-  basic?: Basic;
-  basicAttack?: BasicAttack;
-}
+export type SpellsType = Record<string, SpellStats>;
 
-export interface Basic {
+export interface SpellStats {
   dmgType: string;
-  initialDmg: number;
-  dmgPerSkillLvl: number;
-  apModifier: number;
+  initialDmg?: number;
+  dmgPerSkillLvl?: number;
+  dmgPerChampLvl?: number;
+  apModifier?: number;
+  adModifier?: number;
 }
 
-export interface BasicAttack {
-  dmgType: string;
-  initialDmg: number;
-  dmgPerChampLvl: number;
-}
-
-export interface SpellsUserChoice {
+export interface SpellProps {
   name: string;
-  section: string;
+  section: "basic" | "basicAttack";
   count: number;
 }

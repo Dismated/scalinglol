@@ -1,8 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import attackSwitchReducer from "../reducers/attackSwitchReducer";
-import defenceSwitchReducer from "../reducers/defenceSwitchReducer";
-import itemTimeReducer from "../reducers/itemTimeReducer";
 import lvlUpReducer from "../reducers/lvlUpReducer";
 import matchLengthReducer from "../reducers/matchLengthReducer";
 import skillTimeReducer from "../reducers/skillTimeReducer";
@@ -14,9 +12,7 @@ const store = configureStore({
     windowWidth: windowWidthReducer,
     matchLength: matchLengthReducer,
     skillTime: skillTimeReducer,
-    itemTime: itemTimeReducer,
     attackSwitch: attackSwitchReducer,
-    defenceSwitch: defenceSwitchReducer,
     lvlUp: lvlUpReducer,
     spells: spellsReducer,
   },

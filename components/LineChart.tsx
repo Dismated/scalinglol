@@ -1,46 +1,57 @@
 import "chart.js/auto";
 import { Line } from "react-chartjs-2";
+
+import { ChampNameType } from "../types/types";
 import calculations from "../calculations/calculations";
-import champStats from "../champStats/champStats.json";
+import stats from "../champStats/champStats.json";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
+const champStats: ChampNameType = { ...stats };
+
 const LineChart = ({ champion }: { champion: string }) => {
-  const itemTime = useAppSelector((state) => state.itemTime);
   const skillTime = useAppSelector((state) => state.skillTime);
+  const skillTimeCopy = [...skillTime];
   const spells = useAppSelector((state) => state.spells);
   const lvlUp = useAppSelector((state) => state.lvlUp);
 
-  const dmg =
-    spells[0]?.count > 1
-      ? lvlUp.map((skillLvls) =>
-          spells.reduce((acc, spell) => {
-            console.log(spell);
+  const filledSpellSlot = spells.find((e) => {
+    console.log(e.name, e.section);
 
-            const stats = { ...champStats.Alistar.stats };
-            const spellStats =
-              champStats[champion].spells[spell.name][spell.section];
+    return !e.name || !e.section;
+  });
+  const dmg = !filledSpellSlot
+    ? lvlUp.map((skillLvls) =>
+        spells.reduce((acc, spell) => {
+          if (!spell.name) return acc;
+          const statsShort = { ...champStats[champion].stats };
 
-            return (
-              acc +
-              calculations({
-                initialDmg: spellStats.initialDmg,
-                dmgPerSkillLvl: spellStats.dmgPerSkillLvl,
-                apModifier: spellStats.apModifier,
-                ad: stats.attackdamage,
-                count: spell.count,
-                skillLvl: skillLvls[spell.name[spell.name.length - 1]],
-              })
-            );
-          }, 0)
-        )
-      : 0;
+          const spellStats =
+            champStats[champion].spells[spell.name][spell.section];
+
+          console.log(spell);
+
+          return (
+            acc +
+            calculations({
+              initialDmg: spellStats.initialDmg,
+              dmgPerSkillLvl: spellStats.dmgPerSkillLvl,
+              apModifier: spellStats.apModifier,
+              ad: statsShort.attackdamage,
+              adModifier: spellStats.adModifier,
+              count: spell.count,
+              skillLvl: skillLvls[spell.name[spell.name.length - 1]],
+            })
+          );
+        }, 0)
+      )
+    : 0;
 
   const compareNumbers = (a: number, b: number) => a - b;
 
-  const time = itemTime.concat(skillTime).sort(compareNumbers);
+  const time = skillTimeCopy.sort(compareNumbers);
 
   return (
-    <div style={{ width: "600px" }}>
+    <div style={{ maxWidth: "600px" }}>
       <Line
         data={{
           labels: time,

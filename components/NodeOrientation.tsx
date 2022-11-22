@@ -8,7 +8,6 @@ import NodeTimer from "./NodeTimer";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 interface NodeOrientationProps {
-  orientation: "up" | "down";
   offsetTimer: number;
   offsetMoveIcon: number;
   flexDirection: "column" | "column-reverse";
@@ -20,12 +19,10 @@ interface NodeOrientationProps {
   displayTime: string;
   setDisplayTime: Dispatch<SetStateAction<string>>;
   id: number;
-  heading: "Attack" | "Defence" | "Graphs";
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const NodeOrientation = ({
-  orientation,
   offsetTimer,
   offsetMoveIcon,
   flexDirection,
@@ -37,14 +34,10 @@ const NodeOrientation = ({
   displayTime,
   setDisplayTime,
   id,
-  heading,
   setNodeSettingsAreOpen,
 }: NodeOrientationProps) => {
   const [lvlUped, setLvlUped] = useState("");
-  const switchValue = useAppSelector((state) => {
-    if (heading === "Attack") return state.attackSwitch;
-    return state.defenceSwitch;
-  });
+  const switchValue = useAppSelector((state) => state.attackSwitch);
 
   return (
     <Box
@@ -65,13 +58,11 @@ const NodeOrientation = ({
             setX={setX}
             pxPerSec={pxPerSec}
             id={id}
-            orientation={orientation}
             setNodeSettingsAreOpen={setNodeSettingsAreOpen}
           />
         ) : (
           <NodeLvlUp
             setNodeSettingsAreOpen={setNodeSettingsAreOpen}
-            orientation={orientation}
             lvlUped={lvlUped}
             setLvlUped={setLvlUped}
             id={id}
@@ -81,7 +72,7 @@ const NodeOrientation = ({
         <Box />
       )}
       <NodeButton nodeSide={nodeSide} lvlUped={lvlUped} id={id} />
-      <Arrow orientation={orientation} />
+      <Arrow />
     </Box>
   );
 };

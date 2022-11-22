@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/preTypedHooks";
 import { ChampNameType } from "../../types/types";
 import Combo from "../../components/Combo";
 import ComponentAdding from "../../components/ComponentAdding";
+import LineChart from "../../components/LineChart";
 import { setMatchLength } from "../../reducers/matchLengthReducer";
 import { setWindowWidth } from "../../reducers/windowWidthReducer";
 import stats from "../../champStats/champStats.json";
@@ -87,21 +88,8 @@ const ChampionDetails = () => {
           />
         </FormControl>
         <Combo champion={champion} />
-        <ComponentAdding
-          heading="Attack"
-          component="slider"
-          champion={champion}
-        />
-        <ComponentAdding
-          heading="Defence"
-          component="slider"
-          champion={champion}
-        />
-        <ComponentAdding
-          heading="Graphs"
-          component="graph"
-          champion={champion}
-        />
+        <ComponentAdding />
+        <LineChart champion={champion} />
       </>
     </Container>
   );

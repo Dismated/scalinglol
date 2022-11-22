@@ -1,15 +1,15 @@
 interface AbilityDmgType {
-  initialDmg: number;
-  dmgPerSkillLvl: number;
-  apModifier: number;
-  ap: number;
-  adModifier: number;
+  initialDmg?: number;
+  dmgPerSkillLvl?: number;
+  apModifier?: number;
+  ap?: number;
+  adModifier?: number;
   ad: number;
   count: number;
-  onHit: number;
-  skillLvl: number;
-  champLvl: number;
-  dmgPerChampLvl: number;
+  onHit?: number;
+  skillLvl?: number;
+  champLvl?: number;
+  dmgPerChampLvl?: number;
 }
 
 const abilityDmg = ({
@@ -20,7 +20,7 @@ const abilityDmg = ({
   ad,
   count,
   onHit = 0,
-  dmgPerSkillLvl = 0,
+  dmgPerSkillLvl = 1,
   skillLvl = 0,
   dmgPerChampLvl = 0,
   champLvl = 0,
@@ -30,9 +30,8 @@ const abilityDmg = ({
         dmgPerSkillLvl * (skillLvl - 1) +
         apModifier * ap +
         adModifier * ad +
-        ad +
         onHit +
-        dmgPerChampLvl * (champLvl - 1)) *
+        dmgPerChampLvl * champLvl) *
       count
     : 0;
   return dmg;

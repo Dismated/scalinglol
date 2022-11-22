@@ -13,7 +13,6 @@ const buttonStyles = {
 
 interface NodeLvlUpProps {
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
-  orientation: "up" | "down";
   lvlUped: string;
   setLvlUped: Dispatch<SetStateAction<string>>;
   id: number;
@@ -21,7 +20,6 @@ interface NodeLvlUpProps {
 
 const NodeLvlUp = ({
   setNodeSettingsAreOpen,
-  orientation,
   lvlUped,
   setLvlUped,
   id,
@@ -47,7 +45,7 @@ const NodeLvlUp = ({
       return spellLvlUp;
     });
 
-  const bottomOffset = orientation === "up" ? "28px" : "-23px";
+  const bottomOffset = "28px";
 
   const boxStyles = {
     position: "absolute",

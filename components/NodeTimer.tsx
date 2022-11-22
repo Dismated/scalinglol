@@ -3,7 +3,6 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
-import { setItemTime } from "../reducers/itemTimeReducer";
 import { setSkillTime } from "../reducers/skillTimeReducer";
 import { timerToSeconds } from "../helpers/TimerConversions";
 
@@ -26,7 +25,6 @@ interface NodeTimerProps {
   setX: Dispatch<SetStateAction<number>>;
   pxPerSec: () => number;
   id: number;
-  orientation: "up" | "down";
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -39,36 +37,31 @@ const NodeTimer = ({
   setX,
   id,
   pxPerSec,
-  orientation,
   setNodeSettingsAreOpen,
 }: NodeTimerProps) => {
   const dispatch = useAppDispatch();
-  const itemTime = useAppSelector((state) => state.itemTime);
   const skillTime = useAppSelector((state) => state.skillTime);
-
-  const setNodeTimeArr = orientation === "up" ? setItemTime : setSkillTime;
-  const nodeTimeArr = orientation === "up" ? itemTime : skillTime;
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setDisplayTime(event.target.value);
     if (/^\d{2}:\d{2}$/.test(event.target.value)) {
-      const newTime = nodeTimeArr.map((e, i) => {
+      const newTime = skillTime.map((e, i) => {
         if (i === id) return timerToSeconds(event.target.value);
         return e;
       });
-      dispatch(setNodeTimeArr(newTime));
+      dispatch(setSkillTime(newTime));
       setX(0);
     }
   };
 
   const handleMouseUp = () => {
-    const newTime = nodeTimeArr.map((e, i) => {
-      if (i === id) return Math.floor(nodeTimeArr[id] + x / pxPerSec());
+    const newTime = skillTime.map((e, i) => {
+      if (i === id) return Math.floor(skillTime[id] + x / pxPerSec());
       return e;
     });
-    dispatch(setNodeTimeArr(newTime));
+    dispatch(setSkillTime(newTime));
     setX(0);
   };
 

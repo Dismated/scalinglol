@@ -1,40 +1,99 @@
-import { Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, Grid, InputBase, Paper, Typography } from "@mui/material";
+import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const ChampionList = () => {
-  const [champion, setChampion] = useState([]);
+import { ChampNameType } from "../types/types";
+import stats from "../champStats/champStats.json";
 
-  useEffect(() => {
-    async function getChampion() {
-      const response = await fetch(
-        "http://ddragon.leagueoflegends.com/cdn/12.19.1/data/en_US/champion.json"
-      );
-      const champions = await response.json();
-      setChampion(champions.data);
-    }
-    getChampion();
-  }, []);
+const champStats: ChampNameType = { ...stats };
+const champNamesArr = Object.values(champStats).map((e) => ({
+  name: e.name,
+  available: e.available,
+}));
+
+const InputBaseStyles = {
+  borderStyle: "solid",
+  borderColor: "primary",
+  borderRadius: "10px",
+  borderWidth: "2px",
+  width: "600px",
+  height: "50px",
+  px: "15px",
+};
+
+interface FilteredType {
+  name: string;
+  available: boolean;
+}
+
+const ChampionList = () => {
+  const [filtered, setFiltered] = useState<FilteredType[] | never[]>(
+    champNamesArr
+  );
+
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const filteredChamps = event.target.value
+      ? champNamesArr?.filter(
+          (e) =>
+            event.target.value.toLowerCase() ===
+            e.name.slice(0, event.target.value.length).toLowerCase()
+        )
+      : champNamesArr;
+
+    setFiltered(filteredChamps);
+  };
 
   return (
-    <Grid container sx={{ mt: "100px" }}>
-      {Object.values(champion).map((c: any) => (
-        <Grid item xs={3} key={c.key}>
-          <Link href={`/champions/${c.name}`}>
-            <a>
-              <Image
-                src={`/../public/championIcons/${c.name}.png`}
-                alt={c.name}
-                width="50"
-                height="50"
-              />
-              <Typography variant="h6">{c.name}</Typography>
-            </a>
-          </Link>
+    <>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <InputBase sx={InputBaseStyles} onChange={handleChange} autoFocus />
+      </Box>
+      <Paper elevation={2}>
+        <Grid
+          container
+          columns={16}
+          spacing={3}
+          sx={{
+            mt: "25px",
+          }}
+        >
+          {filtered.map((c) => (
+            <Grid item xs={2} key={c.name}>
+              <Link href={`/champions/${c.name}`}>
+                <a>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Image
+                      src={`/../public/championIcons/${c.name}.png`}
+                      alt={c.name}
+                      width="70"
+                      height="70"
+                      style={{
+                        filter: `${
+                          c.available ? "grayscale(0%)" : "grayscale(100%)"
+                        }`,
+                      }}
+                    />
+                  </Box>
+                  <Box>
+                    <Typography variant="body1" sx={{ textAlign: "center" }}>
+                      {c.name}
+                    </Typography>
+                  </Box>
+                </a>
+              </Link>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
+      </Paper>
+    </>
   );
 };
 
