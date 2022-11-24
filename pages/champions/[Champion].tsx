@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   FormControl,
   InputBase,
@@ -8,7 +7,6 @@ import {
 } from "@mui/material";
 import { ChangeEvent, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/preTypedHooks";
@@ -29,19 +27,28 @@ const inputBaseStyles = {
   borderColor: "primary.main",
   borderRadius: "4px",
   color: "primary.main",
+  height: "130px",
+  width: "130px",
+  fontSize: 36,
+};
+const timeHeadingStyle = {
+  transform: "rotate(-90deg)",
+  position: "relative",
+  left: "48px",
+  top: "50px",
+  display: "inline-block",
 };
 
 const ChampionDetails = () => {
   const { query, isReady } = useRouter();
   const champion = query.Champion as string;
-
   const windowWidth = useWindowSize();
-
   const dispatch = useAppDispatch();
+  const matchLength = useAppSelector((state) => state.matchLength);
+
   useEffect(() => {
     dispatch(setWindowWidth(windowWidth));
   }, [dispatch, windowWidth]);
-  const matchLength = useAppSelector((state) => state.matchLength);
 
   const handleMatchLengthChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,45 +59,48 @@ const ChampionDetails = () => {
 
   return (
     <Container>
-      <Button>
-        <Link href="/">
-          <a>{"<--Back"}</a>
-        </Link>
-      </Button>
-      <Box>
-        <Box sx={{ display: "inline-block" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box sx={{ display: "flex" }}>
           <Image
             src={`/../public/championIcons/${champion}.png`}
             alt={champion}
-            width="100"
-            height="100"
+            width="130"
+            height="130"
           />
+          <Box>
+            <Box>
+              <Typography variant="h2" sx={{ display: "inline" }}>
+                {champion}
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="h5" sx={{ display: "inline" }}>
+                {champStats[champion].title}
+              </Typography>
+            </Box>
+          </Box>
         </Box>
-        <Box sx={{ display: "inline-block" }}>
-          <Typography variant="h3">{champion}</Typography>
-          <Typography variant="h5">{champStats[champion].title}</Typography>
+        <Box sx={{ display: "inline-block", float: "right" }}>
+          <Typography variant="h6" sx={timeHeadingStyle}>
+            Match Length
+          </Typography>
+          <FormControl>
+            <InputBase
+              value={matchLength}
+              onChange={(event) => handleMatchLengthChange(event)}
+              sx={inputBaseStyles}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                },
+              }}
+            />
+          </FormControl>
         </Box>
       </Box>
-
-      <>
-        <Typography variant="h4">Match Length</Typography>
-        <FormControl>
-          <InputBase
-            value={matchLength}
-            onChange={(event) => handleMatchLengthChange(event)}
-            sx={inputBaseStyles}
-            inputProps={{
-              style: {
-                textAlign: "center",
-                width: "100%",
-              },
-            }}
-          />
-        </FormControl>
-        <Combo champion={champion} />
-        <ComponentAdding />
-        <LineChart champion={champion} />
-      </>
+      <Combo champion={champion} />
+      <ComponentAdding />
+      <LineChart champion={champion} />
     </Container>
   );
 };

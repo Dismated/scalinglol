@@ -23,6 +23,7 @@ const NodeButton = ({
     borderColor: "inherit",
     position: "relative",
     left: "-5px",
+    backgroundColor: "#1e1e1e",
   };
 
   return <Button sx={ButtonStyles}>{lvlUped || id + 1}</Button>;

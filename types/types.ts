@@ -25,6 +25,6 @@ export interface SpellStats {
 
 export interface SpellProps {
   name: string;
-  section: "basic" | "basicAttack";
+  section: string;
   count: number;
 }

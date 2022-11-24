@@ -1,4 +1,4 @@
-import { Box, InputBase, Typography } from "@mui/material";
+import { Box, Divider, InputBase, Paper, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import Slot from "./Slot";
 import { setSpells } from "../reducers/spellsReducer";
@@ -10,8 +10,11 @@ const inputBaseStyles = {
   borderColor: "primary.main",
   borderRadius: "4px",
   color: "primary.main",
-  width: "40px",
+  width: "50px",
+  height: "50px",
   ml: "10px",
+  fontSize: 20,
+  margin: 0,
 };
 
 const Combo = ({ champion }: { champion: string }) => {
@@ -21,10 +24,13 @@ const Combo = ({ champion }: { champion: string }) => {
   const handleSlotsChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setSlots(Number(event.target.value));
-    const spellArr = new Array(Number(event.target.value));
-    spellArr.fill({ name: "", section: "", count: 1 });
-    dispatch(setSpells(spellArr));
+    const parseInput = Number(event.target.value);
+    if (parseInput >= 0 && parseInput < 100) {
+      setSlots(Number(event.target.value));
+      const spellArr = new Array(Number(event.target.value));
+      spellArr.fill({ name: "", section: "", count: 1 });
+      dispatch(setSpells(spellArr));
+    }
   };
 
   const generateSlots = (num: number) => {
@@ -33,25 +39,45 @@ const Combo = ({ champion }: { champion: string }) => {
   };
 
   return (
-    <>
-      <Typography variant="h4">Combo</Typography>
-      <Typography variant="h5" sx={{ display: "inline-block" }}>
-        Slots:
-      </Typography>
-      <InputBase
-        value={slots}
-        onChange={(event) => handleSlotsChange(event)}
-        sx={inputBaseStyles}
-        inputProps={{
-          style: {
-            textAlign: "center",
-            width: "100%",
-            padding: 0,
-          },
+    <Paper sx={{ my: "10px", px: "10px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
-      />
-      <Box>{generateSlots(slots)}</Box>
-    </>
+      >
+        <Typography variant="h3" sx={{ display: "inline-block" }}>
+          Combo
+        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            variant="h6"
+            sx={{
+              display: "inline-block",
+              transform: "rotate(-90deg)",
+              position: "relative",
+              left: "12px",
+            }}
+          >
+            Slots
+          </Typography>
+          <InputBase
+            value={slots}
+            onChange={(event) => handleSlotsChange(event)}
+            sx={inputBaseStyles}
+            inputProps={{
+              style: {
+                textAlign: "center",
+              },
+            }}
+          />
+        </Box>
+      </Box>
+      <Divider />
+
+      <Box sx={{ py: "10px" }}>{generateSlots(slots)}</Box>
+    </Paper>
   );
 };
 

@@ -1,4 +1,5 @@
 import "chart.js/auto";
+import { Paper, Typography } from "@mui/material";
 import { Line } from "react-chartjs-2";
 
 import { ChampNameType } from "../types/types";
@@ -14,21 +15,14 @@ const LineChart = ({ champion }: { champion: string }) => {
   const spells = useAppSelector((state) => state.spells);
   const lvlUp = useAppSelector((state) => state.lvlUp);
 
-  const filledSpellSlot = spells.find((e) => {
-    console.log(e.name, e.section);
-
-    return !e.name || !e.section;
-  });
+  const filledSpellSlot = spells.find((e) => !e.name || !e.section);
   const dmg = !filledSpellSlot
     ? lvlUp.map((skillLvls) =>
         spells.reduce((acc, spell) => {
           if (!spell.name) return acc;
           const statsShort = { ...champStats[champion].stats };
-
           const spellStats =
             champStats[champion].spells[spell.name][spell.section];
-
-          console.log(spell);
 
           return (
             acc +
@@ -51,7 +45,8 @@ const LineChart = ({ champion }: { champion: string }) => {
   const time = skillTimeCopy.sort(compareNumbers);
 
   return (
-    <div style={{ maxWidth: "600px" }}>
+    <Paper sx={{ maxWidth: "1200px", py: "5px", px: "10px" }}>
+      <Typography variant="h3">Chart</Typography>
       <Line
         data={{
           labels: time,
@@ -82,7 +77,7 @@ const LineChart = ({ champion }: { champion: string }) => {
         }}
         options={{ scales: { x: { min: 0, max: 2700 } } }}
       />
-    </div>
+    </Paper>
   );
 };
 

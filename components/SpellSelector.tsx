@@ -1,38 +1,21 @@
-import { Box, Button, ClickAwayListener, Typography } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Badge, Box, Button } from "@mui/material";
 import Image from "next/image";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setSpells } from "../reducers/spellsReducer";
 
 interface SpellSelectorProps {
-  setSlotPressed: Dispatch<SetStateAction<boolean>>;
-  setSpellPressed: Dispatch<SetStateAction<boolean>>;
   id: number;
   spell: string;
 }
 
-const spellsButtonStyles = {
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  height: "50px",
-  width: "50px",
-};
-
 const spellStyles = {
-  position: "relative",
-  bottom: "50px",
   display: "inline-block",
-  backgroundColor: "#121212",
+  py: "10px",
+  px: "5px",
 };
 
-const SpellSelector = ({
-  setSlotPressed,
-  setSpellPressed,
-  id,
-  spell,
-}: SpellSelectorProps) => {
+const SpellSelector = ({ id, spell }: SpellSelectorProps) => {
   const dispatch = useAppDispatch();
   const spells = useAppSelector((state) => state.spells);
   const newSpells = spells.map((e) => {
@@ -40,38 +23,37 @@ const SpellSelector = ({
     return newE;
   });
 
+  const borderWidth = newSpells[id].name === spell ? "1px" : 0;
+
+  const spellsButtonStyles = {
+    height: "64px",
+    width: "64px",
+    borderWidth,
+    borderStyle: "solid",
+    borderColor: "primary.main",
+    p: 0,
+  };
+
   const handleSpellClick = (spellName: string) => {
-    setSlotPressed(false);
-    setSpellPressed(true);
     newSpells[id].name = spellName;
+    newSpells[id].section = "basic";
+    newSpells[id].count = 1;
     dispatch(setSpells(newSpells));
   };
 
-  const handleSpellClickAway = () => {
-    setSlotPressed(false);
-  };
-
   return (
-    <ClickAwayListener onClickAway={handleSpellClickAway}>
-      <Box sx={spellStyles}>
-        <Typography
-          sx={{
-            "z-index": 10,
-            position: "absolute",
-          }}
-        >
-          {spell[spell.length - 1]}
-        </Typography>
+    <Box sx={spellStyles}>
+      <Badge badgeContent={spell[spell.length - 1]} color="primary">
         <Button sx={spellsButtonStyles} onClick={() => handleSpellClick(spell)}>
           <Image
             src={`/../public/spellIcons/${spell}.png`}
             alt={spell}
-            width="50"
-            height="50"
+            width="64"
+            height="64"
           />
         </Button>
-      </Box>
-    </ClickAwayListener>
+      </Badge>
+    </Box>
   );
 };
 

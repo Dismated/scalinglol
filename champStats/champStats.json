@@ -178,10 +178,16 @@
           "dmgPerSkillLvl": 3,
           "apModifier": 0.04
         },
-        "basicAttack": {
+        "modified attack": {
           "dmgType": "magic",
           "initialDmg": 20,
           "dmgPerChampLvl": 15
+        }
+      },
+      "BasicAttackA": {
+        "basic": {
+          "dmgType": "physical",
+          "adModifier": 1
         }
       }
     }

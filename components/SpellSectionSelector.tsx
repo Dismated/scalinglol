@@ -1,30 +1,14 @@
-import { Button, ClickAwayListener } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Button } from "@mui/material";
+
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setSpells } from "../reducers/spellsReducer";
 
-const spellPartStyles = {
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  position: "relative",
-  bottom: "36px",
-  display: "inline-block",
-};
-
 interface SpellSectionSelectorProps {
   spellPart: string;
-  setSpellPartPressed: Dispatch<SetStateAction<boolean>>;
   id: number;
-  setSpellPressed: Dispatch<SetStateAction<boolean>>;
 }
 
-const SpellSectionSelector = ({
-  spellPart,
-  setSpellPartPressed,
-  id,
-  setSpellPressed,
-}: SpellSectionSelectorProps) => {
+const SpellSectionSelector = ({ spellPart, id }: SpellSectionSelectorProps) => {
   const dispatch = useAppDispatch();
   const spells = useAppSelector((state) => state.spells);
   const newSpells = spells.map((e) => {
@@ -33,24 +17,30 @@ const SpellSectionSelector = ({
   });
 
   const handleSpellPartClick = (spellPartName: string) => {
-    setSpellPartPressed(true);
     newSpells[id].section = spellPartName;
+    console.log(newSpells);
+
     dispatch(setSpells(newSpells));
   };
 
-  const handleSpellPartClickAway = () => {
-    setSpellPressed(false);
+  const borderWidth = spellPart === newSpells[id].section ? "1px" : 0;
+
+  const spellPartStyles = {
+    borderStyle: "solid",
+    borderWidth,
+    borderColor: "primary.main",
+    display: "inline-block",
+    my: "10px",
+    mx: "5px",
   };
 
   return (
-    <ClickAwayListener key={spellPart} onClickAway={handleSpellPartClickAway}>
-      <Button
-        onClick={() => handleSpellPartClick(spellPart)}
-        sx={spellPartStyles}
-      >
-        {spellPart}
-      </Button>
-    </ClickAwayListener>
+    <Button
+      onClick={() => handleSpellPartClick(spellPart)}
+      sx={spellPartStyles}
+    >
+      {spellPart}
+    </Button>
   );
 };
 

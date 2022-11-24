@@ -14,6 +14,7 @@ const inputBaseStyles = {
   color: "primary.main",
   left: "-15px",
   width: "40px",
+  backgroundColor: "#1e1e1e",
 };
 
 interface NodeTimerProps {

@@ -1,4 +1,10 @@
-import { ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import {
+  Divider,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setAttackSwitch } from "../reducers/attackSwitchReducer";
@@ -18,8 +24,8 @@ const ComponentAdding = () => {
   };
 
   return (
-    <>
-      <Typography variant="h4" sx={{ display: "inline-block" }}>
+    <Paper sx={{ my: "10px", px: "10px", pb: "10px" }}>
+      <Typography variant="h3" sx={{ display: "inline-block" }}>
         {heading}
       </Typography>
       <ToggleButtonGroup
@@ -34,13 +40,16 @@ const ComponentAdding = () => {
           borderWidth: "1px",
           borderStyle: "solid",
           borderColor: "primary.main",
+          mt: "8px",
         }}
       >
         <ToggleButton value="timer">Timer</ToggleButton>
         <ToggleButton value="lvlUp">LvlUp</ToggleButton>
       </ToggleButtonGroup>
+      <Divider />
+
       <MultiNodeSlider />
-    </>
+    </Paper>
   );
 };
 

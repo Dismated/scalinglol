@@ -1,102 +1,108 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Badge, Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
+import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { ChampNameType } from "../types/types";
-import SpellCountSelector from "./SpellCountSelector";
-import SpellSectionSelector from "./SpellSectionSelector";
-import SpellSelector from "./SpellSelector";
+import SpellPopUp from "./SpellPopUp";
+import { setSpells } from "../reducers/spellsReducer";
 import stats from "../champStats/champStats.json";
-import { useAppSelector } from "../hooks/preTypedHooks";
 
 const champStats: ChampNameType = { ...stats };
 
 const Slot = ({ champion, id }: { champion: string; id: number }) => {
+  const dispatch = useAppDispatch();
   const [slotPressed, setSlotPressed] = useState(false);
-  const [spellPressed, setSpellPressed] = useState(false);
-  const [spellPartPressed, setSpellPartPressed] = useState(false);
   const spells = useAppSelector((state) => state.spells);
   const newSpells = spells.map((e) => {
     const newE = { ...e };
     return newE;
   });
 
-  const handleSlotClick = () => {
-    setSlotPressed(true);
-  };
-
   const borderStyle = newSpells[id].name ? "solid" : "dashed";
-
   const slotButtonStyles = {
-    width: "50px",
-    height: "50px",
+    width: "80px",
+    height: "115px",
     padding: 0,
     borderStyle,
-    borderWidth: "1px",
+    borderWidth: "2px",
     borderColor: "primary.main",
     borderRadius: "4px",
     display: "inline-block",
   };
+  const slotBoxStyles = {
+    display: "flex",
+    alignContent: "space-between",
+    flexWrap: "wrap",
+    height: "100%",
+  };
+  const spellSectionBoxStyles = {
+    height: "35px",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const handleSlotClick = () => {
+    setSlotPressed(true);
+    // eslint-disable-next-line prefer-destructuring
+    newSpells[id].name = Object.keys(champStats[champion].spells)[0];
+    newSpells[id].section = "basic";
+    dispatch(setSpells(newSpells));
+  };
 
   return (
-    <>
-      <Box sx={{ display: "inline-block", position: "absolute" }}>
-        {slotPressed
-          ? Object.keys(champStats[champion].spells).map((spell) => (
-              <SpellSelector
-                key={spell}
-                setSlotPressed={setSlotPressed}
-                setSpellPressed={setSpellPressed}
-                id={id}
-                spell={spell}
-              />
-            ))
-          : null}
-        {spellPressed
-          ? Object.keys(champStats[champion].spells[spells[id].name]).map(
-              (spellPart) => (
-                <SpellSectionSelector
-                  key={spellPart}
-                  spellPart={spellPart}
-                  setSpellPartPressed={setSpellPartPressed}
-                  id={id}
-                  setSpellPressed={setSpellPressed}
+    <Box sx={{ display: "inline-block", m: "12px" }}>
+      {slotPressed ? (
+        <SpellPopUp
+          champion={champion}
+          setSlotPressed={setSlotPressed}
+          id={id}
+        />
+      ) : null}
+
+      <Badge
+        badgeContent={newSpells[id].name[spells[id].name.length - 1]}
+        color="primary"
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        sx={{
+          "& .MuiBadge-badge": {
+            fontFamily: "Merriweather",
+          },
+        }}
+      >
+        <Badge
+          badgeContent={newSpells[id].count}
+          color="primary"
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <Button sx={slotButtonStyles} onClick={handleSlotClick}>
+            {spells[id].name === "" ? (
+              "+"
+            ) : (
+              <Box sx={slotBoxStyles}>
+                <Image
+                  src={`/../public/spellIcons/${spells[id]?.name}.png`}
+                  alt={spells[id].name}
+                  width="80"
+                  height="80"
                 />
-              )
-            )
-          : null}
-        {spellPartPressed ? (
-          <SpellCountSelector
-            id={id}
-            setSpellPartPressed={setSpellPartPressed}
-          />
-        ) : null}
-      </Box>
-      <Button sx={slotButtonStyles} onClick={handleSlotClick}>
-        {spells[id].name === "" ? (
-          "+"
-        ) : (
-          <>
-            <Typography
-              sx={{
-                "z-index": 10,
-                position: "absolute",
-                color: "white",
-              }}
-            >
-              {spells[id].name[spells[id].name.length - 1]}
-            </Typography>
-            <Image
-              src={`/../public/spellIcons/${spells[id]?.name}.png`}
-              alt={spells[id].name}
-              width="50"
-              height="50"
-            />
-            <Typography>{spells[id].section}</Typography>
-          </>
-        )}
-      </Button>
-    </>
+                <Box sx={spellSectionBoxStyles}>
+                  <Typography>{spells[id].section}</Typography>
+                </Box>
+              </Box>
+            )}
+          </Button>
+        </Badge>
+      </Badge>
+    </Box>
   );
 };
 

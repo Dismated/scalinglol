@@ -47,8 +47,8 @@ const NodeOrientation = ({
         flexDirection: { flexDirection },
       }}
     >
-      {nodeSettingsAreOpen ? (
-        switchValue === "timer" ? (
+      <Box sx={{ position: "absolute" }}>
+        {switchValue === "timer" && nodeSettingsAreOpen ? (
           <NodeTimer
             offsetTimer={offsetTimer}
             offsetMoveIcon={offsetMoveIcon}
@@ -60,17 +60,16 @@ const NodeOrientation = ({
             id={id}
             setNodeSettingsAreOpen={setNodeSettingsAreOpen}
           />
-        ) : (
+        ) : null}
+        {switchValue === "lvlUp" && nodeSettingsAreOpen ? (
           <NodeLvlUp
             setNodeSettingsAreOpen={setNodeSettingsAreOpen}
             lvlUped={lvlUped}
             setLvlUped={setLvlUped}
             id={id}
           />
-        )
-      ) : (
-        <Box />
-      )}
+        ) : null}
+      </Box>
       <NodeButton nodeSide={nodeSide} lvlUped={lvlUped} id={id} />
       <Arrow />
     </Box>

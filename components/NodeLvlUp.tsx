@@ -9,6 +9,7 @@ const buttonStyles = {
   borderColor: "primary.main",
   padding: 0,
   minWidth: "25px",
+  backgroundColor: "#1e1e1e",
 };
 
 interface NodeLvlUpProps {
@@ -45,12 +46,10 @@ const NodeLvlUp = ({
       return spellLvlUp;
     });
 
-  const bottomOffset = "28px";
-
   const boxStyles = {
     position: "absolute",
     width: "100px",
-    bottom: `${bottomOffset}`,
+    bottom: 0,
     left: "-46px",
   };
 

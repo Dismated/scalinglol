@@ -51,7 +51,7 @@ const ChampionList = () => {
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <InputBase sx={InputBaseStyles} onChange={handleChange} autoFocus />
       </Box>
-      <Paper elevation={2}>
+      <Paper>
         <Grid
           container
           columns={16}
@@ -83,7 +83,7 @@ const ChampionList = () => {
                     />
                   </Box>
                   <Box>
-                    <Typography variant="body1" sx={{ textAlign: "center" }}>
+                    <Typography variant="body2" sx={{ textAlign: "center" }}>
                       {c.name}
                     </Typography>
                   </Box>
