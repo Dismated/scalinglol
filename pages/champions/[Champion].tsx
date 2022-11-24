@@ -62,7 +62,7 @@ const ChampionDetails = () => {
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box sx={{ display: "flex" }}>
           <Image
-            src={`/../public/championIcons/${champion}.png`}
+            src={`/championIcons/${champion}.png`}
             alt={champion}
             width="130"
             height="130"

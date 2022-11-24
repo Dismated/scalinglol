@@ -71,7 +71,7 @@ const ChampionList = () => {
                     }}
                   >
                     <Image
-                      src={`/../public/championIcons/${c.name}.png`}
+                      src={`/championIcons/${c.name}.png`}
                       alt={c.name}
                       width="70"
                       height="70"

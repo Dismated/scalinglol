@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const primaryColorSlice = createSlice({
   name: "primaryColor",
-  initialState: "#000",
+  initialState: "#fff",
   reducers: {
     setPrimaryColor(state, action) {
       return action.payload;

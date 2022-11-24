@@ -1,6 +1,6 @@
 import "chart.js/auto";
 import { Paper, Typography } from "@mui/material";
-import { Line } from "react-chartjs-2";
+import { Scatter } from "react-chartjs-2";
 
 import { ChampNameType } from "../types/types";
 import calculations from "../calculations/calculations";
@@ -43,11 +43,12 @@ const LineChart = ({ champion }: { champion: string }) => {
   const compareNumbers = (a: number, b: number) => a - b;
 
   const time = skillTimeCopy.sort(compareNumbers);
+  console.log(typeof time[0]);
 
   return (
     <Paper sx={{ maxWidth: "1200px", py: "5px", px: "10px" }}>
       <Typography variant="h3">Chart</Typography>
-      <Line
+      <Scatter
         data={{
           labels: time,
           datasets: [
