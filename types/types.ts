@@ -10,6 +10,7 @@ export interface ChampStatsType {
   stats: { [key: string]: number };
   spells: Record<string, SpellsType>;
   available: boolean;
+  color: string;
 }
 
 export type SpellsType = Record<string, SpellStats>;

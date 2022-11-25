@@ -46,7 +46,7 @@ const SpellSelector = ({ id, spell }: SpellSelectorProps) => {
       <Badge badgeContent={spell[spell.length - 1]} color="primary">
         <Button sx={spellsButtonStyles} onClick={() => handleSpellClick(spell)}>
           <Image
-            src={`/../public/spellIcons/${spell}.png`}
+            src={`/spellIcons/${spell}.png`}
             alt={spell}
             width="64"
             height="64"

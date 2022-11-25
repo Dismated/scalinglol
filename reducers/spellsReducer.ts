@@ -9,8 +9,6 @@ const spellsSlice = createSlice({
   initialState,
   reducers: {
     setSpells(state, action) {
-      console.log(action.payload);
-
       return action.payload;
     },
   },

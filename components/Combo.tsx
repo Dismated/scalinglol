@@ -1,8 +1,14 @@
-import { Box, Divider, InputBase, Paper, Typography } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { Box, InputBase, Paper, Typography } from "@mui/material";
+import { ChangeEvent, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
+import { ChampNameType } from "../types/types";
 import Slot from "./Slot";
+import debounce from "../helpers/debounce";
+import { setPrimaryColor } from "../reducers/primaryColorReducer";
 import { setSpells } from "../reducers/spellsReducer";
-import { useAppDispatch } from "../hooks/preTypedHooks";
+import stats from "../champStats/champStats.json";
+
+const champStats: ChampNameType = { ...stats };
 
 const inputBaseStyles = {
   borderStyle: "solid",
@@ -18,24 +24,37 @@ const inputBaseStyles = {
 };
 
 const Combo = ({ champion }: { champion: string }) => {
-  const [slots, setSlots] = useState(1);
   const dispatch = useAppDispatch();
+  const spells = useAppSelector((state) => state.spells);
 
-  const handleSlotsChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const parseInput = Number(event.target.value);
-    if (parseInput >= 0 && parseInput < 100) {
-      setSlots(Number(event.target.value));
-      const spellArr = new Array(Number(event.target.value));
-      spellArr.fill({ name: "", section: "", count: 1 });
-      dispatch(setSpells(spellArr));
-    }
-  };
+  useEffect(() => {
+    dispatch(setPrimaryColor(champStats[champion].color));
+  }, [dispatch, champion]);
+
+  const handleSlotsChange = debounce(
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const parseInput = Number(event.target.value);
+
+      if (parseInput >= 0 && parseInput < 100) {
+        if (spells.length < parseInput) {
+          const spellArr = [...spells];
+          const fillArr = new Array(parseInput - spells.length);
+          fillArr.fill({ name: "", section: "", count: 1 });
+          dispatch(setSpells(spellArr.concat(fillArr)));
+        } else {
+          dispatch(setSpells(spells.slice(0, parseInput)));
+        }
+      }
+    },
+    1000
+  );
 
   const generateSlots = (num: number) => {
     const arr = Array.from(Array(num).keys());
-    return arr.map((e) => <Slot champion={champion} id={e} key={e} />);
+
+    if (spells.length > 0)
+      return arr.map((e) => <Slot champion={champion} id={e} key={e} />);
+    return null;
   };
 
   return (
@@ -63,7 +82,6 @@ const Combo = ({ champion }: { champion: string }) => {
             Slots
           </Typography>
           <InputBase
-            value={slots}
             onChange={(event) => handleSlotsChange(event)}
             sx={inputBaseStyles}
             inputProps={{
@@ -74,9 +92,8 @@ const Combo = ({ champion }: { champion: string }) => {
           />
         </Box>
       </Box>
-      <Divider />
 
-      <Box sx={{ py: "10px" }}>{generateSlots(slots)}</Box>
+      <Box sx={{ py: "10px" }}>{generateSlots(spells.length)}</Box>
     </Paper>
   );
 };

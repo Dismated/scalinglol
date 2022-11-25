@@ -4,6 +4,7 @@
     "key": "266",
     "title": "the Darkin Blade",
     "image": "Aatrox.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 90,
@@ -35,6 +36,7 @@
     "key": "103",
     "title": "the Nine-Tailed Fox",
     "image": "Ahri.png",
+    "color": "white",
     "stats": {
       "hp": 500,
       "hpperlevel": 82,
@@ -66,6 +68,7 @@
     "key": "84",
     "title": "the Rogue Assassin",
     "image": "Akali.png",
+    "color": "white",
     "stats": {
       "hp": 500,
       "hpperlevel": 105,
@@ -97,6 +100,7 @@
     "key": "166",
     "title": "the Rogue Sentinel",
     "image": "Akshan.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 90,
@@ -123,12 +127,12 @@
     "available": false,
     "spells": {}
   },
-
   "Alistar": {
     "name": "Alistar",
     "key": "12",
     "title": "the Minotaur",
     "image": "Alistar.png",
+    "color": "deepPurple",
     "stats": {
       "hp": 600,
       "hpperlevel": 106,
@@ -198,6 +202,7 @@
     "key": "32",
     "title": "the Sad Mummy",
     "image": "Amumu.png",
+    "color": "white",
     "stats": {
       "hp": 615,
       "hpperlevel": 75,
@@ -229,6 +234,7 @@
     "key": "34",
     "title": "the Cryophoenix",
     "image": "Anivia.png",
+    "color": "white",
     "stats": {
       "hp": 480,
       "hpperlevel": 82,
@@ -260,6 +266,7 @@
     "key": "1",
     "title": "the Dark Child",
     "image": "Annie.png",
+    "color": "white",
     "stats": {
       "hp": 524,
       "hpperlevel": 88,
@@ -291,6 +298,7 @@
     "key": "523",
     "title": "the Weapon of the Faithful",
     "image": "Aphelios.png",
+    "color": "white",
     "stats": {
       "hp": 510,
       "hpperlevel": 88,
@@ -322,6 +330,7 @@
     "key": "22",
     "title": "the Frost Archer",
     "image": "Ashe.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 87,
@@ -353,6 +362,7 @@
     "key": "136",
     "title": "The Star Forger",
     "image": "AurelionSol.png",
+    "color": "white",
     "stats": {
       "hp": 575,
       "hpperlevel": 92,
@@ -384,6 +394,7 @@
     "key": "268",
     "title": "the Emperor of the Sands",
     "image": "Azir.png",
+    "color": "white",
     "stats": {
       "hp": 552,
       "hpperlevel": 105,
@@ -415,6 +426,7 @@
     "key": "432",
     "title": "the Wandering Caretaker",
     "image": "Bard.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 89,
@@ -446,6 +458,7 @@
     "key": "53",
     "title": "the Great Steam Golem",
     "image": "Blitzcrank.png",
+    "color": "white",
     "stats": {
       "hp": 583,
       "hpperlevel": 95,
@@ -477,6 +490,7 @@
     "key": "63",
     "title": "the Burning Vengeance",
     "image": "Brand.png",
+    "color": "white",
     "stats": {
       "hp": 520,
       "hpperlevel": 88,
@@ -508,6 +522,7 @@
     "key": "201",
     "title": "the Heart of the Freljord",
     "image": "Braum.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 98,
@@ -539,6 +554,7 @@
     "key": "51",
     "title": "the Sheriff of Piltover",
     "image": "Caitlyn.png",
+    "color": "white",
     "stats": {
       "hp": 510,
       "hpperlevel": 93,
@@ -570,6 +586,7 @@
     "key": "164",
     "title": "the Steel Shadow",
     "image": "Camille.png",
+    "color": "white",
     "stats": {
       "hp": 576,
       "hpperlevel": 85,
@@ -601,6 +618,7 @@
     "key": "69",
     "title": "the Serpent's Embrace",
     "image": "Cassiopeia.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 90,
@@ -632,6 +650,7 @@
     "key": "31",
     "title": "the Terror of the Void",
     "image": "Chogath.png",
+    "color": "white",
     "stats": {
       "hp": 574,
       "hpperlevel": 80,
@@ -663,6 +682,7 @@
     "key": "42",
     "title": "the Daring Bombardier",
     "image": "Corki.png",
+    "color": "white",
     "stats": {
       "hp": 518,
       "hpperlevel": 87,
@@ -694,6 +714,7 @@
     "key": "122",
     "title": "the Hand of Noxus",
     "image": "Darius.png",
+    "color": "white",
     "stats": {
       "hp": 582,
       "hpperlevel": 100,
@@ -725,6 +746,7 @@
     "key": "131",
     "title": "Scorn of the Moon",
     "image": "Diana.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 95,
@@ -756,6 +778,7 @@
     "key": "36",
     "title": "the Madman of Zaun",
     "image": "DrMundo.png",
+    "color": "white",
     "stats": {
       "hp": 583,
       "hpperlevel": 89,
@@ -787,6 +810,7 @@
     "key": "119",
     "title": "the Glorious Executioner",
     "image": "Draven.png",
+    "color": "white",
     "stats": {
       "hp": 605,
       "hpperlevel": 90,
@@ -818,6 +842,7 @@
     "key": "245",
     "title": "the Boy Who Shattered Time",
     "image": "Ekko.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 85,
@@ -849,6 +874,7 @@
     "key": "60",
     "title": "the Spider Queen",
     "image": "Elise.png",
+    "color": "white",
     "stats": {
       "hp": 555,
       "hpperlevel": 93,
@@ -880,6 +906,7 @@
     "key": "28",
     "title": "Agony's Embrace",
     "image": "Evelynn.png",
+    "color": "white",
     "stats": {
       "hp": 572,
       "hpperlevel": 84,
@@ -911,6 +938,7 @@
     "key": "81",
     "title": "the Prodigal Explorer",
     "image": "Ezreal.png",
+    "color": "white",
     "stats": {
       "hp": 530,
       "hpperlevel": 88,
@@ -942,6 +970,7 @@
     "key": "9",
     "title": "the Ancient Fear",
     "image": "Fiddlesticks.png",
+    "color": "white",
     "stats": {
       "hp": 580.4,
       "hpperlevel": 92,
@@ -973,6 +1002,7 @@
     "key": "114",
     "title": "the Grand Duelist",
     "image": "Fiora.png",
+    "color": "white",
     "stats": {
       "hp": 550,
       "hpperlevel": 85,
@@ -1004,6 +1034,7 @@
     "key": "105",
     "title": "the Tidal Trickster",
     "image": "Fizz.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 98,
@@ -1035,6 +1066,7 @@
     "key": "3",
     "title": "the Colossus",
     "image": "Galio.png",
+    "color": "white",
     "stats": {
       "hp": 562,
       "hpperlevel": 112,
@@ -1066,6 +1098,7 @@
     "key": "41",
     "title": "the Saltwater Scourge",
     "image": "Gangplank.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 90,
@@ -1097,6 +1130,7 @@
     "key": "86",
     "title": "The Might of Demacia",
     "image": "Garen.png",
+    "color": "white",
     "stats": {
       "hp": 620,
       "hpperlevel": 84,
@@ -1128,6 +1162,7 @@
     "key": "150",
     "title": "the Missing Link",
     "image": "Gnar.png",
+    "color": "white",
     "stats": {
       "hp": 510,
       "hpperlevel": 65,
@@ -1159,6 +1194,7 @@
     "key": "79",
     "title": "the Rabble Rouser",
     "image": "Gragas.png",
+    "color": "white",
     "stats": {
       "hp": 600,
       "hpperlevel": 95,
@@ -1190,6 +1226,7 @@
     "key": "104",
     "title": "the Outlaw",
     "image": "Graves.png",
+    "color": "white",
     "stats": {
       "hp": 555,
       "hpperlevel": 92,
@@ -1221,6 +1258,7 @@
     "key": "887",
     "title": "The Hallowed Seamstress",
     "image": "Gwen.png",
+    "color": "white",
     "stats": {
       "hp": 590,
       "hpperlevel": 95,
@@ -1252,6 +1290,7 @@
     "key": "120",
     "title": "the Shadow of War",
     "image": "Hecarim.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 90,
@@ -1283,6 +1322,7 @@
     "key": "74",
     "title": "the Revered Inventor",
     "image": "Heimerdinger.png",
+    "color": "white",
     "stats": {
       "hp": 488,
       "hpperlevel": 87,
@@ -1314,6 +1354,7 @@
     "key": "420",
     "title": "the Kraken Priestess",
     "image": "Illaoi.png",
+    "color": "white",
     "stats": {
       "hp": 586,
       "hpperlevel": 95,
@@ -1345,6 +1386,7 @@
     "key": "39",
     "title": "the Blade Dancer",
     "image": "Irelia.png",
+    "color": "white",
     "stats": {
       "hp": 520,
       "hpperlevel": 110,
@@ -1376,6 +1418,7 @@
     "key": "427",
     "title": "the Green Father",
     "image": "Ivern.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 85,
@@ -1407,6 +1450,7 @@
     "key": "40",
     "title": "the Storm's Fury",
     "image": "Janna.png",
+    "color": "white",
     "stats": {
       "hp": 500,
       "hpperlevel": 70,
@@ -1438,6 +1482,7 @@
     "key": "59",
     "title": "the Exemplar of Demacia",
     "image": "JarvanIV.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 90,
@@ -1469,6 +1514,7 @@
     "key": "24",
     "title": "Grandmaster at Arms",
     "image": "Jax.png",
+    "color": "white",
     "stats": {
       "hp": 615,
       "hpperlevel": 85,
@@ -1500,6 +1546,7 @@
     "key": "126",
     "title": "the Defender of Tomorrow",
     "image": "Jayce.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 90,
@@ -1531,6 +1578,7 @@
     "key": "202",
     "title": "the Virtuoso",
     "image": "Jhin.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 93,
@@ -1562,6 +1610,7 @@
     "key": "222",
     "title": "the Loose Cannon",
     "image": "Jinx.png",
+    "color": "white",
     "stats": {
       "hp": 610,
       "hpperlevel": 86,
@@ -1593,6 +1642,7 @@
     "key": "145",
     "title": "Daughter of the Void",
     "image": "Kaisa.png",
+    "color": "white",
     "stats": {
       "hp": 600,
       "hpperlevel": 88,
@@ -1624,6 +1674,7 @@
     "key": "429",
     "title": "the Spear of Vengeance",
     "image": "Kalista.png",
+    "color": "white",
     "stats": {
       "hp": 534,
       "hpperlevel": 100,
@@ -1655,6 +1706,7 @@
     "key": "43",
     "title": "the Enlightened One",
     "image": "Karma.png",
+    "color": "white",
     "stats": {
       "hp": 534,
       "hpperlevel": 95,
@@ -1686,6 +1738,7 @@
     "key": "30",
     "title": "the Deathsinger",
     "image": "Karthus.png",
+    "color": "white",
     "stats": {
       "hp": 550,
       "hpperlevel": 87,
@@ -1717,6 +1770,7 @@
     "key": "38",
     "title": "the Void Walker",
     "image": "Kassadin.png",
+    "color": "white",
     "stats": {
       "hp": 576,
       "hpperlevel": 105,
@@ -1748,6 +1802,7 @@
     "key": "55",
     "title": "the Sinister Blade",
     "image": "Katarina.png",
+    "color": "white",
     "stats": {
       "hp": 602,
       "hpperlevel": 94,
@@ -1779,6 +1834,7 @@
     "key": "10",
     "title": "the Righteous",
     "image": "Kayle.png",
+    "color": "white",
     "stats": {
       "hp": 600,
       "hpperlevel": 85,
@@ -1810,6 +1866,7 @@
     "key": "141",
     "title": "the Shadow Reaper",
     "image": "Kayn.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 85,
@@ -1841,6 +1898,7 @@
     "key": "85",
     "title": "the Heart of the Tempest",
     "image": "Kennen.png",
+    "color": "white",
     "stats": {
       "hp": 541,
       "hpperlevel": 84,
@@ -1872,6 +1930,7 @@
     "key": "121",
     "title": "the Voidreaver",
     "image": "Khazix.png",
+    "color": "white",
     "stats": {
       "hp": 573,
       "hpperlevel": 85,
@@ -1903,6 +1962,7 @@
     "key": "203",
     "title": "The Eternal Hunters",
     "image": "Kindred.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 85,
@@ -1934,6 +1994,7 @@
     "key": "240",
     "title": "the Cantankerous Cavalier",
     "image": "Kled.png",
+    "color": "white",
     "stats": {
       "hp": 340,
       "hpperlevel": 70,
@@ -1965,6 +2026,7 @@
     "key": "96",
     "title": "the Mouth of the Abyss",
     "image": "KogMaw.png",
+    "color": "white",
     "stats": {
       "hp": 565,
       "hpperlevel": 85,
@@ -1996,6 +2058,7 @@
     "key": "7",
     "title": "the Deceiver",
     "image": "Leblanc.png",
+    "color": "white",
     "stats": {
       "hp": 528,
       "hpperlevel": 97,
@@ -2027,6 +2090,7 @@
     "key": "64",
     "title": "the Blind Monk",
     "image": "LeeSin.png",
+    "color": "white",
     "stats": {
       "hp": 575,
       "hpperlevel": 85,
@@ -2058,6 +2122,7 @@
     "key": "89",
     "title": "the Radiant Dawn",
     "image": "Leona.png",
+    "color": "white",
     "stats": {
       "hp": 576,
       "hpperlevel": 87,
@@ -2089,6 +2154,7 @@
     "key": "876",
     "title": "the Bashful Bloom",
     "image": "Lillia.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 90,
@@ -2120,6 +2186,7 @@
     "key": "127",
     "title": "the Ice Witch",
     "image": "Lissandra.png",
+    "color": "white",
     "stats": {
       "hp": 550,
       "hpperlevel": 90,
@@ -2151,6 +2218,7 @@
     "key": "236",
     "title": "the Purifier",
     "image": "Lucian.png",
+    "color": "white",
     "stats": {
       "hp": 571,
       "hpperlevel": 86,
@@ -2182,6 +2250,7 @@
     "key": "117",
     "title": "the Fae Sorceress",
     "image": "Lulu.png",
+    "color": "white",
     "stats": {
       "hp": 525,
       "hpperlevel": 74,
@@ -2213,6 +2282,7 @@
     "key": "99",
     "title": "the Lady of Luminosity",
     "image": "Lux.png",
+    "color": "white",
     "stats": {
       "hp": 490,
       "hpperlevel": 85,
@@ -2244,6 +2314,7 @@
     "key": "54",
     "title": "Shard of the Monolith",
     "image": "Malphite.png",
+    "color": "white",
     "stats": {
       "hp": 574,
       "hpperlevel": 90,
@@ -2275,6 +2346,7 @@
     "key": "90",
     "title": "the Prophet of the Void",
     "image": "Malzahar.png",
+    "color": "white",
     "stats": {
       "hp": 510,
       "hpperlevel": 87,
@@ -2306,6 +2378,7 @@
     "key": "57",
     "title": "the Twisted Treant",
     "image": "Maokai.png",
+    "color": "white",
     "stats": {
       "hp": 565,
       "hpperlevel": 95,
@@ -2337,6 +2410,7 @@
     "key": "11",
     "title": "the Wuju Bladesman",
     "image": "MasterYi.png",
+    "color": "white",
     "stats": {
       "hp": 599,
       "hpperlevel": 92,
@@ -2368,6 +2442,7 @@
     "key": "21",
     "title": "the Bounty Hunter",
     "image": "MissFortune.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 93,
@@ -2399,6 +2474,7 @@
     "key": "62",
     "title": "the Monkey King",
     "image": "MonkeyKing.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 85,
@@ -2430,6 +2506,7 @@
     "key": "82",
     "title": "the Iron Revenant",
     "image": "Mordekaiser.png",
+    "color": "white",
     "stats": {
       "hp": 575,
       "hpperlevel": 90,
@@ -2461,6 +2538,7 @@
     "key": "25",
     "title": "the Fallen",
     "image": "Morgana.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 90,
@@ -2492,6 +2570,7 @@
     "key": "267",
     "title": "the Tidecaller",
     "image": "Nami.png",
+    "color": "white",
     "stats": {
       "hp": 490,
       "hpperlevel": 74,
@@ -2523,6 +2602,7 @@
     "key": "75",
     "title": "the Curator of the Sands",
     "image": "Nasus.png",
+    "color": "white",
     "stats": {
       "hp": 561,
       "hpperlevel": 90,
@@ -2554,6 +2634,7 @@
     "key": "111",
     "title": "the Titan of the Depths",
     "image": "Nautilus.png",
+    "color": "white",
     "stats": {
       "hp": 576,
       "hpperlevel": 86,
@@ -2585,6 +2666,7 @@
     "key": "518",
     "title": "the Curious Chameleon",
     "image": "Neeko.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 90,
@@ -2616,6 +2698,7 @@
     "key": "76",
     "title": "the Bestial Huntress",
     "image": "Nidalee.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 95,
@@ -2647,6 +2730,7 @@
     "key": "56",
     "title": "the Eternal Nightmare",
     "image": "Nocturne.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 95,
@@ -2678,6 +2762,7 @@
     "key": "20",
     "title": "the Boy and His Yeti",
     "image": "Nunu.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 76,
@@ -2709,6 +2794,7 @@
     "key": "2",
     "title": "the Berserker",
     "image": "Olaf.png",
+    "color": "white",
     "stats": {
       "hp": 575,
       "hpperlevel": 100,
@@ -2740,6 +2826,7 @@
     "key": "61",
     "title": "the Lady of Clockwork",
     "image": "Orianna.png",
+    "color": "white",
     "stats": {
       "hp": 530,
       "hpperlevel": 91,
@@ -2771,6 +2858,7 @@
     "key": "516",
     "title": "The Fire below the Mountain",
     "image": "Ornn.png",
+    "color": "white",
     "stats": {
       "hp": 590,
       "hpperlevel": 95,
@@ -2802,6 +2890,7 @@
     "key": "80",
     "title": "the Unbreakable Spear",
     "image": "Pantheon.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 95,
@@ -2833,6 +2922,7 @@
     "key": "78",
     "title": "Keeper of the Hammer",
     "image": "Poppy.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 90,
@@ -2864,6 +2954,7 @@
     "key": "555",
     "title": "the Bloodharbor Ripper",
     "image": "Pyke.png",
+    "color": "white",
     "stats": {
       "hp": 600,
       "hpperlevel": 90,
@@ -2895,6 +2986,7 @@
     "key": "246",
     "title": "Empress of the Elements",
     "image": "Qiyana.png",
+    "color": "white",
     "stats": {
       "hp": 520,
       "hpperlevel": 110,
@@ -2926,6 +3018,7 @@
     "key": "133",
     "title": "Demacia's Wings",
     "image": "Quinn.png",
+    "color": "white",
     "stats": {
       "hp": 533,
       "hpperlevel": 85,
@@ -2957,6 +3050,7 @@
     "key": "497",
     "title": "The Charmer",
     "image": "Rakan.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 85,
@@ -2988,6 +3082,7 @@
     "key": "33",
     "title": "the Armordillo",
     "image": "Rammus.png",
+    "color": "white",
     "stats": {
       "hp": 564,
       "hpperlevel": 80,
@@ -3019,6 +3114,7 @@
     "key": "421",
     "title": "the Void Burrower",
     "image": "RekSai.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 85,
@@ -3050,6 +3146,7 @@
     "key": "526",
     "title": "the Iron Maiden",
     "image": "Rell.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 90,
@@ -3081,6 +3178,7 @@
     "key": "888",
     "title": "the Chem-Baroness",
     "image": "Renata.png",
+    "color": "white",
     "stats": {
       "hp": 525,
       "hpperlevel": 80,
@@ -3112,6 +3210,7 @@
     "key": "58",
     "title": "the Butcher of the Sands",
     "image": "Renekton.png",
+    "color": "white",
     "stats": {
       "hp": 590,
       "hpperlevel": 92,
@@ -3143,6 +3242,7 @@
     "key": "107",
     "title": "the Pridestalker",
     "image": "Rengar.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 90,
@@ -3174,6 +3274,7 @@
     "key": "92",
     "title": "the Exile",
     "image": "Riven.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 86,
@@ -3205,6 +3306,7 @@
     "key": "68",
     "title": "the Mechanized Menace",
     "image": "Rumble.png",
+    "color": "white",
     "stats": {
       "hp": 589,
       "hpperlevel": 85,
@@ -3236,6 +3338,7 @@
     "key": "13",
     "title": "the Rune Mage",
     "image": "Ryze.png",
+    "color": "white",
     "stats": {
       "hp": 575,
       "hpperlevel": 110,
@@ -3267,6 +3370,7 @@
     "key": "360",
     "title": "the Desert Rose",
     "image": "Samira.png",
+    "color": "white",
     "stats": {
       "hp": 530,
       "hpperlevel": 94,
@@ -3298,6 +3402,7 @@
     "key": "113",
     "title": "Fury of the North",
     "image": "Sejuani.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 100,
@@ -3329,6 +3434,7 @@
     "key": "235",
     "title": "the Redeemer",
     "image": "Senna.png",
+    "color": "white",
     "stats": {
       "hp": 520,
       "hpperlevel": 75,
@@ -3360,6 +3466,7 @@
     "key": "147",
     "title": "the Starry-Eyed Songstress",
     "image": "Seraphine.png",
+    "color": "white",
     "stats": {
       "hp": 500,
       "hpperlevel": 90,
@@ -3391,6 +3498,7 @@
     "key": "875",
     "title": "the Boss",
     "image": "Sett.png",
+    "color": "white",
     "stats": {
       "hp": 600,
       "hpperlevel": 100,
@@ -3422,6 +3530,7 @@
     "key": "35",
     "title": "the Demon Jester",
     "image": "Shaco.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 89,
@@ -3453,6 +3562,7 @@
     "key": "98",
     "title": "the Eye of Twilight",
     "image": "Shen.png",
+    "color": "white",
     "stats": {
       "hp": 540,
       "hpperlevel": 85,
@@ -3484,6 +3594,7 @@
     "key": "102",
     "title": "the Half-Dragon",
     "image": "Shyvana.png",
+    "color": "white",
     "stats": {
       "hp": 595,
       "hpperlevel": 95,
@@ -3515,6 +3626,7 @@
     "key": "27",
     "title": "the Mad Chemist",
     "image": "Singed.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 85,
@@ -3546,6 +3658,7 @@
     "key": "14",
     "title": "The Undead Juggernaut",
     "image": "Sion.png",
+    "color": "white",
     "stats": {
       "hp": 545,
       "hpperlevel": 73,
@@ -3577,6 +3690,7 @@
     "key": "15",
     "title": "the Battle Mistress",
     "image": "Sivir.png",
+    "color": "white",
     "stats": {
       "hp": 562,
       "hpperlevel": 90,
@@ -3608,6 +3722,7 @@
     "key": "72",
     "title": "the Crystal Vanguard",
     "image": "Skarner.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 85,
@@ -3639,6 +3754,7 @@
     "key": "37",
     "title": "Maven of the Strings",
     "image": "Sona.png",
+    "color": "white",
     "stats": {
       "hp": 480,
       "hpperlevel": 77,
@@ -3670,6 +3786,7 @@
     "key": "16",
     "title": "the Starchild",
     "image": "Soraka.png",
+    "color": "white",
     "stats": {
       "hp": 535,
       "hpperlevel": 74,
@@ -3701,6 +3818,7 @@
     "key": "50",
     "title": "the Noxian Grand General",
     "image": "Swain.png",
+    "color": "white",
     "stats": {
       "hp": 525,
       "hpperlevel": 85,
@@ -3732,6 +3850,7 @@
     "key": "517",
     "title": "the Unshackled",
     "image": "Sylas.png",
+    "color": "white",
     "stats": {
       "hp": 525,
       "hpperlevel": 115,
@@ -3763,6 +3882,7 @@
     "key": "134",
     "title": "the Dark Sovereign",
     "image": "Syndra.png",
+    "color": "white",
     "stats": {
       "hp": 523,
       "hpperlevel": 90,
@@ -3794,6 +3914,7 @@
     "key": "223",
     "title": "The River King",
     "image": "TahmKench.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 95,
@@ -3825,6 +3946,7 @@
     "key": "163",
     "title": "the Stoneweaver",
     "image": "Taliyah.png",
+    "color": "white",
     "stats": {
       "hp": 532,
       "hpperlevel": 90,
@@ -3856,6 +3978,7 @@
     "key": "91",
     "title": "the Blade's Shadow",
     "image": "Talon.png",
+    "color": "white",
     "stats": {
       "hp": 588,
       "hpperlevel": 95,
@@ -3887,6 +4010,7 @@
     "key": "44",
     "title": "the Shield of Valoran",
     "image": "Taric.png",
+    "color": "white",
     "stats": {
       "hp": 575,
       "hpperlevel": 85,
@@ -3918,6 +4042,7 @@
     "key": "17",
     "title": "the Swift Scout",
     "image": "Teemo.png",
+    "color": "white",
     "stats": {
       "hp": 528,
       "hpperlevel": 90,
@@ -3949,6 +4074,7 @@
     "key": "412",
     "title": "the Chain Warden",
     "image": "Thresh.png",
+    "color": "white",
     "stats": {
       "hp": 530,
       "hpperlevel": 95,
@@ -3980,6 +4106,7 @@
     "key": "18",
     "title": "the Yordle Gunner",
     "image": "Tristana.png",
+    "color": "white",
     "stats": {
       "hp": 600,
       "hpperlevel": 88,
@@ -4011,6 +4138,7 @@
     "key": "48",
     "title": "the Troll King",
     "image": "Trundle.png",
+    "color": "white",
     "stats": {
       "hp": 616,
       "hpperlevel": 96,
@@ -4042,6 +4170,7 @@
     "key": "23",
     "title": "the Barbarian King",
     "image": "Tryndamere.png",
+    "color": "white",
     "stats": {
       "hp": 626,
       "hpperlevel": 98,
@@ -4073,6 +4202,7 @@
     "key": "4",
     "title": "the Card Master",
     "image": "TwistedFate.png",
+    "color": "white",
     "stats": {
       "hp": 534,
       "hpperlevel": 94,
@@ -4104,6 +4234,7 @@
     "key": "29",
     "title": "the Plague Rat",
     "image": "Twitch.png",
+    "color": "white",
     "stats": {
       "hp": 612,
       "hpperlevel": 86,
@@ -4135,6 +4266,7 @@
     "key": "77",
     "title": "the Spirit Walker",
     "image": "Udyr.png",
+    "color": "white",
     "stats": {
       "hp": 594,
       "hpperlevel": 92,
@@ -4166,6 +4298,7 @@
     "key": "6",
     "title": "the Dreadnought",
     "image": "Urgot.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 88,
@@ -4197,6 +4330,7 @@
     "key": "110",
     "title": "the Arrow of Retribution",
     "image": "Varus.png",
+    "color": "white",
     "stats": {
       "hp": 530,
       "hpperlevel": 91,
@@ -4228,6 +4362,7 @@
     "key": "67",
     "title": "the Night Hunter",
     "image": "Vayne.png",
+    "color": "white",
     "stats": {
       "hp": 515,
       "hpperlevel": 89,
@@ -4259,6 +4394,7 @@
     "key": "45",
     "title": "the Tiny Master of Evil",
     "image": "Veigar.png",
+    "color": "white",
     "stats": {
       "hp": 505,
       "hpperlevel": 94,
@@ -4290,6 +4426,7 @@
     "key": "161",
     "title": "the Eye of the Void",
     "image": "Velkoz.png",
+    "color": "white",
     "stats": {
       "hp": 520,
       "hpperlevel": 88,
@@ -4321,6 +4458,7 @@
     "key": "711",
     "title": "the Gloomist",
     "image": "Vex.png",
+    "color": "white",
     "stats": {
       "hp": 520,
       "hpperlevel": 90,
@@ -4352,6 +4490,7 @@
     "key": "254",
     "title": "the Piltover Enforcer",
     "image": "Vi.png",
+    "color": "white",
     "stats": {
       "hp": 585,
       "hpperlevel": 85,
@@ -4383,6 +4522,7 @@
     "key": "234",
     "title": "The Ruined King",
     "image": "Viego.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 95,
@@ -4414,6 +4554,7 @@
     "key": "112",
     "title": "the Machine Herald",
     "image": "Viktor.png",
+    "color": "white",
     "stats": {
       "hp": 530,
       "hpperlevel": 90,
@@ -4445,6 +4586,7 @@
     "key": "8",
     "title": "the Crimson Reaper",
     "image": "Vladimir.png",
+    "color": "white",
     "stats": {
       "hp": 537,
       "hpperlevel": 96,
@@ -4476,6 +4618,7 @@
     "key": "106",
     "title": "the Relentless Storm",
     "image": "Volibear.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 90,
@@ -4507,6 +4650,7 @@
     "key": "19",
     "title": "the Uncaged Wrath of Zaun",
     "image": "Warwick.png",
+    "color": "white",
     "stats": {
       "hp": 550,
       "hpperlevel": 85,
@@ -4538,6 +4682,7 @@
     "key": "498",
     "title": "the Rebel",
     "image": "Xayah.png",
+    "color": "white",
     "stats": {
       "hp": 590,
       "hpperlevel": 88,
@@ -4569,6 +4714,7 @@
     "key": "101",
     "title": "the Magus Ascendant",
     "image": "Xerath.png",
+    "color": "white",
     "stats": {
       "hp": 526,
       "hpperlevel": 92,
@@ -4600,6 +4746,7 @@
     "key": "5",
     "title": "the Seneschal of Demacia",
     "image": "XinZhao.png",
+    "color": "white",
     "stats": {
       "hp": 570,
       "hpperlevel": 92,
@@ -4631,6 +4778,7 @@
     "key": "157",
     "title": "the Unforgiven",
     "image": "Yasuo.png",
+    "color": "white",
     "stats": {
       "hp": 490,
       "hpperlevel": 87,
@@ -4662,6 +4810,7 @@
     "key": "777",
     "title": "the Unforgotten",
     "image": "Yone.png",
+    "color": "white",
     "stats": {
       "hp": 550,
       "hpperlevel": 85,
@@ -4693,6 +4842,7 @@
     "key": "83",
     "title": "Shepherd of Souls",
     "image": "Yorick.png",
+    "color": "white",
     "stats": {
       "hp": 580,
       "hpperlevel": 100,
@@ -4724,6 +4874,7 @@
     "key": "350",
     "title": "the Magical Cat",
     "image": "Yuumi.png",
+    "color": "white",
     "stats": {
       "hp": 480,
       "hpperlevel": 70,
@@ -4755,6 +4906,7 @@
     "key": "154",
     "title": "the Secret Weapon",
     "image": "Zac.png",
+    "color": "white",
     "stats": {
       "hp": 615,
       "hpperlevel": 95,
@@ -4786,6 +4938,7 @@
     "key": "238",
     "title": "the Master of Shadows",
     "image": "Zed.png",
+    "color": "white",
     "stats": {
       "hp": 584,
       "hpperlevel": 85,
@@ -4817,6 +4970,7 @@
     "key": "221",
     "title": "The Spark of Zaun",
     "image": "Zeri.png",
+    "color": "white",
     "stats": {
       "hp": 500,
       "hpperlevel": 90,
@@ -4848,6 +5002,7 @@
     "key": "115",
     "title": "the Hexplosives Expert",
     "image": "Ziggs.png",
+    "color": "white",
     "stats": {
       "hp": 536,
       "hpperlevel": 92,
@@ -4879,6 +5034,7 @@
     "key": "26",
     "title": "the Chronokeeper",
     "image": "Zilean.png",
+    "color": "white",
     "stats": {
       "hp": 504,
       "hpperlevel": 82,
@@ -4910,6 +5066,7 @@
     "key": "142",
     "title": "the Aspect of Twilight",
     "image": "Zoe.png",
+    "color": "white",
     "stats": {
       "hp": 560,
       "hpperlevel": 92,
@@ -4941,6 +5098,7 @@
     "key": "143",
     "title": "Rise of the Thorns",
     "image": "Zyra.png",
+    "color": "white",
     "stats": {
       "hp": 504,
       "hpperlevel": 79,

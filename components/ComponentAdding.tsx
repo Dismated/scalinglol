@@ -1,5 +1,4 @@
 import {
-  Divider,
   Paper,
   ToggleButton,
   ToggleButtonGroup,
@@ -46,7 +45,6 @@ const ComponentAdding = () => {
         <ToggleButton value="timer">Timer</ToggleButton>
         <ToggleButton value="lvlUp">LvlUp</ToggleButton>
       </ToggleButtonGroup>
-      <Divider />
 
       <MultiNodeSlider />
     </Paper>

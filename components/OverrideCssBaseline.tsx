@@ -1,11 +1,15 @@
+import * as Colors from "@mui/material/colors";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { NextComponentType, NextPageContext } from "next";
 import { useAppSelector } from "../hooks/preTypedHooks";
+
+const ColorsWithType: Record<string, { [c: string]: string }> = { ...Colors };
 
 interface OverrideCssBaselineProps {
   Component: NextComponentType<NextPageContext, unknown, unknown>;
   pageProps: {};
 }
+
 const OverrideCssBaseline = ({
   Component,
   pageProps,
@@ -16,7 +20,7 @@ const OverrideCssBaseline = ({
     palette: {
       mode: "dark",
       primary: {
-        main: primaryColor,
+        main: ColorsWithType[primaryColor][400],
       },
     },
     typography: {

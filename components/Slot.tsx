@@ -19,7 +19,7 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
     return newE;
   });
 
-  const borderStyle = newSpells[id].name ? "solid" : "dashed";
+  const borderStyle = newSpells[id]?.name ? "solid" : "dashed";
   const slotButtonStyles = {
     width: "80px",
     height: "115px",
@@ -46,10 +46,12 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
 
   const handleSlotClick = () => {
     setSlotPressed(true);
-    // eslint-disable-next-line prefer-destructuring
-    newSpells[id].name = Object.keys(champStats[champion].spells)[0];
-    newSpells[id].section = "basic";
-    dispatch(setSpells(newSpells));
+    if (!newSpells[id].name) {
+      // eslint-disable-next-line prefer-destructuring
+      newSpells[id].name = Object.keys(champStats[champion].spells)[0];
+      newSpells[id].section = "basic";
+      dispatch(setSpells(newSpells));
+    }
   };
 
   return (
@@ -85,11 +87,11 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
         >
           <Button sx={slotButtonStyles} onClick={handleSlotClick}>
             {spells[id].name === "" ? (
-              "+"
+              "Add Spell"
             ) : (
               <Box sx={slotBoxStyles}>
                 <Image
-                  src={`/../public/spellIcons/${spells[id]?.name}.png`}
+                  src={`/spellIcons/${spells[id]?.name}.png`}
                   alt={spells[id].name}
                   width="80"
                   height="80"
