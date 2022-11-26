@@ -1,7 +1,8 @@
-import { Box, InputBase, Paper, Typography } from "@mui/material";
+import { Box, InputBase, Paper, Typography, useTheme } from "@mui/material";
 import { ChangeEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { ChampNameType } from "../types/types";
+import CurvedCorner from "./CurvedCorner";
 import Slot from "./Slot";
 import debounce from "../helpers/debounce";
 import { setPrimaryColor } from "../reducers/primaryColorReducer";
@@ -15,17 +16,25 @@ const inputBaseStyles = {
   borderWidth: "1px",
   borderColor: "primary.main",
   borderRadius: "4px",
-  color: "primary.main",
-  width: "50px",
-  height: "50px",
-  ml: "10px",
-  fontSize: 20,
+  color: "#121212",
+  width: "40px",
+  height: "40px",
+  fontSize: 30,
   margin: 0,
+};
+const boxStyles = {
+  backgroundColor: "primary.main",
+  borderTopRightRadius: "5px",
+  borderBottomLeftRadius: "23px",
+  borderBottomRightRadius: "5px",
+  display: "inline-block",
+  pl: "20px",
 };
 
 const Combo = ({ champion }: { champion: string }) => {
   const dispatch = useAppDispatch();
   const spells = useAppSelector((state) => state.spells);
+  const theme = useTheme();
 
   useEffect(() => {
     dispatch(setPrimaryColor(champStats[champion].color));
@@ -33,16 +42,16 @@ const Combo = ({ champion }: { champion: string }) => {
 
   const handleSlotsChange = debounce(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const parseInput = Number(event.target.value);
+      const inputValue = Number(event.target.value);
 
-      if (parseInput >= 0 && parseInput < 100) {
-        if (spells.length < parseInput) {
+      if (inputValue >= 0 && inputValue < 100) {
+        if (spells.length < inputValue) {
           const spellArr = [...spells];
-          const fillArr = new Array(parseInput - spells.length);
+          const fillArr = new Array(inputValue - spells.length);
           fillArr.fill({ name: "", section: "", count: 1 });
           dispatch(setSpells(spellArr.concat(fillArr)));
         } else {
-          dispatch(setSpells(spells.slice(0, parseInput)));
+          dispatch(setSpells(spells.slice(0, inputValue)));
         }
       }
     },
@@ -58,31 +67,34 @@ const Combo = ({ champion }: { champion: string }) => {
   };
 
   return (
-    <Paper sx={{ my: "10px", px: "10px" }}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Typography variant="h3" sx={{ display: "inline-block" }}>
-          Combo
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Paper sx={{ mt: "10px", pl: "10px" }}>
+      <Typography variant="h3" sx={{ display: "inline-block" }}>
+        Combo
+      </Typography>
+      <Box sx={{ display: "inline-block", float: "right" }}>
+        <Box
+          sx={{ display: "inline-block", bottom: "12px", position: "relative" }}
+        >
+          <CurvedCorner
+            corner="topRight"
+            size={20}
+            frontColor={theme.palette.primary.main}
+            backColor="#1e1e1e"
+          />
+        </Box>
+        <Box sx={boxStyles}>
           <Typography
-            variant="h6"
+            variant="h4"
             sx={{
               display: "inline-block",
-              transform: "rotate(-90deg)",
-              position: "relative",
-              left: "12px",
+              color: "#121212",
             }}
           >
-            Slots
+            Slots:
           </Typography>
           <InputBase
             onChange={(event) => handleSlotsChange(event)}
+            placeholder="1"
             sx={inputBaseStyles}
             inputProps={{
               style: {

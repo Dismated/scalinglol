@@ -6,8 +6,13 @@ import Link from "next/link";
 import { ChampNameType } from "../types/types";
 import stats from "../champStats/champStats.json";
 
+interface Champion {
+  name: string;
+  available: boolean;
+}
+
 const champStats: ChampNameType = { ...stats };
-const champNamesArr = Object.values(champStats).map((e) => ({
+const champNamesArr: Champion[] = Object.values(champStats).map((e) => ({
   name: e.name,
   available: e.available,
 }));
@@ -22,15 +27,9 @@ const InputBaseStyles = {
   px: "15px",
 };
 
-interface FilteredType {
-  name: string;
-  available: boolean;
-}
-
 const ChampionList = () => {
-  const [filtered, setFiltered] = useState<FilteredType[] | never[]>(
-    champNamesArr
-  );
+  const [filteredChampions, setFilteredChampions] =
+    useState<Champion[]>(champNamesArr);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,7 +42,7 @@ const ChampionList = () => {
         )
       : champNamesArr;
 
-    setFiltered(filteredChamps);
+    setFilteredChampions(filteredChamps);
   };
 
   return (
@@ -60,7 +59,7 @@ const ChampionList = () => {
             mt: "25px",
           }}
         >
-          {filtered.map((c) => (
+          {filteredChampions.map((c) => (
             <Grid item xs={2} key={c.name}>
               <Link href={`/champions/${c.name}`}>
                 <a>
@@ -71,7 +70,7 @@ const ChampionList = () => {
                     }}
                   >
                     <Image
-                      src={`/championIcons/${c.name}.png`}
+                      src={`/icons/champions/${c.name}.png`}
                       alt={c.name}
                       width="70"
                       height="70"

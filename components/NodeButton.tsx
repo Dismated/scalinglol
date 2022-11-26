@@ -13,6 +13,8 @@ const NodeButton = ({
   const nodeSidePx = `${nodeSide}px`;
 
   const borderStyle = lvlUped ? "solid" : "dashed";
+  const backgroundColor = lvlUped ? "primary.main" : "#1e1e1e";
+  const color = lvlUped ? "black" : "primary.main";
 
   const ButtonStyles = {
     minHeight: nodeSidePx,
@@ -20,13 +22,18 @@ const NodeButton = ({
     padding: 0,
     borderStyle: `${borderStyle}`,
     borderWidth: "1px",
-    borderColor: "inherit",
+    borderColor: "primary.main",
     position: "relative",
     left: "-5px",
-    backgroundColor: "#1e1e1e",
+    backgroundColor,
+    color,
   };
 
-  return <Button sx={ButtonStyles}>{lvlUped || id + 1}</Button>;
+  return (
+    <Button variant="contained" sx={ButtonStyles}>
+      {lvlUped || id + 1}
+    </Button>
+  );
 };
 
 export default NodeButton;

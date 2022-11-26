@@ -74,6 +74,7 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
         sx={{
           "& .MuiBadge-badge": {
             fontFamily: "Merriweather",
+            fontSize: 16,
           },
         }}
       >
@@ -84,6 +85,12 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
             vertical: "top",
             horizontal: "right",
           }}
+          sx={{
+            "& .MuiBadge-badge": {
+              fontFamily: "Merriweather",
+              fontSize: 16,
+            },
+          }}
         >
           <Button sx={slotButtonStyles} onClick={handleSlotClick}>
             {spells[id].name === "" ? (
@@ -91,7 +98,7 @@ const Slot = ({ champion, id }: { champion: string; id: number }) => {
             ) : (
               <Box sx={slotBoxStyles}>
                 <Image
-                  src={`/spellIcons/${spells[id]?.name}.png`}
+                  src={`/icons/spells/${spells[id]?.name}.png`}
                   alt={spells[id].name}
                   width="80"
                   height="80"

@@ -43,10 +43,19 @@ const SpellSelector = ({ id, spell }: SpellSelectorProps) => {
 
   return (
     <Box sx={spellStyles}>
-      <Badge badgeContent={spell[spell.length - 1]} color="primary">
+      <Badge
+        badgeContent={spell[spell.length - 1]}
+        color="primary"
+        sx={{
+          fontSize: 16,
+          "& .MuiBadge-badge": {
+            fontFamily: "Merriweather",
+          },
+        }}
+      >
         <Button sx={spellsButtonStyles} onClick={() => handleSpellClick(spell)}>
           <Image
-            src={`/spellIcons/${spell}.png`}
+            src={`/icons/spells/${spell}.png`}
             alt={spell}
             width="64"
             height="64"
