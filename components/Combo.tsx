@@ -1,73 +1,72 @@
-import { Box, InputBase, Paper, Typography, useTheme } from "@mui/material";
-import { ChangeEvent, useEffect } from "react";
+import { Box, Button, Paper, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
+
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
-import { ChampNameType } from "../types/types";
 import CurvedCorner from "./CurvedCorner";
 import Slot from "./Slot";
-import debounce from "../helpers/debounce";
 import { setPrimaryColor } from "../reducers/primaryColorReducer";
 import { setSpells } from "../reducers/spellsReducer";
-import stats from "../champStats/champStats.json";
 
-const champStats: ChampNameType = { ...stats };
-
-const inputBaseStyles = {
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: "primary.main",
-  borderRadius: "4px",
-  color: "#121212",
-  width: "40px",
-  height: "40px",
-  fontSize: 30,
-  margin: 0,
-};
 const boxStyles = {
   backgroundColor: "primary.main",
-  borderTopRightRadius: "5px",
+  borderTopRightRadius: "30px",
   borderBottomLeftRadius: "23px",
-  borderBottomRightRadius: "5px",
   display: "inline-block",
   pl: "20px",
+  pr: "15px",
 };
 
-const Combo = ({ champion }: { champion: string }) => {
+const slotButtonStyles = {
+  width: "80px",
+  height: "115px",
+  padding: 0,
+  borderStyle: "dashed",
+  borderWidth: "2px",
+  borderColor: "primary.main",
+  borderRadius: "4px",
+  display: "inline-block",
+  m: "12px",
+};
+
+const Combo = () => {
+  const [slotPressed, setSlotPressed] = useState(false);
   const dispatch = useAppDispatch();
   const spells = useAppSelector((state) => state.spells);
+  const champStats = useAppSelector((state) => state.champStats);
   const theme = useTheme();
 
+  const newSpells = spells.map((spl) => {
+    const newE = { ...spl };
+    return newE;
+  });
+
   useEffect(() => {
-    dispatch(setPrimaryColor(champStats[champion].color));
-  }, [dispatch, champion]);
+    dispatch(setPrimaryColor(champStats.color));
+  }, [champStats.color, dispatch]);
 
-  const handleSlotsChange = debounce(
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const inputValue = Number(event.target.value);
-
-      if (inputValue >= 0 && inputValue < 100) {
-        if (spells.length < inputValue) {
-          const spellArr = [...spells];
-          const fillArr = new Array(inputValue - spells.length);
-          fillArr.fill({ name: "", section: "", count: 1 });
-          dispatch(setSpells(spellArr.concat(fillArr)));
-        } else {
-          dispatch(setSpells(spells.slice(0, inputValue)));
-        }
-      }
-    },
-    1000
-  );
+  const handleSlotClick = () => {
+    newSpells.push({ name: 0, section: 0, count: 1 });
+    dispatch(setSpells(newSpells));
+    setSlotPressed(true);
+  };
 
   const generateSlots = (num: number) => {
     const arr = Array.from(Array(num).keys());
 
     if (spells.length > 0)
-      return arr.map((e) => <Slot champion={champion} id={e} key={e} />);
+      return arr.map((e) => (
+        <Slot
+          id={e}
+          key={e}
+          setSlotPressed={setSlotPressed}
+          slotPressed={slotPressed}
+        />
+      ));
     return null;
   };
 
   return (
-    <Paper sx={{ mt: "10px", pl: "10px" }}>
+    <Paper>
       <Typography variant="h3" sx={{ display: "inline-block" }}>
         Combo
       </Typography>
@@ -90,22 +89,16 @@ const Combo = ({ champion }: { champion: string }) => {
               color: "#121212",
             }}
           >
-            Slots:
+            Slots: {spells.length}
           </Typography>
-          <InputBase
-            onChange={(event) => handleSlotsChange(event)}
-            placeholder="1"
-            sx={inputBaseStyles}
-            inputProps={{
-              style: {
-                textAlign: "center",
-              },
-            }}
-          />
         </Box>
       </Box>
-
-      <Box sx={{ py: "10px" }}>{generateSlots(spells.length)}</Box>
+      <Box sx={{ py: "10px" }}>
+        {generateSlots(spells.length)}
+        <Button sx={slotButtonStyles} onClick={handleSlotClick}>
+          Add Spell
+        </Button>
+      </Box>
     </Paper>
   );
 };

@@ -1,31 +1,70 @@
-export interface ChampNameType {
-  [key: string]: ChampStatsType;
-}
+export type ChampionType = {
+  [key in ChampName]: Champion;
+};
 
-export interface ChampStatsType {
+export type ChampName =
+  | "Alistar"
+  | "Annie"
+  | "Twisted Fate"
+  | "Soraka"
+  | "Teemo"
+  | "Jax";
+
+export interface Champion {
   name: string;
   key: string;
   title: string;
   image: string;
-  stats: { [key: string]: number };
-  spells: Record<string, SpellsType>;
+  stats: Stats;
+  spells: Spells[];
   available: boolean;
   color: string;
 }
 
-export type SpellsType = Record<string, SpellStats>;
+interface Stats {
+  hp: number;
+  hpperlevel: number;
+  mp: number;
+  mpperlevel: number;
+  movespeed: number;
+  armor: number;
+  armorperlevel: number;
+  spellblock: number;
+  spellblockperlevel: number;
+  attackrange: number;
+  hpregen: number;
+  hpregenperlevel: number;
+  mpregen: number;
+  mpregenperlevel: number;
+  crit: number;
+  critperlevel: number;
+  attackdamage: number;
+  attackdamageperlevel: number;
+  attackspeedperlevel: number;
+  attackspeed: number;
+  dmgCrit: number;
+}
 
-export interface SpellStats {
-  dmgType: string;
+export type Spells = {
+  name: SpellName;
+  variant: SpellVariant[];
+};
+
+export type SpellVariant = { name: string; stats: SpellStats };
+
+export type SpellStats = {
+  dmgType: DmgType;
   initialDmg?: number;
   dmgPerSkillLvl?: number;
   dmgPerChampLvl?: number;
   apModifier?: number;
   adModifier?: number;
-}
+};
 
+export type DmgType = "magic" | "physical" | "true";
+export type SpellName = "Q" | "W" | "E" | "R" | "A" | "P";
 export interface SpellProps {
-  name: string;
-  section: string;
+  name: number;
+  section: number;
   count: number;
 }

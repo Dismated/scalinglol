@@ -3,19 +3,21 @@ import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ChampNameType } from "../types/types";
+import { ChampionType } from "../types/types";
 import stats from "../champStats/champStats.json";
 
-interface Champion {
+interface ChampionFront {
   name: string;
   available: boolean;
 }
 
-const champStats: ChampNameType = { ...stats };
-const champNamesArr: Champion[] = Object.values(champStats).map((e) => ({
-  name: e.name,
-  available: e.available,
-}));
+const champStats = { ...stats } as ChampionType;
+const champNamesArr: ChampionFront[] = Object.values(champStats)
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((champion) => ({
+    name: champion.name,
+    available: champion.available,
+  }));
 
 const InputBaseStyles = {
   borderStyle: "solid",
@@ -29,7 +31,7 @@ const InputBaseStyles = {
 
 const ChampionList = () => {
   const [filteredChampions, setFilteredChampions] =
-    useState<Champion[]>(champNamesArr);
+    useState<ChampionFront[]>(champNamesArr);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

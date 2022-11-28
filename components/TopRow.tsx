@@ -1,30 +1,21 @@
-import {
-  Box,
-  Divider,
-  FormControl,
-  InputBase,
-  Typography,
-} from "@mui/material";
+import { Box, InputBase, Typography } from "@mui/material";
 import { ChangeEvent } from "react";
 import Image from "next/image";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
-import { ChampNameType } from "../types/types";
 import { setMatchLength } from "../reducers/matchLengthReducer";
-import stats from "../champStats/champStats.json";
-
-const champStats: ChampNameType = { ...stats };
 
 const inputBaseStyles = {
   fontSize: 36,
-  color: "#121212",
+  color: "primary.main",
 };
 const timeHeadingStyle = {
   color: "#121212",
 };
 
-const TopRow = ({ champion }: { champion: string }) => {
+const TopRow = () => {
   const matchLength = useAppSelector((state) => state.matchLength);
+  const champStats = useAppSelector((state) => state.champStats);
   const dispatch = useAppDispatch();
 
   const handleMatchLengthChange = (
@@ -41,20 +32,20 @@ const TopRow = ({ champion }: { champion: string }) => {
         }}
       >
         <Image
-          src={`/icons/champions/${champion}.png`}
-          alt={champion}
+          src={`/icons/champions/${champStats.name}.png`}
+          alt={champStats.name}
           width="130"
           height="130"
         />
-        <Box>
+        <Box sx={{ pl: "5px" }}>
           <Box>
             <Typography variant="h2" sx={{ display: "inline" }}>
-              {champion}
+              {champStats.name}
             </Typography>
           </Box>
           <Box>
             <Typography variant="h5" sx={{ display: "inline" }}>
-              {champStats[champion].title}
+              {champStats.title}
             </Typography>
           </Box>
         </Box>
@@ -63,8 +54,6 @@ const TopRow = ({ champion }: { champion: string }) => {
         sx={{
           display: "inline-block",
           float: "right",
-          borderRadius: "30px",
-          backgroundColor: "primary.main",
           width: "220px",
         }}
       >
@@ -74,16 +63,22 @@ const TopRow = ({ champion }: { champion: string }) => {
             alignItems: "center",
             justifyContent: "center",
             height: "50%",
+            backgroundColor: "primary.main",
+            borderTopRightRadius: "30px",
+            borderTopLeftRadius: "30px",
           }}
         >
           <Typography variant="h4" sx={timeHeadingStyle}>
             Match Length
           </Typography>
         </Box>
-        <Divider
-          sx={{ borderWidth: "1px", borderColor: "background.default" }}
-        />
-        <FormControl>
+        <Box
+          sx={{
+            backgroundColor: "#1e1e1e",
+            borderBottomRightRadius: "30px",
+            borderBottomLeftRadius: "30px",
+          }}
+        >
           <InputBase
             value={matchLength}
             onChange={(event) => handleMatchLengthChange(event)}
@@ -94,7 +89,7 @@ const TopRow = ({ champion }: { champion: string }) => {
               },
             }}
           />
-        </FormControl>
+        </Box>
       </Box>
     </Box>
   );

@@ -30,11 +30,10 @@ const SpellCountSelector = ({ id }: { id: number }) => {
         placeholder="count"
         sx={{
           "z-index": 10,
-          borderStyle: "solid",
-          borderWidth: "1px",
-          borderColor: "primary.main",
           borderRadius: "5px",
+          backgroundColor: "primary.main",
           width: "60px",
+          color: "background.default",
           fontSize: 16,
           p: "2px",
           mx: "5px",

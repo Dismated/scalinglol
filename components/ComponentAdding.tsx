@@ -40,8 +40,7 @@ const ComponentAdding = () => {
   const lvlUpBoxStyles = {
     backgroundColor: `${backgroundColorLvlUp}`,
     color: `${colorLvlUp}`,
-    borderTopRightRadius: "5px",
-    borderBottomRightRadius: "5px",
+    borderTopRightRadius: "30px",
     px: "20px",
     py: 0,
     display: "inline-block",
@@ -56,7 +55,7 @@ const ComponentAdding = () => {
   };
 
   return (
-    <Paper sx={{ my: "10px", pl: "10px", pb: "10px" }}>
+    <Paper>
       <Typography variant="h3" sx={{ display: "inline-block" }}>
         Skills
       </Typography>

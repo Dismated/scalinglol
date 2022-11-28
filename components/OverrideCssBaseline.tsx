@@ -35,6 +35,17 @@ const OverrideCssBaseline = ({
       body2: { fontFamily: "Merriweather", fontSize: 16 },
       button: { fontFamily: "Merriweather" },
     },
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            borderRadius: "30px",
+            marginTop: "20px",
+            paddingLeft: "15px",
+          },
+        },
+      },
+    },
   });
   return (
     <ThemeProvider theme={darkTheme}>

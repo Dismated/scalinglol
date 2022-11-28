@@ -10,7 +10,7 @@ const MultiNodeSlider = () => {
     arr.map((e) => <Node key={e} id={e} />);
 
   return (
-    <Box sx={{ m: "10px" }}>
+    <Box sx={{ py: "20px", pr: "15px" }}>
       {generateNodes(lvlNodes)}
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Line />

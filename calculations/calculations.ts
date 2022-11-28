@@ -20,7 +20,7 @@ const abilityDmg = ({
   ad,
   count,
   onHit = 0,
-  dmgPerSkillLvl = 1,
+  dmgPerSkillLvl = 0,
   skillLvl = 0,
   dmgPerChampLvl = 0,
   champLvl = 0,

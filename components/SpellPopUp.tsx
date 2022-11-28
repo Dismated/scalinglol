@@ -1,29 +1,36 @@
 import { Dispatch, SetStateAction } from "react";
 
 import {
+  Box,
   Button,
   ClickAwayListener,
-  Divider,
   Paper,
   Typography,
 } from "@mui/material";
-import { ChampNameType } from "../types/types";
 import SpellCountSelector from "./SpellCountSelector";
 import SpellSectionSelector from "./SpellSectionSelector";
 import SpellSelector from "./SpellSelector";
-import stats from "../champStats/champStats.json";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
-const champStats: ChampNameType = { ...stats };
-
 interface SpellPopUpProps {
-  champion: string;
   setSlotPressed: Dispatch<SetStateAction<boolean>>;
   id: number;
 }
 
-const SpellPopUp = ({ champion, setSlotPressed, id }: SpellPopUpProps) => {
+const buttonStyles = {
+  display: "inline-block",
+  float: "right",
+  my: "10px",
+  borderStyle: "solid",
+  borderWidth: "1px",
+  borderColor: "primary.main",
+  borderRadius: "5px",
+  color: "background.default",
+};
+
+const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
   const spells = useAppSelector((state) => state.spells);
+  const champStats = useAppSelector((state) => state.champStats);
 
   const handleClick = () => {
     setSlotPressed(false);
@@ -42,44 +49,36 @@ const SpellPopUp = ({ champion, setSlotPressed, id }: SpellPopUpProps) => {
           top: "150px",
           left: "50%",
           transform: "translate(-50%, 0)",
-          height: "250px",
-          py: "5px",
-          px: "10px",
+          height: "270px",
+          py: "10px",
+          pr: "15px",
           "z-index": 10,
         }}
       >
         <Typography variant="h4">Spells</Typography>
-        <Divider />
-        {Object.keys(champStats[champion].spells).map((spell) => (
-          <SpellSelector key={spell} id={id} spell={spell} />
-        ))}
-        <Divider />
-        {Object.keys(champStats[champion].spells[spells[id].name]).map(
-          (spellPart) => (
-            <SpellSectionSelector
-              key={spellPart}
-              spellPart={spellPart}
-              id={id}
-            />
-          )
-        )}
-
-        <Divider />
-        <SpellCountSelector id={id} />
-        <Button
-          onClick={handleClick}
-          sx={{
-            display: "inline-block",
-            float: "right",
-            my: "10px",
-            borderStyle: "solid",
-            borderWidth: "1px",
-            borderColor: "primary.main",
-            borderRadius: "5px",
-          }}
-        >
-          Save
-        </Button>
+        <Box sx={{ pt: "5px" }}>
+          {champStats.spells.map((spell, index) => (
+            <SpellSelector key={spell.name} id={id} spellIndex={index} />
+          ))}
+        </Box>
+        <Box sx={{ pt: "5px" }}>
+          {champStats.spells[spells[id].name].variant.map(
+            (spellPart, index) => (
+              <SpellSectionSelector
+                key={spellPart.name}
+                sectionName={spellPart.name}
+                sectionIndex={index}
+                id={id}
+              />
+            )
+          )}
+        </Box>
+        <Box sx={{ pt: "5px" }}>
+          <SpellCountSelector id={id} />
+          <Button onClick={handleClick} variant="contained" sx={buttonStyles}>
+            Save
+          </Button>
+        </Box>
       </Paper>
     </ClickAwayListener>
   );

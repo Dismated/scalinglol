@@ -10,7 +10,7 @@ const BoxStyles = {
   borderRadius: "50%",
   position: "relative",
   top: 0,
-  right: "247px",
+  right: "225px",
   "z-index": 5,
 };
 

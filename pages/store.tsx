@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import attackSwitchReducer from "../reducers/attackSwitchReducer";
+import champStatsReducer from "../reducers/champStatsReducer";
 import lvlUpReducer from "../reducers/lvlUpReducer";
 import matchLengthReducer from "../reducers/matchLengthReducer";
 import primaryColorReducer from "../reducers/primaryColorReducer";
@@ -17,6 +18,7 @@ const store = configureStore({
     lvlUp: lvlUpReducer,
     spells: spellsReducer,
     primaryColor: primaryColorReducer,
+    champStats: champStatsReducer,
   },
 });
 

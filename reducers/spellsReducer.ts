@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { SpellProps } from "../types/types";
 
-const initialState: SpellProps[] = [{ name: "", section: "basic", count: 1 }];
+const initialState: SpellProps[] = [];
 
 const spellsSlice = createSlice({
   name: "spells",
