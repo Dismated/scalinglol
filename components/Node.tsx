@@ -26,9 +26,10 @@ const Node = ({ id }: { id: number }) => {
   const startOfTheLineX = -5 - nodeSide * id;
 
   const containerWidth = () => {
-    if (windowWidth >= maxContainerWidth) return maxContainerWidth;
-    if (windowWidth >= 600) return windowWidth - 48;
-    return windowWidth - 32;
+    if (windowWidth >= maxContainerWidth) return maxContainerWidth - 30;
+    if (windowWidth >= 900) return windowWidth - 48 - 30;
+    if (windowWidth >= 600) return windowWidth - 32 - 30;
+    return windowWidth;
   };
 
   const pxPerSec = () => containerWidth() / matchLength;

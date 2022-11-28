@@ -24,8 +24,8 @@ const InputBaseStyles = {
   borderColor: "primary",
   borderRadius: "10px",
   borderWidth: "2px",
-  width: "600px",
-  height: "50px",
+  width: { xs: "90%", sm: "400px", md: "500px", lg: "600px" },
+  height: ["40px", "50px"],
   px: "15px",
 };
 
@@ -49,20 +49,27 @@ const ChampionList = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: ["10px", 0] }}>
         <InputBase sx={InputBaseStyles} onChange={handleChange} autoFocus />
       </Box>
-      <Paper>
+      <Paper
+        sx={{
+          pb: "20px",
+          pl: 0,
+          borderRadius: { xs: 0, sm: "30px" },
+          mt: { xs: "30px" },
+        }}
+      >
         <Grid
           container
-          columns={16}
-          spacing={3}
+          columns={18}
+          spacing={{ xs: 2 }}
           sx={{
             mt: "25px",
           }}
         >
           {filteredChampions.map((c) => (
-            <Grid item xs={2} key={c.name}>
+            <Grid item xs={6} sm={3} md={2} key={c.name}>
               <Link href={`/champions/${c.name}`}>
                 <a>
                   <Box
@@ -71,17 +78,24 @@ const ChampionList = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <Image
-                      src={`/icons/champions/${c.name}.png`}
-                      alt={c.name}
-                      width="70"
-                      height="70"
-                      style={{
-                        filter: `${
-                          c.available ? "grayscale(0%)" : "grayscale(100%)"
-                        }`,
+                    <Box
+                      sx={{
+                        position: "relative",
+                        width: "70px",
+                        height: "70px",
                       }}
-                    />
+                    >
+                      <Image
+                        src={`/icons/champions/${c.name}.png`}
+                        alt={c.name}
+                        layout="fill"
+                        style={{
+                          filter: `${
+                            c.available ? "grayscale(0%)" : "grayscale(100%)"
+                          }`,
+                        }}
+                      />
+                    </Box>
                   </Box>
                   <Box>
                     <Typography variant="body2" sx={{ textAlign: "center" }}>

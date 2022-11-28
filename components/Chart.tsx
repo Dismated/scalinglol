@@ -9,7 +9,7 @@ import { SpellStats } from "../types/types";
 import calculations from "../calculations/calculations";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
-const LineChart = () => {
+const Chart = () => {
   const skillTime = useAppSelector((state) => state.skillTime);
   const skillTimeCopy = [...skillTime];
   const spells = useAppSelector((state) => state.spells);
@@ -47,7 +47,9 @@ const LineChart = () => {
   const time = timeMs.map((e) => e * 1000);
 
   return (
-    <Paper sx={{ maxWidth: "1200px" }}>
+    <Paper
+      sx={{ maxWidth: "1200px", borderRadius: [0, "30px"], pl: [0, "15px"] }}
+    >
       <Typography variant="h3">Chart</Typography>
       <Scatter
         data={{
@@ -93,4 +95,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default Chart;

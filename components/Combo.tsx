@@ -9,11 +9,11 @@ import { setSpells } from "../reducers/spellsReducer";
 
 const boxStyles = {
   backgroundColor: "primary.main",
-  borderTopRightRadius: "30px",
+  borderTopRightRadius: [0, "30px"],
   borderBottomLeftRadius: "23px",
   display: "inline-block",
   pl: "20px",
-  pr: "15px",
+  pr: ["5px", "15px"],
 };
 
 const slotButtonStyles = {
@@ -66,7 +66,7 @@ const Combo = () => {
   };
 
   return (
-    <Paper>
+    <Paper sx={{ borderRadius: [0, "30px"], pl: [0, "15px"] }}>
       <Typography variant="h3" sx={{ display: "inline-block" }}>
         Combo
       </Typography>

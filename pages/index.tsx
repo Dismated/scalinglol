@@ -3,46 +3,44 @@ import type { NextPage } from "next";
 
 import ChampionList from "../components/ChampionList";
 
-const BoxStyles = {
-  height: "100px",
-  width: "100px",
+const CircleWrapStyles = {
+  display: { xs: "none", sm: "flex" },
+  justifyContent: "center",
+  position: "absolute",
+  top: { sm: "15px", md: "25px", lg: "42px" },
+  left: "50%",
+};
+const CircleStyles = {
+  height: { sm: "90px", md: "100px" },
+  width: { sm: "90px", md: "100px" },
   backgroundColor: "#121212",
   borderRadius: "50%",
   position: "relative",
   top: 0,
-  right: "225px",
+  right: { sm: "176px", md: "198px", lg: "224px" },
   "z-index": 5,
 };
 
+const TypographyStyles = {
+  textAlign: "center",
+  position: "relative",
+  "z-index": 10,
+};
+
 const Home: NextPage = () => (
-  <Container>
+  <Container sx={{ p: [0, "16px", "24px"] }}>
     <Box
       sx={{
         left: 0,
         width: "100%",
       }}
     >
-      <Typography
-        variant="h1"
-        sx={{
-          textAlign: "center",
-          position: "relative",
-          "z-index": 10,
-        }}
-      >
+      <Typography variant="h1" sx={TypographyStyles}>
         League of Scaling
       </Typography>
     </Box>
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        position: "absolute",
-        top: "19px",
-        left: "50%",
-      }}
-    >
-      <Box sx={BoxStyles} />
+    <Box sx={CircleWrapStyles}>
+      <Box sx={CircleStyles} />
     </Box>
     <ChampionList />
   </Container>

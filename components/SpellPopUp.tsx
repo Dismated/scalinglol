@@ -49,9 +49,10 @@ const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
           top: "150px",
           left: "50%",
           transform: "translate(-50%, 0)",
-          height: "270px",
+          minHeight: "270px",
           py: "10px",
           pr: "15px",
+          minWidth: "360px",
           "z-index": 10,
         }}
       >

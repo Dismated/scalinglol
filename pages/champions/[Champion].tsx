@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { ChampName } from "../../types/types";
+import Chart from "../../components/Chart";
 import Combo from "../../components/Combo";
 import ComponentAdding from "../../components/ComponentAdding";
-import LineChart from "../../components/LineChart";
 import TopRow from "../../components/TopRow";
 import { setChampStats } from "../../reducers/champStatsReducer";
 import { setSpells } from "../../reducers/spellsReducer";
@@ -19,7 +19,6 @@ const ChampionDetails = () => {
   const champion = query.Champion as ChampName;
   const windowWidth = useWindowSize();
   const dispatch = useAppDispatch();
-  console.log(stats);
 
   useEffect(() => {
     dispatch(setWindowWidth(windowWidth));
@@ -33,11 +32,11 @@ const ChampionDetails = () => {
   if (!isReady) return <>Loading...</>;
 
   return (
-    <Container>
+    <Container sx={{ px: [0, "16px", "24px"] }}>
       <TopRow />
       <Combo />
       <ComponentAdding />
-      <LineChart />
+      <Chart />
     </Container>
   );
 };

@@ -1,5 +1,10 @@
 import * as Colors from "@mui/material/colors";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  responsiveFontSizes,
+} from "@mui/material";
 import { NextComponentType, NextPageContext } from "next";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
@@ -16,37 +21,40 @@ const OverrideCssBaseline = ({
 }: OverrideCssBaselineProps) => {
   const primaryColor = useAppSelector((state) => state.primaryColor);
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: ColorsWithType[primaryColor][400],
+  const darkTheme = responsiveFontSizes(
+    createTheme({
+      palette: {
+        mode: "dark",
+        primary: {
+          main: ColorsWithType[primaryColor][400],
+        },
       },
-    },
-    typography: {
-      h1: { fontFamily: "Karla" },
-      h2: { fontFamily: "Karla" },
-      h3: { fontFamily: "Karla" },
-      h4: { fontFamily: "Karla" },
-      h5: { fontFamily: "Karla" },
-      h6: { fontFamily: "Karla" },
+      typography: {
+        h1: { fontFamily: "Karla" },
+        h2: { fontFamily: "Karla" },
+        h3: { fontFamily: "Karla" },
+        h4: { fontFamily: "Karla" },
+        h5: { fontFamily: "Karla" },
+        h6: { fontFamily: "Karla" },
 
-      body1: { fontFamily: "Merriweather", fontSize: 12 },
-      body2: { fontFamily: "Merriweather", fontSize: 16 },
-      button: { fontFamily: "Merriweather" },
-    },
-    components: {
-      MuiPaper: {
-        styleOverrides: {
-          root: {
-            borderRadius: "30px",
-            marginTop: "20px",
-            paddingLeft: "15px",
+        body1: { fontFamily: "Merriweather", fontSize: 12 },
+        body2: { fontFamily: "Merriweather", fontSize: 16 },
+        button: { fontFamily: "Merriweather" },
+      },
+      components: {
+        MuiPaper: {
+          styleOverrides: {
+            root: {
+              borderRadius: "30px",
+              marginTop: "20px",
+              paddingLeft: "15px",
+            },
           },
         },
       },
-    },
-  });
+    }),
+    { factor: 2.8, variants: ["h1"] }
+  );
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
