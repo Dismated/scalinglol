@@ -1,0 +1,12 @@
+{
+  "h1": "League of Scaling",
+  "matchLength": "Match Length",
+  "container1": {
+    "header": "Combo",
+    "slots": "Slots",
+    "addSpell": "Add Spell"
+  },
+  "popup": { "spells": "Spells", "count": "COUNT: ", "save": "Save" },
+  "container2": { "header": "Skills", "timer": "Timer", "levelUp": "LvlUp" },
+  "container3": { "header": "Chart", "label": "Damage" }
+}

@@ -10,7 +10,6 @@ import { useAppSelector } from "../hooks/preTypedHooks";
 interface NodeOrientationProps {
   offsetTimer: number;
   offsetMoveIcon: number;
-  flexDirection: "column" | "column-reverse";
   nodeSettingsAreOpen: boolean;
   nodeSide: number;
   x: number;
@@ -22,10 +21,15 @@ interface NodeOrientationProps {
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
 }
 
+const BoxStyles = {
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+};
+
 const NodeOrientation = ({
   offsetTimer,
   offsetMoveIcon,
-  flexDirection,
   nodeSettingsAreOpen,
   nodeSide,
   x,
@@ -40,13 +44,7 @@ const NodeOrientation = ({
   const switchValue = useAppSelector((state) => state.attackSwitch);
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        display: "flex",
-        flexDirection: { flexDirection },
-      }}
-    >
+    <Box sx={BoxStyles}>
       <Box sx={{ position: "absolute" }}>
         {switchValue === "timer" && nodeSettingsAreOpen ? (
           <NodeTimer

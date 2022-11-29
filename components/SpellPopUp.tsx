@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -17,6 +18,18 @@ interface SpellPopUpProps {
   id: number;
 }
 
+const PaperStyles = {
+  position: "absolute",
+  top: "150px",
+  left: "50%",
+  transform: "translate(-50%, 0)",
+  minHeight: "270px",
+  py: "10px",
+  pr: "15px",
+  minWidth: "360px",
+  "z-index": 10,
+};
+
 const buttonStyles = {
   display: "inline-block",
   float: "right",
@@ -31,7 +44,7 @@ const buttonStyles = {
 const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
   const spells = useAppSelector((state) => state.spells);
   const champStats = useAppSelector((state) => state.champStats);
-
+  const { t } = useTranslation("common");
   const handleClick = () => {
     setSlotPressed(false);
   };
@@ -42,21 +55,8 @@ const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
-      <Paper
-        elevation={6}
-        sx={{
-          position: "absolute",
-          top: "150px",
-          left: "50%",
-          transform: "translate(-50%, 0)",
-          minHeight: "270px",
-          py: "10px",
-          pr: "15px",
-          minWidth: "360px",
-          "z-index": 10,
-        }}
-      >
-        <Typography variant="h4">Spells</Typography>
+      <Paper elevation={6} sx={PaperStyles}>
+        <Typography variant="h4">{t("popup.spells")}</Typography>
         <Box sx={{ pt: "5px" }}>
           {champStats.spells.map((spell, index) => (
             <SpellSelector key={spell.name} id={id} spellIndex={index} />
@@ -77,7 +77,7 @@ const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
         <Box sx={{ pt: "5px" }}>
           <SpellCountSelector id={id} />
           <Button onClick={handleClick} variant="contained" sx={buttonStyles}>
-            Save
+            {t("popup.save")}
           </Button>
         </Box>
       </Paper>

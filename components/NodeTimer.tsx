@@ -43,6 +43,13 @@ const NodeTimer = ({
   const dispatch = useAppDispatch();
   const skillTime = useAppSelector((state) => state.skillTime);
 
+  const IconStyles = {
+    cursor: "pointer",
+    position: "absolute",
+    left: "16px",
+    bottom: `${offsetMoveIcon}px`,
+  };
+
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -90,12 +97,7 @@ const NodeTimer = ({
           className="handle"
           color="primary"
           fontSize="small"
-          sx={{
-            cursor: "pointer",
-            position: "absolute",
-            left: "16px",
-            bottom: `${offsetMoveIcon}px`,
-          }}
+          sx={IconStyles}
           onMouseUp={handleMouseUp}
         />
       </Box>

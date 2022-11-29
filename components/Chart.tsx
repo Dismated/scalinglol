@@ -3,11 +3,18 @@ import "chartjs-adapter-moment";
 import { Paper, Typography } from "@mui/material";
 import { Scatter } from "react-chartjs-2";
 import { useTheme } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
 
 import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import { SpellStats } from "../types/types";
 import calculations from "../calculations/calculations";
 import { useAppSelector } from "../hooks/preTypedHooks";
+
+const PaperStyles = {
+  maxWidth: "1200px",
+  borderRadius: [0, "30px"],
+  pl: [0, "15px"],
+};
 
 const Chart = () => {
   const skillTime = useAppSelector((state) => state.skillTime);
@@ -17,6 +24,7 @@ const Chart = () => {
   const matchLength = useAppSelector((state) => state.matchLength);
   const champStats = useAppSelector((state) => state.champStats);
   const theme = useTheme();
+  const { t } = useTranslation("common");
 
   const dmg = lvlUp.map((skillLvls, lvl) =>
     spells.reduce((acc, spell) => {
@@ -47,16 +55,14 @@ const Chart = () => {
   const time = timeMs.map((e) => e * 1000);
 
   return (
-    <Paper
-      sx={{ maxWidth: "1200px", borderRadius: [0, "30px"], pl: [0, "15px"] }}
-    >
-      <Typography variant="h3">Chart</Typography>
+    <Paper sx={PaperStyles}>
+      <Typography variant="h3">{t("container3.header")}</Typography>
       <Scatter
         data={{
           labels: time,
           datasets: [
             {
-              label: "Damage",
+              label: `${t("container3.label")}`,
               data: dmg,
               stepped: "before",
               borderColor: theme.palette.primary.main,

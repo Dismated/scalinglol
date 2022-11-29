@@ -3,21 +3,7 @@ import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ChampionType } from "../types/types";
-import stats from "../champStats/champStats.json";
-
-interface ChampionFront {
-  name: string;
-  available: boolean;
-}
-
-const champStats = { ...stats } as ChampionType;
-const champNamesArr: ChampionFront[] = Object.values(champStats)
-  .sort((a, b) => a.name.localeCompare(b.name))
-  .map((champion) => ({
-    name: champion.name,
-    available: champion.available,
-  }));
+import { ChampionFront } from "../types/types";
 
 const InputBaseStyles = {
   borderStyle: "solid",
@@ -29,20 +15,38 @@ const InputBaseStyles = {
   px: "15px",
 };
 
-const ChampionList = () => {
+const PaperStyles = {
+  pb: "20px",
+  pl: 0,
+  borderRadius: { xs: 0, sm: "30px" },
+  mt: { xs: "30px" },
+};
+
+const CenterChampsStyles = {
+  display: "flex",
+  justifyContent: "center",
+};
+
+const ImageStyles = {
+  position: "relative",
+  width: "70px",
+  height: "70px",
+};
+
+const ChampionList = ({ champStats }: { champStats: ChampionFront[] }) => {
   const [filteredChampions, setFilteredChampions] =
-    useState<ChampionFront[]>(champNamesArr);
+    useState<ChampionFront[]>(champStats);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const filteredChamps = event.target.value
-      ? champNamesArr?.filter(
+      ? champStats?.filter(
           (e) =>
             event.target.value.toLowerCase() ===
             e.name.slice(0, event.target.value.length).toLowerCase()
         )
-      : champNamesArr;
+      : champStats;
 
     setFilteredChampions(filteredChamps);
   };
@@ -52,14 +56,7 @@ const ChampionList = () => {
       <Box sx={{ display: "flex", justifyContent: "center", mt: ["10px", 0] }}>
         <InputBase sx={InputBaseStyles} onChange={handleChange} autoFocus />
       </Box>
-      <Paper
-        sx={{
-          pb: "20px",
-          pl: 0,
-          borderRadius: { xs: 0, sm: "30px" },
-          mt: { xs: "30px" },
-        }}
-      >
+      <Paper sx={PaperStyles}>
         <Grid
           container
           columns={18}
@@ -72,19 +69,8 @@ const ChampionList = () => {
             <Grid item xs={6} sm={3} md={2} key={c.name}>
               <Link href={`/champions/${c.name}`}>
                 <a>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        position: "relative",
-                        width: "70px",
-                        height: "70px",
-                      }}
-                    >
+                  <Box sx={CenterChampsStyles}>
+                    <Box sx={ImageStyles}>
                       <Image
                         src={`/icons/champions/${c.name}.png`}
                         alt={c.name}

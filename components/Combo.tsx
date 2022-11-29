@@ -1,5 +1,6 @@
 import { Box, Button, Paper, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import CurvedCorner from "./CurvedCorner";
@@ -28,13 +29,24 @@ const slotButtonStyles = {
   m: "12px",
 };
 
+const CurvedCornerStyles = {
+  display: "inline-block",
+  bottom: "12px",
+  position: "relative",
+};
+
+const TypographyStyles = {
+  display: "inline-block",
+  color: "#121212",
+};
+
 const Combo = () => {
   const [slotPressed, setSlotPressed] = useState(false);
   const dispatch = useAppDispatch();
-  const spells = useAppSelector((state) => state.spells);
   const champStats = useAppSelector((state) => state.champStats);
   const theme = useTheme();
-
+  const { t } = useTranslation("common");
+  const spells = useAppSelector((state) => state.spells);
   const newSpells = spells.map((spl) => {
     const newE = { ...spl };
     return newE;
@@ -68,12 +80,10 @@ const Combo = () => {
   return (
     <Paper sx={{ borderRadius: [0, "30px"], pl: [0, "15px"] }}>
       <Typography variant="h3" sx={{ display: "inline-block" }}>
-        Combo
+        {t("container1.header")}
       </Typography>
       <Box sx={{ display: "inline-block", float: "right" }}>
-        <Box
-          sx={{ display: "inline-block", bottom: "12px", position: "relative" }}
-        >
+        <Box sx={CurvedCornerStyles}>
           <CurvedCorner
             corner="topRight"
             size={20}
@@ -82,21 +92,15 @@ const Combo = () => {
           />
         </Box>
         <Box sx={boxStyles}>
-          <Typography
-            variant="h4"
-            sx={{
-              display: "inline-block",
-              color: "#121212",
-            }}
-          >
-            Slots: {spells.length}
+          <Typography variant="h4" sx={TypographyStyles}>
+            {t("container1.slots")}: {spells.length}
           </Typography>
         </Box>
       </Box>
       <Box sx={{ py: "10px" }}>
         {generateSlots(spells.length)}
         <Button sx={slotButtonStyles} onClick={handleSlotClick}>
-          Add Spell
+          {t("container1.addSpell")}
         </Button>
       </Box>
     </Paper>

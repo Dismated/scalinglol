@@ -68,3 +68,8 @@ export interface SpellProps {
   section: number;
   count: number;
 }
+
+export interface ChampionFront {
+  name: string;
+  available: boolean;
+}

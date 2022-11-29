@@ -1,8 +1,9 @@
 module.exports = {
   extends: ["airbnb", "airbnb-typescript", "prettier", "next/core-web-vitals"],
   parserOptions: {
-    project: "./leaguecalc/tsconfig.json",
+    project: "./tsconfig.json",
   },
+  parser: "@typescript-eslint/parser",
   plugins: ["prettier"],
   rules: {
     "react/jsx-filename-extension": [1, { extensions: [".tsx", ".ts"] }],

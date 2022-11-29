@@ -5,7 +5,7 @@ import Image from "next/image";
 import SpellPopUp from "./SpellPopUp";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
-const slotButtonStyles = {
+const SlotButtonStyles = {
   width: "80px",
   height: "115px",
   padding: 0,
@@ -15,18 +15,25 @@ const slotButtonStyles = {
   borderRadius: "4px",
   display: "inline-block",
 };
-const slotBoxStyles = {
+const SlotBoxStyles = {
   display: "flex",
   alignContent: "space-between",
   flexWrap: "wrap",
   height: "100%",
 };
-const spellSectionBoxStyles = {
+const SpellSectionBoxStyles = {
   height: "35px",
   width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+};
+
+const BadgeStyles = {
+  "& .MuiBadge-badge": {
+    fontFamily: "Merriweather",
+    fontSize: 16,
+  },
 };
 
 interface SlotProps {
@@ -65,12 +72,7 @@ const Slot = ({ id, setSlotPressed, slotPressed }: SlotProps) => {
           vertical: "top",
           horizontal: "left",
         }}
-        sx={{
-          "& .MuiBadge-badge": {
-            fontFamily: "Merriweather",
-            fontSize: 16,
-          },
-        }}
+        sx={BadgeStyles}
       >
         <Badge
           badgeContent={newSpells[id].count}
@@ -79,22 +81,17 @@ const Slot = ({ id, setSlotPressed, slotPressed }: SlotProps) => {
             vertical: "top",
             horizontal: "right",
           }}
-          sx={{
-            "& .MuiBadge-badge": {
-              fontFamily: "Merriweather",
-              fontSize: 16,
-            },
-          }}
+          sx={BadgeStyles}
         >
-          <Button sx={slotButtonStyles} onClick={handleSlotClick}>
-            <Box sx={slotBoxStyles}>
+          <Button sx={SlotButtonStyles} onClick={handleSlotClick}>
+            <Box sx={SlotBoxStyles}>
               <Image
                 src={`/icons/spells/${linkName}${slotSpell.name}.png`}
                 alt={slotSpell.name}
                 width="80"
                 height="80"
               />
-              <Box sx={spellSectionBoxStyles}>
+              <Box sx={SpellSectionBoxStyles}>
                 <Typography>
                   {slotSpell.variant[newSpells[id].section].name}
                 </Typography>

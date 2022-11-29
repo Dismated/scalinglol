@@ -9,10 +9,17 @@ interface SpellSelectorProps {
   spellIndex: number;
 }
 
-const spellStyles = {
+const SpellStyles = {
   display: "inline-block",
   py: "10px",
   px: "5px",
+};
+
+const BadgeStyles = {
+  fontSize: 16,
+  "& .MuiBadge-badge": {
+    fontFamily: "Merriweather",
+  },
 };
 
 const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
@@ -30,7 +37,7 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
       ? "BasicAttack"
       : champStats.name;
 
-  const spellsButtonStyles = {
+  const SpellsButtonStyles = {
     height: "64px",
     width: "64px",
     borderWidth,
@@ -49,18 +56,13 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
   };
 
   return (
-    <Box sx={spellStyles}>
+    <Box sx={SpellStyles}>
       <Badge
         badgeContent={champStats.spells[spellIndex].name}
         color="primary"
-        sx={{
-          fontSize: 16,
-          "& .MuiBadge-badge": {
-            fontFamily: "Merriweather",
-          },
-        }}
+        sx={BadgeStyles}
       >
-        <Button sx={spellsButtonStyles} onClick={() => handleSpellClick()}>
+        <Button sx={SpellsButtonStyles} onClick={() => handleSpellClick()}>
           <Image
             src={`/icons/spells/${linkName}${champStats.spells[spellIndex].name}.png`}
             alt={champStats.spells[spellIndex].name}

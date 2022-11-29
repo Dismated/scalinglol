@@ -1,4 +1,7 @@
+import { GetStaticPaths, GetStaticProps } from "next";
 import { Container } from "@mui/material";
+import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -32,12 +35,29 @@ const ChampionDetails = () => {
   if (!isReady) return <>Loading...</>;
 
   return (
-    <Container sx={{ px: [0, "16px", "24px"] }}>
-      <TopRow />
-      <Combo />
-      <ComponentAdding />
-      <Chart />
-    </Container>
+    <>
+      <Head>
+        <title>{champion}</title>
+      </Head>
+      <Container sx={{ px: [0, "16px", "24px"] }}>
+        <TopRow />
+        <Combo />
+        <ComponentAdding />
+        <Chart />
+      </Container>
+    </>
   );
 };
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: "blocking",
+});
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? "en", ["common"])),
+  },
+});
+
 export default ChampionDetails;

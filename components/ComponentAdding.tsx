@@ -1,15 +1,27 @@
 import { Box, Paper, Typography, useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import CurvedCorner from "./CurvedCorner";
+import MultiNodeSlider from "./MultiNodeSlider";
 import { setAttackSwitch } from "../reducers/attackSwitchReducer";
 
-import MultiNodeSlider from "./MultiNodeSlider";
+const ButtonGroupStyles = {
+  display: "inline-block",
+  float: "right",
+};
+
+const CurvedCorner1Styles = {
+  display: "inline-block",
+  bottom: "12px",
+  position: "relative",
+};
 
 const ComponentAdding = () => {
   const dispatch = useAppDispatch();
   const switchValue = useAppSelector((state) => state.attackSwitch);
   const theme = useTheme();
+  const { t } = useTranslation("common");
 
   const backgroundColorTimer =
     switchValue === "timer" ? "primary.main" : "#1e1e1e";
@@ -59,17 +71,10 @@ const ComponentAdding = () => {
   return (
     <Paper sx={{ borderRadius: [0, "30px"], pl: [0, "15px"] }}>
       <Typography variant="h3" sx={{ display: "inline-block" }}>
-        Skills
+        {t("container2.header")}
       </Typography>
-      <Box
-        sx={{
-          display: "inline-block",
-          float: "right",
-        }}
-      >
-        <Box
-          sx={{ display: "inline-block", bottom: "12px", position: "relative" }}
-        >
+      <Box sx={ButtonGroupStyles}>
+        <Box sx={CurvedCorner1Styles}>
           <CurvedCorner
             corner="topRight"
             size={20}
@@ -78,7 +83,7 @@ const ComponentAdding = () => {
           />
         </Box>
         <Box onClick={handleTimerButton} sx={timerBoxStyles}>
-          <Typography variant="h4">Timer</Typography>
+          <Typography variant="h4">{t("container2.timer")}</Typography>
         </Box>
         <Box sx={{ display: "inline-block", position: "relative" }}>
           <Box sx={{ position: "absolute", top: "-32px", right: "0px" }}>
@@ -99,7 +104,7 @@ const ComponentAdding = () => {
           </Box>
         </Box>
         <Box onClick={handleLvlUpButton} sx={lvlUpBoxStyles}>
-          <Typography variant="h4">LvlUp</Typography>
+          <Typography variant="h4">{t("container2.levelUp")}</Typography>
         </Box>
       </Box>
 
