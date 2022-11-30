@@ -14,6 +14,7 @@ const PaperStyles = {
   maxWidth: "1200px",
   borderRadius: [0, "30px"],
   pl: [0, "15px"],
+  pt: "5px",
 };
 
 const Chart = () => {
@@ -56,7 +57,7 @@ const Chart = () => {
 
   return (
     <Paper sx={PaperStyles}>
-      <Typography variant="h3">{t("container3.header")}</Typography>
+      <Typography variant="h4">{t("container3.header")}</Typography>
       <Scatter
         data={{
           labels: time,

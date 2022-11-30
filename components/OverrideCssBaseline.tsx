@@ -46,7 +46,7 @@ const OverrideCssBaseline = ({
           styleOverrides: {
             root: {
               borderRadius: "30px",
-              marginTop: "20px",
+              marginTop: "15px",
               paddingLeft: "15px",
             },
           },

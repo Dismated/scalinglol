@@ -12,9 +12,10 @@ const inputBaseStyles = {
   borderColor: "primary.main",
   borderRadius: "4px",
   color: "primary.main",
-  left: "-15px",
-  width: "40px",
+  left: "-20px",
+  width: "50px",
   backgroundColor: "#1e1e1e",
+  fontSize: "16px",
 };
 
 interface NodeTimerProps {
@@ -46,7 +47,7 @@ const NodeTimer = ({
   const IconStyles = {
     cursor: "pointer",
     position: "absolute",
-    left: "16px",
+    left: "21px",
     bottom: `${offsetMoveIcon}px`,
   };
 

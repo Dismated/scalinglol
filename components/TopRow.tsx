@@ -8,7 +8,12 @@ const TopRow = () => {
   const champStats = useAppSelector((state) => state.champStats);
 
   return (
-    <Box sx={{ display: "flex", justifyContent: ["center", "space-between"] }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: ["center", "space-between"],
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -19,6 +24,8 @@ const TopRow = () => {
             width: ["100px", "130px"],
             height: ["100px", "130px"],
             position: "relative",
+            borderRadius: "10px",
+            overflow: "hidden",
           }}
         >
           <Image
@@ -28,14 +35,14 @@ const TopRow = () => {
             priority
           />
         </Box>
-        <Box sx={{ pl: "5px" }}>
+        <Box sx={{ pl: "10px" }}>
           <Box>
-            <Typography variant="h2" sx={{ display: "inline" }}>
+            <Typography variant="h3" sx={{ display: "inline" }}>
               {champStats.name}
             </Typography>
           </Box>
           <Box>
-            <Typography variant="h5" sx={{ display: "inline" }}>
+            <Typography variant="h6" sx={{ display: "inline" }}>
               {champStats.title}
             </Typography>
           </Box>
@@ -45,7 +52,8 @@ const TopRow = () => {
         sx={{
           display: ["none", "inline-block"],
           float: "right",
-          width: "220px",
+          width: "200px",
+          alignSelf: "center",
         }}
       >
         <MatchLengthTimer />

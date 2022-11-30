@@ -1,4 +1,4 @@
-import { Box, InputBase, Typography } from "@mui/material";
+import { Box, FormControl, InputBase, Typography } from "@mui/material";
 import { ChangeEvent } from "react";
 import { useTranslation } from "next-i18next";
 
@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setMatchLength } from "../reducers/matchLengthReducer";
 
 const InputBaseStyles = {
-  fontSize: 36,
+  fontSize: 24,
   color: "primary.main",
 };
 
@@ -18,8 +18,8 @@ const TextBoxStyles = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  height: "50%",
   backgroundColor: "primary.main",
+  height: "43px",
   borderTopRightRadius: "30px",
   borderTopLeftRadius: "30px",
 };
@@ -44,21 +44,23 @@ const MatchLengthTimer = () => {
   return (
     <>
       <Box sx={TextBoxStyles}>
-        <Typography variant="h4" sx={TimeHeadingStyle}>
+        <Typography variant="h5" sx={TimeHeadingStyle}>
           {t("matchLength")}
         </Typography>
       </Box>
       <Box sx={InputBoxStyles}>
-        <InputBase
-          value={matchLength}
-          onChange={(event) => handleMatchLengthChange(event)}
-          sx={InputBaseStyles}
-          inputProps={{
-            style: {
-              textAlign: "center",
-            },
-          }}
-        />
+        <FormControl>
+          <InputBase
+            value={matchLength}
+            onChange={(event) => handleMatchLengthChange(event)}
+            sx={InputBaseStyles}
+            inputProps={{
+              style: {
+                textAlign: "center",
+              },
+            }}
+          />
+        </FormControl>
       </Box>
     </>
   );

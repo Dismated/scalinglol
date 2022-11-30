@@ -7,24 +7,6 @@ import { ChampionFront, ChampionType } from "../types/types";
 import ChampionList from "../components/ChampionList";
 import stats from "../champStats/champStats.json";
 
-const CircleWrapStyles = {
-  display: { xs: "none", sm: "flex" },
-  justifyContent: "center",
-  position: "absolute",
-  top: { sm: "15px", md: "25px", lg: "42px" },
-  left: "50%",
-};
-const CircleStyles = {
-  height: { sm: "90px", md: "100px" },
-  width: { sm: "90px", md: "100px" },
-  backgroundColor: "#121212",
-  borderRadius: "50%",
-  position: "relative",
-  top: 0,
-  right: { sm: "176px", md: "198px", lg: "224px" },
-  "z-index": 5,
-};
-
 const TypographyStyles = {
   textAlign: "center",
   position: "relative",
@@ -51,9 +33,7 @@ const Home: NextPage<HomeProps> = ({ champStatsSorted }) => {
           {t("h1")}
         </Typography>
       </Box>
-      <Box sx={CircleWrapStyles}>
-        <Box sx={CircleStyles} />
-      </Box>
+
       <ChampionList champStats={champStatsSorted} />
     </Container>
   );

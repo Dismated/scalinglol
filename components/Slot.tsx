@@ -60,7 +60,7 @@ const Slot = ({ id, setSlotPressed, slotPressed }: SlotProps) => {
   };
 
   return (
-    <Box sx={{ display: "inline-block", m: "12px" }}>
+    <Box sx={{ display: "inline-block", m: "15px" }}>
       {slotPressed ? (
         <SpellPopUp setSlotPressed={setSlotPressed} id={id} />
       ) : null}

@@ -32,6 +32,8 @@ const ImageStyles = {
   position: "relative",
   width: "70px",
   height: "70px",
+  borderRadius: "5px",
+  overflow: "hidden",
 };
 
 const ChampionList = ({ champStats }: { champStats: ChampionFront[] }) => {
@@ -54,7 +56,7 @@ const ChampionList = ({ champStats }: { champStats: ChampionFront[] }) => {
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: ["10px", 0] }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: "10px" }}>
         <InputBase sx={InputBaseStyles} onChange={handleChange} autoFocus />
       </Box>
       <Paper sx={PaperStyles}>

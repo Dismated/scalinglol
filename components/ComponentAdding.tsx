@@ -13,8 +13,14 @@ const ButtonGroupStyles = {
 
 const CurvedCorner1Styles = {
   display: "inline-block",
-  bottom: "12px",
+  bottom: "9px",
   position: "relative",
+};
+const PaperStyles = {
+  borderRadius: [0, "30px"],
+  pl: [0, "15px"],
+  overflow: "clip",
+  overflowClipMargin: "30px",
 };
 
 const ComponentAdding = () => {
@@ -69,49 +75,42 @@ const ComponentAdding = () => {
   };
 
   return (
-    <Paper
-      sx={{
-        borderRadius: [0, "30px"],
-        pl: [0, "15px"],
-        overflow: "clip",
-        overflowClipMargin: "30px",
-      }}
-    >
-      <Typography variant="h3" sx={{ display: "inline-block" }}>
+    <Paper sx={PaperStyles}>
+      <Typography variant="h4" sx={{ display: "inline-block", pt: "5px" }}>
         {t("container2.header")}
       </Typography>
       <Box sx={ButtonGroupStyles}>
         <Box sx={CurvedCorner1Styles}>
           <CurvedCorner
             corner="topRight"
-            size={20}
+            size={15}
             frontColor={cornerTimer}
             backColor="#1e1e1e"
           />
         </Box>
         <Box onClick={handleTimerButton} sx={timerBoxStyles}>
-          <Typography variant="h4">{t("container2.timer")}</Typography>
+          <Typography variant="h5">{t("container2.timer")}</Typography>
         </Box>
         <Box sx={{ display: "inline-block", position: "relative" }}>
-          <Box sx={{ position: "absolute", top: "-32px", right: "0px" }}>
+          <Box sx={{ position: "absolute", top: "-24px", right: "0px" }}>
             <CurvedCorner
               corner="topRight"
-              size={20}
+              size={15}
               frontColor={cornerLvlUp}
               backColor={cornerTimer}
             />
           </Box>
-          <Box sx={{ position: "absolute", top: "-10px" }}>
+          <Box sx={{ position: "absolute", top: "-7px" }}>
             <CurvedCorner
               corner="bottomLeft"
-              size={20}
+              size={15}
               frontColor={cornerTimer}
               backColor={cornerLvlUp}
             />
           </Box>
         </Box>
         <Box onClick={handleLvlUpButton} sx={lvlUpBoxStyles}>
-          <Typography variant="h4">{t("container2.levelUp")}</Typography>
+          <Typography variant="h5">{t("container2.levelUp")}</Typography>
         </Box>
       </Box>
 

@@ -26,12 +26,13 @@ const slotButtonStyles = {
   borderColor: "primary.main",
   borderRadius: "4px",
   display: "inline-block",
-  m: "12px",
+  mx: "15px",
+  lineHeight: "1.2",
 };
 
 const CurvedCornerStyles = {
   display: "inline-block",
-  bottom: "12px",
+  bottom: "9px",
   position: "relative",
 };
 
@@ -79,20 +80,20 @@ const Combo = () => {
 
   return (
     <Paper sx={{ borderRadius: [0, "30px"], pl: [0, "15px"] }}>
-      <Typography variant="h3" sx={{ display: "inline-block" }}>
+      <Typography variant="h4" sx={{ display: "inline-block", pt: "5px" }}>
         {t("container1.header")}
       </Typography>
       <Box sx={{ display: "inline-block", float: "right" }}>
         <Box sx={CurvedCornerStyles}>
           <CurvedCorner
             corner="topRight"
-            size={20}
+            size={15}
             frontColor={theme.palette.primary.main}
             backColor="#1e1e1e"
           />
         </Box>
         <Box sx={boxStyles}>
-          <Typography variant="h4" sx={TypographyStyles}>
+          <Typography variant="h5" sx={TypographyStyles}>
             {t("container1.slots")}: {spells.length}
           </Typography>
         </Box>

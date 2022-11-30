@@ -76,8 +76,8 @@ const Node = ({ id }: { id: number }) => {
             ref={nodeRef}
           >
             <NodeOrientation
-              offsetTimer={-27}
-              offsetMoveIcon={18}
+              offsetTimer={-34}
+              offsetMoveIcon={25}
               nodeSettingsAreOpen={nodeSettingsAreOpen}
               nodeSide={nodeSide}
               x={x}
