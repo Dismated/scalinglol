@@ -7,7 +7,7 @@ Only League of Legends damage calculator with graphs. Provides the ability to se
 1. Clone the repo
 
 ```bash
-git clone https://github.com/Dismated/barbara
+git clone https://github.com/Dismated/scalinglol
 ```
 
 2. Install NPM package
