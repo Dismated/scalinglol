@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { appWithTranslation } from "next-i18next";
 
 import OverrideCssBaseline from "../components/OverrideCssBaseline";
-import store from "./store";
+import store from "../reducers/store";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>

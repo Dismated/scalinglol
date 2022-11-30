@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import attackSwitchReducer from "../reducers/attackSwitchReducer";
-import champStatsReducer from "../reducers/champStatsReducer";
-import lvlUpReducer from "../reducers/lvlUpReducer";
-import matchLengthReducer from "../reducers/matchLengthReducer";
-import primaryColorReducer from "../reducers/primaryColorReducer";
-import skillTimeReducer from "../reducers/skillTimeReducer";
-import spellsReducer from "../reducers/spellsReducer";
-import windowWidthReducer from "../reducers/windowWidthReducer";
+import attackSwitchReducer from "./attackSwitchReducer";
+import champStatsReducer from "./champStatsReducer";
+import lvlUpReducer from "./lvlUpReducer";
+import matchLengthReducer from "./matchLengthReducer";
+import primaryColorReducer from "./primaryColorReducer";
+import skillTimeReducer from "./skillTimeReducer";
+import spellsReducer from "./spellsReducer";
+import windowWidthReducer from "./windowWidthReducer";
 
 const store = configureStore({
   reducer: {

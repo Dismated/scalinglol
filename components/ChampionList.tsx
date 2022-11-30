@@ -12,6 +12,7 @@ const InputBaseStyles = {
   borderWidth: "2px",
   width: { xs: "90%", sm: "400px", md: "500px", lg: "600px" },
   height: ["40px", "50px"],
+  fontSize: [12, 16],
   px: "15px",
 };
 

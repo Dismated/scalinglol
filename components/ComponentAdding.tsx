@@ -69,7 +69,14 @@ const ComponentAdding = () => {
   };
 
   return (
-    <Paper sx={{ borderRadius: [0, "30px"], pl: [0, "15px"] }}>
+    <Paper
+      sx={{
+        borderRadius: [0, "30px"],
+        pl: [0, "15px"],
+        overflow: "clip",
+        overflowClipMargin: "30px",
+      }}
+    >
       <Typography variant="h3" sx={{ display: "inline-block" }}>
         {t("container2.header")}
       </Typography>

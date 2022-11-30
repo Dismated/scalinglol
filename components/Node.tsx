@@ -78,7 +78,6 @@ const Node = ({ id }: { id: number }) => {
             <NodeOrientation
               offsetTimer={-27}
               offsetMoveIcon={18}
-              flexDirection="column"
               nodeSettingsAreOpen={nodeSettingsAreOpen}
               nodeSide={nodeSide}
               x={x}
