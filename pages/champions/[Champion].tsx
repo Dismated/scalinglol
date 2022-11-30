@@ -49,10 +49,13 @@ const ChampionDetails = () => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [],
-  fallback: "blocking",
-});
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = Object.keys(stats).map((champion) => `/champions/${champion}`);
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
