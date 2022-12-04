@@ -3,7 +3,7 @@ import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 
-import { ChampionFront, ChampionType } from "../types/types";
+import { ChampName, ChampionType } from "../types/types";
 import ChampionList from "../components/ChampionList";
 import stats from "../champStats/champStats.json";
 
@@ -14,7 +14,7 @@ const TypographyStyles = {
 };
 
 interface HomeProps {
-  champStatsSorted: ChampionFront[];
+  champStatsSorted: ChampName[];
   _props: InferGetStaticPropsType<typeof getStaticProps>;
 }
 
@@ -30,7 +30,7 @@ const Home: NextPage<HomeProps> = ({ champStatsSorted }) => {
         }}
       >
         <Typography variant="h1" sx={TypographyStyles}>
-          {t("h1")}
+          {t("mainPage.header")}
         </Typography>
       </Box>
 
@@ -41,12 +41,9 @@ const Home: NextPage<HomeProps> = ({ champStatsSorted }) => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const champStats = { ...stats } as ChampionType;
-  const champStatsSorted: ChampionFront[] = Object.values(champStats)
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .map((champion) => ({
-      name: champion.name,
-      available: champion.available,
-    }));
+  const champStatsSorted: ChampName[] = Object.values(champStats).map(
+    (champion) => champion.name
+  );
   return {
     props: {
       champStatsSorted,

@@ -4,6 +4,7 @@ import attackSwitchReducer from "./attackSwitchReducer";
 import champStatsReducer from "./champStatsReducer";
 import lvlUpReducer from "./lvlUpReducer";
 import matchLengthReducer from "./matchLengthReducer";
+import nodeSideReducer from "./nodeSideReducer";
 import primaryColorReducer from "./primaryColorReducer";
 import skillTimeReducer from "./skillTimeReducer";
 import spellsReducer from "./spellsReducer";
@@ -19,6 +20,7 @@ const store = configureStore({
     spells: spellsReducer,
     primaryColor: primaryColorReducer,
     champStats: champStatsReducer,
+    nodeSide: nodeSideReducer,
   },
 });
 

@@ -1,9 +1,9 @@
 import { Box, Grid, InputBase, Paper, Typography } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ChampionFront } from "../types/types";
+import { ChampName } from "../types/types";
 
 const InputBaseStyles = {
   borderStyle: "solid",
@@ -36,28 +36,31 @@ const ImageStyles = {
   overflow: "hidden",
 };
 
-const ChampionList = ({ champStats }: { champStats: ChampionFront[] }) => {
-  const [filteredChampions, setFilteredChampions] =
-    useState<ChampionFront[]>(champStats);
+const ChampionList = ({ champStats }: { champStats: ChampName[] }) => {
+  const [filteredChampions, setFilteredChampions] = useState(champStats);
 
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const filteredChamps = event.target.value
-      ? champStats?.filter(
-          (e) =>
-            event.target.value.toLowerCase() ===
-            e.name.slice(0, event.target.value.length).toLowerCase()
-        )
-      : champStats;
+  const filterChampions = useCallback(
+    (value: string) => {
+      const filteredChamps = value
+        ? champStats?.filter(
+            (name) =>
+              value.toLowerCase() === name.slice(0, value.length).toLowerCase()
+          )
+        : champStats;
 
-    setFilteredChampions(filteredChamps);
-  };
+      setFilteredChampions(filteredChamps);
+    },
+    [champStats]
+  );
 
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: "10px" }}>
-        <InputBase sx={InputBaseStyles} onChange={handleChange} autoFocus />
+        <InputBase
+          sx={InputBaseStyles}
+          onChange={(event) => filterChampions(event.target.value)}
+          autoFocus
+        />
       </Box>
       <Paper sx={PaperStyles}>
         <Grid
@@ -68,30 +71,24 @@ const ChampionList = ({ champStats }: { champStats: ChampionFront[] }) => {
             mt: "25px",
           }}
         >
-          {filteredChampions.map((c) => (
-            <Grid item xs={6} sm={3} md={2} key={c.name}>
-              <Link href={`/champions/${c.name}`}>
-                <a>
-                  <Box sx={CenterChampsStyles}>
-                    <Box sx={ImageStyles}>
-                      <Image
-                        src={`/icons/champions/${c.name}.png`}
-                        alt={c.name}
-                        layout="fill"
-                        style={{
-                          filter: `${
-                            c.available ? "grayscale(0%)" : "grayscale(100%)"
-                          }`,
-                        }}
-                      />
-                    </Box>
+          {filteredChampions.map((champName) => (
+            <Grid item xs={6} sm={3} md={2} key={champName}>
+              <Link href={`/champions/${champName}`}>
+                <Box sx={CenterChampsStyles}>
+                  <Box sx={ImageStyles}>
+                    <Image
+                      src={`/icons/champions/${champName}.png`}
+                      alt={champName}
+                      fill
+                      sizes="70px"
+                    />
                   </Box>
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "center" }}>
-                      {c.name}
-                    </Typography>
-                  </Box>
-                </a>
+                </Box>
+                <Box>
+                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                    {champName}
+                  </Typography>
+                </Box>
               </Link>
             </Grid>
           ))}

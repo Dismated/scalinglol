@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import { SpellStats } from "../types/types";
-import calculations from "../calculations/calculations";
+import spellDmg from "../calculations/calculations";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 const PaperStyles = {
@@ -18,12 +18,10 @@ const PaperStyles = {
 };
 
 const Chart = () => {
-  const skillTime = useAppSelector((state) => state.skillTime);
+  const { skillTime, spells, lvlUp, matchLength, champStats } = useAppSelector(
+    (state) => state
+  );
   const skillTimeCopy = [...skillTime];
-  const spells = useAppSelector((state) => state.spells);
-  const lvlUp = useAppSelector((state) => state.lvlUp);
-  const matchLength = useAppSelector((state) => state.matchLength);
-  const champStats = useAppSelector((state) => state.champStats);
   const theme = useTheme();
   const { t } = useTranslation("common");
 
@@ -35,39 +33,35 @@ const Chart = () => {
 
       return (
         acc +
-        calculations({
-          initialDmg: spellStats.initialDmg,
-          dmgPerSkillLvl: spellStats.dmgPerSkillLvl,
+        spellDmg({
+          ...spellStats,
           skillLvl: skillLvls[champStats.spells[spell.name].name],
-          dmgPerChampLvl: spellStats.dmgPerChampLvl,
           champLvl: lvl,
-          apModifier: spellStats.apModifier,
           ad: statsShort.attackdamage,
-          adModifier: spellStats.adModifier,
           count: spell.count,
         })
       );
     }, 0)
   );
 
-  const compareNumbers = (a: number, b: number) => a - b;
-
-  const timeMs = skillTimeCopy.sort(compareNumbers);
-  const time = timeMs.map((e) => e * 1000);
+  const times = skillTimeCopy.sort((a: number, b: number) => a - b);
+  const timesMs = times.map((seconds) => seconds * 1000);
 
   return (
     <Paper sx={PaperStyles}>
-      <Typography variant="h4">{t("container3.header")}</Typography>
+      <Typography variant="h4">
+        {t("champPage.chartContainer.header")}
+      </Typography>
       <Scatter
         data={{
-          labels: time,
+          labels: timesMs,
           datasets: [
             {
-              label: `${t("container3.label")}`,
+              label: `${t("champPage.chartContainer.label")}`,
               data: dmg,
               stepped: "before",
               borderColor: theme.palette.primary.main,
-              pointRadius: 5,
+              pointRadius: 2,
               pointBorderWidth: 4,
               borderWidth: 1,
             },
@@ -86,13 +80,14 @@ const Chart = () => {
             },
             y: { grid: { color: "#424242" }, beginAtZero: true },
           },
+          showLine: true,
           plugins: {
             tooltip: {
               callbacks: {
-                label: (e) =>
-                  `time: ${secondsToTimer(e.parsed.x / 1000)}, dmg: ${
-                    e.parsed.y
-                  }`,
+                label: (milliseconds) =>
+                  `time: ${secondsToTimer(
+                    milliseconds.parsed.x / 1000
+                  )}, dmg: ${milliseconds.parsed.y}`,
               },
             },
           },

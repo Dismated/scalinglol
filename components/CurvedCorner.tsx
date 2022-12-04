@@ -41,6 +41,7 @@ const CurvedCorner = ({
     backgroundColor: `${backColor}`,
     overflow: "hidden",
     position: "relative",
+
     "&:before": [
       {
         content: "''",

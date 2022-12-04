@@ -1,15 +1,17 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { SpellName } from "../types/types";
+
+import { useAppSelector } from "../hooks/preTypedHooks";
 
 const NodeButton = ({
-  nodeSide,
   lvlUped,
   id,
 }: {
-  nodeSide: number;
-  lvlUped: string;
+  lvlUped: SpellName | undefined;
   id: number;
 }) => {
+  const nodeSide = useAppSelector((state) => state.nodeSide);
   const nodeSidePx = `${nodeSide}px`;
 
   const borderStyle = lvlUped ? "solid" : "dashed";

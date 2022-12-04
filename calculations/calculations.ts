@@ -12,7 +12,7 @@ interface AbilityDmgType {
   dmgPerChampLvl?: number;
 }
 
-const abilityDmg = ({
+const spellDmg = ({
   initialDmg = 0,
   apModifier = 0,
   ap = 0,
@@ -37,4 +37,4 @@ const abilityDmg = ({
   return dmg;
 };
 
-export default abilityDmg;
+export default spellDmg;

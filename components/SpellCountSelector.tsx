@@ -27,9 +27,9 @@ const SpellCountSelector = ({ id }: { id: number }) => {
   });
 
   const handleCountChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    newSpells[id].count = Number(event.target.value);
+    newSpells[id].count = Number(e.target.value);
     dispatch(setSpells(newSpells));
   };
 
@@ -43,7 +43,7 @@ const SpellCountSelector = ({ id }: { id: number }) => {
         variant="body2"
         sx={{ display: "inline-block", color: "primary.main" }}
       >
-        {t("popup.count")}
+        {t("champPage.popupContainer.count")}
       </Typography>
       <InputBase
         onChange={handleCountChange}

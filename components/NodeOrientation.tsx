@@ -5,20 +5,18 @@ import Arrow from "./Arrow";
 import NodeButton from "./NodeButton";
 import NodeLvlUp from "./NodeLvlUp";
 import NodeTimer from "./NodeTimer";
+import { SpellName } from "../types/types";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 interface NodeOrientationProps {
-  offsetTimer: number;
-  offsetMoveIcon: number;
   nodeSettingsAreOpen: boolean;
-  nodeSide: number;
-  x: number;
-  setX: Dispatch<SetStateAction<number>>;
   pxPerSec: () => number;
   displayTime: string;
   setDisplayTime: Dispatch<SetStateAction<string>>;
   id: number;
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
+  x: number;
+  setX: Dispatch<SetStateAction<number>>;
 }
 
 const BoxStyles = {
@@ -28,47 +26,29 @@ const BoxStyles = {
 };
 
 const NodeOrientation = ({
-  offsetTimer,
-  offsetMoveIcon,
-  nodeSettingsAreOpen,
-  nodeSide,
-  x,
-  setX,
-  pxPerSec,
-  displayTime,
-  setDisplayTime,
   id,
-  setNodeSettingsAreOpen,
+  nodeSettingsAreOpen,
+  ...rest
 }: NodeOrientationProps) => {
-  const [lvlUped, setLvlUped] = useState("");
+  const [lvlUped, setLvlUped] = useState<SpellName | undefined>();
   const switchValue = useAppSelector((state) => state.attackSwitch);
 
   return (
     <Box sx={BoxStyles}>
       <Box sx={{ position: "absolute" }}>
-        {switchValue === "timer" && nodeSettingsAreOpen ? (
-          <NodeTimer
-            offsetTimer={offsetTimer}
-            offsetMoveIcon={offsetMoveIcon}
-            displayTime={displayTime}
-            setDisplayTime={setDisplayTime}
-            x={x}
-            setX={setX}
-            pxPerSec={pxPerSec}
-            id={id}
-            setNodeSettingsAreOpen={setNodeSettingsAreOpen}
-          />
-        ) : null}
-        {switchValue === "lvlUp" && nodeSettingsAreOpen ? (
+        {switchValue === "timer" && nodeSettingsAreOpen && (
+          <NodeTimer {...rest} id={id} />
+        )}
+        {switchValue === "lvlUp" && nodeSettingsAreOpen && (
           <NodeLvlUp
-            setNodeSettingsAreOpen={setNodeSettingsAreOpen}
+            setNodeSettingsAreOpen={rest.setNodeSettingsAreOpen}
             lvlUped={lvlUped}
             setLvlUped={setLvlUped}
             id={id}
           />
-        ) : null}
+        )}
       </Box>
-      <NodeButton nodeSide={nodeSide} lvlUped={lvlUped} id={id} />
+      <NodeButton lvlUped={lvlUped} id={id} />
       <Arrow />
     </Box>
   );

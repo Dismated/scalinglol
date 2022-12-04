@@ -19,46 +19,44 @@ const inputBaseStyles = {
 };
 
 interface NodeTimerProps {
-  offsetTimer: number;
-  offsetMoveIcon: number;
   displayTime: string;
   setDisplayTime: Dispatch<SetStateAction<string>>;
-  x: number;
-  setX: Dispatch<SetStateAction<number>>;
   pxPerSec: () => number;
   id: number;
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
+  x: number;
+  setX: Dispatch<SetStateAction<number>>;
 }
 
 const NodeTimer = ({
-  offsetTimer,
   displayTime,
   setDisplayTime,
-  offsetMoveIcon,
-  x,
-  setX,
   id,
   pxPerSec,
   setNodeSettingsAreOpen,
+  x,
+  setX,
 }: NodeTimerProps) => {
   const dispatch = useAppDispatch();
-  const skillTime = useAppSelector((state) => state.skillTime);
+  const skillTimes = useAppSelector((state) => state.skillTime);
 
   const IconStyles = {
     cursor: "pointer",
     position: "absolute",
     left: "21px",
-    bottom: `${offsetMoveIcon}px`,
+    bottom: "25px",
   };
 
+  const timerFormat = /^\d{2}:\d{2}$/;
+
   const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setDisplayTime(event.target.value);
-    if (/^\d{2}:\d{2}$/.test(event.target.value)) {
-      const newTime = skillTime.map((e, i) => {
-        if (i === id) return timerToSeconds(event.target.value);
-        return e;
+    setDisplayTime(e.target.value);
+    if (timerFormat.test(e.target.value)) {
+      const newTime = skillTimes.map((skillTime, i) => {
+        if (i === id) return timerToSeconds(e.target.value);
+        return skillTime;
       });
       dispatch(setSkillTime(newTime));
       setX(0);
@@ -66,22 +64,18 @@ const NodeTimer = ({
   };
 
   const handleMouseUp = () => {
-    const newTime = skillTime.map((e, i) => {
-      if (i === id) return Math.floor(skillTime[id] + x / pxPerSec());
-      return e;
+    const newTime = skillTimes.map((skillTime, i) => {
+      if (i === id) return Math.floor(skillTimes[id] + x / pxPerSec());
+      return skillTime;
     });
     dispatch(setSkillTime(newTime));
     setX(0);
   };
 
-  const handleClickAway = () => {
-    setNodeSettingsAreOpen(false);
-  };
-
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
+    <ClickAwayListener onClickAway={() => setNodeSettingsAreOpen(false)}>
       <Box>
-        <FormControl sx={{ position: "absolute", top: `${offsetTimer}px` }}>
+        <FormControl sx={{ position: "absolute", top: "-34px" }}>
           <InputBase
             value={displayTime}
             onChange={handleChange}

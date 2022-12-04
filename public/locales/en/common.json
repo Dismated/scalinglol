@@ -1,12 +1,24 @@
 {
-  "h1": "League of Scaling",
-  "matchLength": "Match Length",
-  "container1": {
-    "header": "Combo",
-    "slots": "Slots",
-    "addSpell": "Add Spell"
+  "mainPage": {
+    "header": "League of Scaling"
   },
-  "popup": { "spells": "Spells", "count": "COUNT: ", "save": "Save" },
-  "container2": { "header": "Skills", "timer": "Timer", "levelUp": "LvlUp" },
-  "container3": { "header": "Chart", "label": "Damage" }
+  "champPage": {
+    "matchLength": "Match Length",
+    "comboContainer": {
+      "header": "Combo",
+      "slots": "Slots",
+      "addSpell": "Add Spell"
+    },
+    "popupContainer": {
+      "header": "Spells",
+      "count": "COUNT: ",
+      "save": "Save"
+    },
+    "skillsContainer": {
+      "header": "Skills",
+      "timer": "Timer",
+      "levelUp": "LvlUp"
+    },
+    "chartContainer": { "header": "Chart", "label": "Damage" }
+  }
 }

@@ -11,13 +11,12 @@ export type ChampName =
   | "Jax";
 
 export interface Champion {
-  name: string;
+  name: ChampName;
   key: string;
   title: string;
   image: string;
   stats: Stats;
   spells: Spells[];
-  available: boolean;
   color: string;
 }
 
@@ -69,7 +68,4 @@ export interface SpellProps {
   count: number;
 }
 
-export interface ChampionFront {
-  name: string;
-  available: boolean;
-}
+export type LvlsType = { [key in SpellName]: number };

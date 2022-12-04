@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { useMemo } from "react";
 
 import Line from "./Line";
 import Node from "./Node";
@@ -6,8 +7,10 @@ import Node from "./Node";
 const MultiNodeSlider = () => {
   const lvlNodes = Array.from(Array(18).keys());
 
-  const generateNodes = (arr: number[]) =>
-    arr.map((e) => <Node key={e} id={e} />);
+  const nodes = useMemo(
+    () => lvlNodes.map((node) => <Node key={node} id={node} />),
+    [lvlNodes]
+  );
 
   return (
     <Box
@@ -17,7 +20,7 @@ const MultiNodeSlider = () => {
         pl: 0,
       }}
     >
-      {generateNodes(lvlNodes)}
+      {nodes}
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Line />
       </Box>

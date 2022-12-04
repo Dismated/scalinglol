@@ -14,7 +14,7 @@ import SpellSelector from "./SpellSelector";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 interface SpellPopUpProps {
-  setSlotPressed: Dispatch<SetStateAction<boolean>>;
+  setSlotPressed: Dispatch<SetStateAction<number>>;
   id: number;
 }
 
@@ -45,24 +45,23 @@ const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
   const spells = useAppSelector((state) => state.spells);
   const champStats = useAppSelector((state) => state.champStats);
   const { t } = useTranslation("common");
-  const handleClick = () => {
-    setSlotPressed(false);
-  };
-
-  const handleClickAway = () => {
-    setSlotPressed(false);
-  };
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
+    <ClickAwayListener onClickAway={() => setSlotPressed(-1)}>
       <Paper elevation={6} sx={PaperStyles}>
-        <Typography variant="h4">{t("popup.spells")}</Typography>
+        <Typography variant="h4">
+          {t("champPage.popupContainer.header")}
+        </Typography>
         <Box sx={{ pt: "5px" }}>
           {champStats.spells.map((spell, index) => (
             <SpellSelector key={spell.name} id={id} spellIndex={index} />
           ))}
         </Box>
-        <Box sx={{ pt: "5px" }}>
+        <Box
+          sx={{
+            pt: "5px",
+          }}
+        >
           {champStats.spells[spells[id].name].variant.map(
             (spellPart, index) => (
               <SpellSectionSelector
@@ -76,8 +75,12 @@ const SpellPopUp = ({ setSlotPressed, id }: SpellPopUpProps) => {
         </Box>
         <Box sx={{ pt: "5px" }}>
           <SpellCountSelector id={id} />
-          <Button onClick={handleClick} variant="contained" sx={buttonStyles}>
-            {t("popup.save")}
+          <Button
+            onClick={() => setSlotPressed(-1)}
+            variant="contained"
+            sx={buttonStyles}
+          >
+            {t("champPage.popupContainer.save")}
           </Button>
         </Box>
       </Paper>

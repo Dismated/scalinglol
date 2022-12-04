@@ -12,7 +12,10 @@ interface SpellSelectorProps {
 const SpellStyles = {
   display: "inline-block",
   py: "10px",
-  px: "5px",
+  pr: "20px",
+  "&:last-child": {
+    pr: 0,
+  },
 };
 
 const BadgeStyles = {
@@ -43,12 +46,15 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
     borderWidth,
     borderStyle: "solid",
     borderColor: "primary.main",
+    borderRadius: "5px",
+    backgroundColor: "primary.main",
+    overflow: "hidden",
     p: 0,
+    "&:hover": { backgroundColor: "primary.main" },
   };
 
   const handleSpellClick = () => {
     newSpells[id].name = spellIndex;
-    // eslint-disable-next-line prefer-destructuring
     newSpells[id].section = 0;
     newSpells[id].count = 1;
 
@@ -60,6 +66,10 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
       <Badge
         badgeContent={champStats.spells[spellIndex].name}
         color="primary"
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
         sx={BadgeStyles}
       >
         <Button sx={SpellsButtonStyles} onClick={() => handleSpellClick()}>
@@ -68,6 +78,10 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
             alt={champStats.spells[spellIndex].name}
             width="64"
             height="64"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+            }}
           />
         </Button>
       </Badge>

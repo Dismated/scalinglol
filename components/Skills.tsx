@@ -1,4 +1,5 @@
 import { Box, Paper, Typography, useTheme } from "@mui/material";
+import Color from "color";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
@@ -27,22 +28,28 @@ const ComponentAdding = () => {
   const dispatch = useAppDispatch();
   const switchValue = useAppSelector((state) => state.attackSwitch);
   const theme = useTheme();
+  const darkerPrimary = Color(theme.palette.primary.main)
+    .hsl()
+    .desaturate(0.3)
+    .darken(0.55)
+    .string();
   const { t } = useTranslation("common");
 
   const backgroundColorTimer =
-    switchValue === "timer" ? "primary.main" : "#1e1e1e";
+    switchValue === "timer" ? "primary.main" : darkerPrimary;
   const backgroundColorLvlUp =
-    switchValue === "lvlUp" ? "primary.main" : "#1e1e1e";
+    switchValue === "lvlUp" ? "primary.main" : darkerPrimary;
 
   const colorTimer =
-    switchValue === "timer" ? "background.default" : "primary.main";
+    switchValue === "timer" ? " white" : theme.palette.background.default;
+
   const colorLvlUp =
-    switchValue === "lvlUp" ? "background.default" : "primary.main";
+    switchValue === "lvlUp" ? "white" : theme.palette.background.default;
 
   const cornerTimer =
-    switchValue === "timer" ? theme.palette.primary.main : "#1e1e1e";
+    switchValue === "timer" ? theme.palette.primary.main : darkerPrimary;
   const cornerLvlUp =
-    switchValue === "lvlUp" ? theme.palette.primary.main : "#1e1e1e";
+    switchValue === "lvlUp" ? theme.palette.primary.main : darkerPrimary;
 
   const timerBoxStyles = {
     backgroundColor: `${backgroundColorTimer}`,
@@ -67,17 +74,10 @@ const ComponentAdding = () => {
     cursor: "pointer",
   };
 
-  const handleTimerButton = () => {
-    dispatch(setAttackSwitch("timer"));
-  };
-  const handleLvlUpButton = () => {
-    dispatch(setAttackSwitch("lvlUp"));
-  };
-
   return (
     <Paper sx={PaperStyles}>
       <Typography variant="h4" sx={{ display: "inline-block", pt: "5px" }}>
-        {t("container2.header")}
+        {t("champPage.skillsContainer.header")}
       </Typography>
       <Box sx={ButtonGroupStyles}>
         <Box sx={CurvedCorner1Styles}>
@@ -88,8 +88,13 @@ const ComponentAdding = () => {
             backColor="#1e1e1e"
           />
         </Box>
-        <Box onClick={handleTimerButton} sx={timerBoxStyles}>
-          <Typography variant="h5">{t("container2.timer")}</Typography>
+        <Box
+          onClick={() => dispatch(setAttackSwitch("timer"))}
+          sx={timerBoxStyles}
+        >
+          <Typography variant="h5">
+            {t("champPage.skillsContainer.timer")}
+          </Typography>
         </Box>
         <Box sx={{ display: "inline-block", position: "relative" }}>
           <Box sx={{ position: "absolute", top: "-24px", right: "0px" }}>
@@ -109,8 +114,13 @@ const ComponentAdding = () => {
             />
           </Box>
         </Box>
-        <Box onClick={handleLvlUpButton} sx={lvlUpBoxStyles}>
-          <Typography variant="h5">{t("container2.levelUp")}</Typography>
+        <Box
+          onClick={() => dispatch(setAttackSwitch("lvlUp"))}
+          sx={lvlUpBoxStyles}
+        >
+          <Typography variant="h5">
+            {t("champPage.skillsContainer.levelUp")}
+          </Typography>
         </Box>
       </Box>
 

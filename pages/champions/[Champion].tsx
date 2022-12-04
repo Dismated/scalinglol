@@ -5,20 +5,28 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { ChampName } from "../../types/types";
+import { ChampName, LvlsType } from "../../types/types";
 import Chart from "../../components/Chart";
 import Combo from "../../components/Combo";
-import ComponentAdding from "../../components/ComponentAdding";
+import Skills from "../../components/Skills";
 import TopRow from "../../components/TopRow";
 import { setChampStats } from "../../reducers/champStatsReducer";
+import { setLvlUp } from "../../reducers/lvlUpReducer";
 import { setSpells } from "../../reducers/spellsReducer";
 import { setWindowWidth } from "../../reducers/windowWidthReducer";
 import stats from "../../champStats/champStats.json";
 import { useAppDispatch } from "../../hooks/preTypedHooks";
 import useWindowSize from "../../hooks/useWindowSize";
 
+const emptyLvls: LvlsType[] = new Array(18).fill({
+  Q: 0,
+  W: 0,
+  E: 0,
+  R: 0,
+});
+
 const ChampionDetails = () => {
-  const { query, isReady } = useRouter();
+  const { query } = useRouter();
   const champion = query.Champion as ChampName;
   const windowWidth = useWindowSize();
   const dispatch = useAppDispatch();
@@ -30,9 +38,8 @@ const ChampionDetails = () => {
   useEffect(() => {
     dispatch(setChampStats(stats[champion]));
     dispatch(setSpells([]));
+    dispatch(setLvlUp(emptyLvls));
   }, [dispatch, champion]);
-
-  if (!isReady) return <>Loading...</>;
 
   return (
     <>
@@ -42,7 +49,7 @@ const ChampionDetails = () => {
       <Container sx={{ px: [0, "16px", "24px"] }}>
         <TopRow />
         <Combo />
-        <ComponentAdding />
+        <Skills />
         <Chart />
       </Container>
     </>

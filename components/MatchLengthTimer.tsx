@@ -1,5 +1,4 @@
 import { Box, FormControl, InputBase, Typography } from "@mui/material";
-import { ChangeEvent } from "react";
 import { useTranslation } from "next-i18next";
 
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
@@ -35,24 +34,18 @@ const MatchLengthTimer = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("common");
 
-  const handleMatchLengthChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    dispatch(setMatchLength(event.target.value));
-  };
-
   return (
     <>
       <Box sx={TextBoxStyles}>
         <Typography variant="h5" sx={TimeHeadingStyle}>
-          {t("matchLength")}
+          {t("champPage.matchLength")}
         </Typography>
       </Box>
       <Box sx={InputBoxStyles}>
         <FormControl>
           <InputBase
             value={matchLength}
-            onChange={(event) => handleMatchLengthChange(event)}
+            onChange={(e) => dispatch(setMatchLength(e.target.value))}
             sx={InputBaseStyles}
             inputProps={{
               style: {

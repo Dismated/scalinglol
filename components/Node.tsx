@@ -6,19 +6,15 @@ import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import NodeOrientation from "./NodeOrientation";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
-const nodeSide = 20;
 const maxContainerWidth = 1200;
 
 const Node = ({ id }: { id: number }) => {
-  const windowWidth = useAppSelector((state) => state.windowWidth);
-  const matchLength = timerToSeconds(
-    useAppSelector((state) => state.matchLength)
+  const { windowWidth, skillTime, nodeSide, matchLength } = useAppSelector(
+    (state) => state
   );
-  const skillTime = useAppSelector((state) => state.skillTime);
-
   const [nodeSettingsAreOpen, setNodeSettingsAreOpen] = useState(false);
-  const [displayTime, setDisplayTime] = useState(secondsToTimer(skillTime[id]));
   const [x, setX] = useState(0);
+  const [displayTime, setDisplayTime] = useState(secondsToTimer(skillTime[id]));
   const [xToWindowWidthRatio, setXToWindowWidthRatio] = useState(0);
 
   const nodeRef = useRef(null);
@@ -32,7 +28,7 @@ const Node = ({ id }: { id: number }) => {
     return windowWidth;
   };
 
-  const pxPerSec = () => containerWidth() / matchLength;
+  const pxPerSec = () => containerWidth() / timerToSeconds(matchLength);
 
   useEffect(() => {
     setX(xToWindowWidthRatio * windowWidth);
@@ -40,7 +36,7 @@ const Node = ({ id }: { id: number }) => {
   }, [windowWidth]);
 
   const handleDrag = (
-    event: DraggableEvent,
+    e: DraggableEvent,
     dragElement: {
       x: number;
     }
@@ -50,18 +46,16 @@ const Node = ({ id }: { id: number }) => {
     setDisplayTime(secondsToTimer(skillTime[id] + dragElement.x / pxPerSec()));
   };
 
-  const nodePrimaryPositionX = () =>
-    startOfTheLineX + skillTime[id] * pxPerSec();
+  const nodePrimaryPositionX = startOfTheLineX + skillTime[id] * pxPerSec();
 
   const boxStyles = {
-    left: nodePrimaryPositionX,
+    left: `${nodePrimaryPositionX}px`,
     position: "relative",
     display: "inline-block",
   };
 
   return (
     <ClickAwayListener onClickAway={() => setNodeSettingsAreOpen(false)}>
-      {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
       <Box sx={{ display: "inline-block" }}>
         <Draggable
           axis="x"
@@ -76,17 +70,14 @@ const Node = ({ id }: { id: number }) => {
             ref={nodeRef}
           >
             <NodeOrientation
-              offsetTimer={-34}
-              offsetMoveIcon={25}
               nodeSettingsAreOpen={nodeSettingsAreOpen}
-              nodeSide={nodeSide}
-              x={x}
-              setX={setX}
+              setNodeSettingsAreOpen={setNodeSettingsAreOpen}
               pxPerSec={pxPerSec}
               displayTime={displayTime}
               setDisplayTime={setDisplayTime}
               id={id}
-              setNodeSettingsAreOpen={setNodeSettingsAreOpen}
+              x={x}
+              setX={setX}
             />
           </Box>
         </Draggable>

@@ -1,11 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface ObjType {
-  [key: string]: number;
-}
+import { LvlsType } from "../types/types";
 
-const obj: ObjType[] = new Array(18);
-obj.fill({
+const emptyLvls: LvlsType[] = new Array(18).fill({
   Q: 0,
   W: 0,
   E: 0,
@@ -14,7 +11,7 @@ obj.fill({
 
 const lvlUpSlice = createSlice({
   name: "lvlUp",
-  initialState: obj,
+  initialState: emptyLvls,
   reducers: {
     setLvlUp(state, action) {
       return action.payload;

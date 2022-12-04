@@ -2,7 +2,6 @@ import { Badge, Box, Button, Typography } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
-import SpellPopUp from "./SpellPopUp";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 const SlotButtonStyles = {
@@ -38,33 +37,18 @@ const BadgeStyles = {
 
 interface SlotProps {
   id: number;
-  setSlotPressed: Dispatch<SetStateAction<boolean>>;
-  slotPressed: boolean;
+  setSlotPressed: Dispatch<SetStateAction<number>>;
 }
 
-const Slot = ({ id, setSlotPressed, slotPressed }: SlotProps) => {
+const Slot = ({ id, setSlotPressed }: SlotProps) => {
   const champStats = useAppSelector((state) => state.champStats);
   const spells = useAppSelector((state) => state.spells);
-  const newSpells = spells.map((spl) => {
-    const newE = { ...spl };
-    return newE;
-  });
-  const slotSpell = champStats.spells[newSpells[id].name];
-  const linkName =
-    champStats.spells[newSpells[id].name].name === "A"
-      ? "BasicAttack"
-      : champStats.name;
 
-  const handleSlotClick = () => {
-    setSlotPressed(true);
-  };
+  const slotSpell = champStats.spells[spells[id].name];
+  const linkName = slotSpell.name === "A" ? "BasicAttack" : champStats.name;
 
   return (
-    <Box sx={{ display: "inline-block", m: "15px" }}>
-      {slotPressed ? (
-        <SpellPopUp setSlotPressed={setSlotPressed} id={id} />
-      ) : null}
-
+    <Box sx={{ display: "inline-block", mr: "30px" }}>
       <Badge
         badgeContent={slotSpell.name}
         color="primary"
@@ -75,7 +59,7 @@ const Slot = ({ id, setSlotPressed, slotPressed }: SlotProps) => {
         sx={BadgeStyles}
       >
         <Badge
-          badgeContent={newSpells[id].count}
+          badgeContent={spells[id].count}
           color="primary"
           anchorOrigin={{
             vertical: "top",
@@ -83,17 +67,26 @@ const Slot = ({ id, setSlotPressed, slotPressed }: SlotProps) => {
           }}
           sx={BadgeStyles}
         >
-          <Button sx={SlotButtonStyles} onClick={handleSlotClick}>
+          <Button
+            sx={SlotButtonStyles}
+            onClick={() => {
+              setSlotPressed(id);
+            }}
+          >
             <Box sx={SlotBoxStyles}>
               <Image
                 src={`/icons/spells/${linkName}${slotSpell.name}.png`}
                 alt={slotSpell.name}
                 width="80"
                 height="80"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
               />
               <Box sx={SpellSectionBoxStyles}>
                 <Typography>
-                  {slotSpell.variant[newSpells[id].section].name}
+                  {slotSpell.variant[spells[id].section].name}
                 </Typography>
               </Box>
             </Box>

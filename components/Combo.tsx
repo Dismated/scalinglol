@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import CurvedCorner from "./CurvedCorner";
 import Slot from "./Slot";
+import SpellPopUp from "./SpellPopUp";
 import { setPrimaryColor } from "../reducers/primaryColorReducer";
 import { setSpells } from "../reducers/spellsReducer";
 
@@ -26,7 +27,6 @@ const slotButtonStyles = {
   borderColor: "primary.main",
   borderRadius: "4px",
   display: "inline-block",
-  mx: "15px",
   lineHeight: "1.2",
 };
 
@@ -42,25 +42,20 @@ const TypographyStyles = {
 };
 
 const Combo = () => {
-  const [slotPressed, setSlotPressed] = useState(false);
+  const [slotPressed, setSlotPressed] = useState(-1);
   const dispatch = useAppDispatch();
   const champStats = useAppSelector((state) => state.champStats);
   const theme = useTheme();
   const { t } = useTranslation("common");
   const spells = useAppSelector((state) => state.spells);
-  const newSpells = spells.map((spl) => {
-    const newE = { ...spl };
-    return newE;
-  });
 
   useEffect(() => {
     dispatch(setPrimaryColor(champStats.color));
   }, [champStats.color, dispatch]);
 
   const handleSlotClick = () => {
-    newSpells.push({ name: 0, section: 0, count: 1 });
-    dispatch(setSpells(newSpells));
-    setSlotPressed(true);
+    dispatch(setSpells([...spells, { name: 0, section: 0, count: 1 }]));
+    setSlotPressed(spells.length);
   };
 
   const generateSlots = (num: number) => {
@@ -68,12 +63,7 @@ const Combo = () => {
 
     if (spells.length > 0)
       return arr.map((e) => (
-        <Slot
-          id={e}
-          key={e}
-          setSlotPressed={setSlotPressed}
-          slotPressed={slotPressed}
-        />
+        <Slot id={e} key={e} setSlotPressed={setSlotPressed} />
       ));
     return null;
   };
@@ -81,7 +71,7 @@ const Combo = () => {
   return (
     <Paper sx={{ borderRadius: [0, "30px"], pl: [0, "15px"] }}>
       <Typography variant="h4" sx={{ display: "inline-block", pt: "5px" }}>
-        {t("container1.header")}
+        {t("champPage.comboContainer.header")}
       </Typography>
       <Box sx={{ display: "inline-block", float: "right" }}>
         <Box sx={CurvedCornerStyles}>
@@ -94,16 +84,19 @@ const Combo = () => {
         </Box>
         <Box sx={boxStyles}>
           <Typography variant="h5" sx={TypographyStyles}>
-            {t("container1.slots")}: {spells.length}
+            {t("champPage.comboContainer.slots")}: {spells.length}
           </Typography>
         </Box>
       </Box>
       <Box sx={{ py: "10px" }}>
         {generateSlots(spells.length)}
         <Button sx={slotButtonStyles} onClick={handleSlotClick}>
-          {t("container1.addSpell")}
+          {t("champPage.comboContainer.addSpell")}
         </Button>
       </Box>
+      {slotPressed >= 0 && (
+        <SpellPopUp setSlotPressed={setSlotPressed} id={slotPressed} />
+      )}
     </Paper>
   );
 };

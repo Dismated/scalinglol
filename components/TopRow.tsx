@@ -31,8 +31,10 @@ const TopRow = () => {
           <Image
             src={`/icons/champions/${champStats.name}.png`}
             alt={champStats.name}
-            layout="fill"
             priority
+            fill
+            sizes="(max-width: 600px) 100px,
+            130px"
           />
         </Box>
         <Box sx={{ pl: "10px" }}>

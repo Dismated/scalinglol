@@ -1,5 +1,6 @@
 import { Box, Button, ClickAwayListener } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
+import { LvlsType, SpellName } from "../types/types";
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setLvlUp } from "../reducers/lvlUpReducer";
 
@@ -14,8 +15,8 @@ const buttonStyles = {
 
 interface NodeLvlUpProps {
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
-  lvlUped: string;
-  setLvlUped: Dispatch<SetStateAction<string>>;
+  lvlUped: SpellName | undefined;
+  setLvlUped: Dispatch<SetStateAction<SpellName | undefined>>;
   id: number;
 }
 
@@ -25,25 +26,24 @@ const NodeLvlUp = ({
   setLvlUped,
   id,
 }: NodeLvlUpProps) => {
-  const spellNames = ["Q", "W", "E", "R"];
+  const spellNames: SpellName[] = ["Q", "W", "E", "R"];
   const dispatch = useAppDispatch();
-  const obj = useAppSelector((state) => state.lvlUp);
-  const spellLvlUps = obj.map((e) => {
-    const newE = { ...e };
-    return newE;
-  });
+  const lvlUps = useAppSelector((state) => state.lvlUp);
 
-  const changeSpellLvlUp = (newSpell: string, previousSpell = "") =>
-    spellLvlUps.map((spellLvlUp, i) => {
+  const changeSpellLvlUp = (
+    newSpell: SpellName,
+    previousSpell: SpellName | undefined = undefined
+  ) =>
+    lvlUps.map((lvlUp, i) => {
       if (i >= id) {
-        const newObj = { ...spellLvlUp };
+        const newObj: LvlsType = { ...lvlUp };
         if (previousSpell) newObj[previousSpell] -= 1;
 
         newObj[newSpell] += 1;
 
         return newObj;
       }
-      return spellLvlUp;
+      return lvlUp;
     });
 
   const boxStyles = {
@@ -53,26 +53,26 @@ const NodeLvlUp = ({
     left: "-46px",
   };
 
-  const handleClickAway = () => {
-    setNodeSettingsAreOpen(false);
-  };
-
-  const handleClick = (e: string) => {
+  const handleClick = (spellName: SpellName) => {
     if (lvlUped) {
-      dispatch(setLvlUp(changeSpellLvlUp(e, lvlUped)));
+      dispatch(setLvlUp(changeSpellLvlUp(spellName, lvlUped)));
     } else {
-      dispatch(setLvlUp(changeSpellLvlUp(e)));
+      dispatch(setLvlUp(changeSpellLvlUp(spellName)));
     }
-    setLvlUped(e);
+    setLvlUped(spellName);
   };
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
+    <ClickAwayListener onClickAway={() => setNodeSettingsAreOpen(false)}>
       <Box>
         <Box sx={boxStyles}>
-          {spellNames.map((e) => (
-            <Button key={e} sx={buttonStyles} onClick={() => handleClick(e)}>
-              {e}
+          {spellNames.map((spellName) => (
+            <Button
+              key={spellName}
+              sx={buttonStyles}
+              onClick={() => handleClick(spellName)}
+            >
+              {spellName}
             </Button>
           ))}
         </Box>

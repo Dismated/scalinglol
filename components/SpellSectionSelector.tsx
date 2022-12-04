@@ -29,7 +29,7 @@ const SpellSectionSelector = ({
   const spellPartStyles = {
     display: "inline-block",
     my: "10px",
-    mx: "5px",
+    mr: "10px",
     color: "background.default",
   };
 
