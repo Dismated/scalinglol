@@ -1,11 +1,10 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Box } from "@mui/material";
 
 import Arrow from "./Arrow";
 import NodeButton from "./NodeButton";
 import NodeLvlUp from "./NodeLvlUp";
 import NodeTimer from "./NodeTimer";
-import { SpellName } from "../types/types";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 interface NodeOrientationProps {
@@ -30,7 +29,6 @@ const NodeOrientation = ({
   nodeSettingsAreOpen,
   ...rest
 }: NodeOrientationProps) => {
-  const [lvlUped, setLvlUped] = useState<SpellName | undefined>();
   const switchValue = useAppSelector((state) => state.attackSwitch);
 
   return (
@@ -42,13 +40,11 @@ const NodeOrientation = ({
         {switchValue === "lvlUp" && nodeSettingsAreOpen && (
           <NodeLvlUp
             setNodeSettingsAreOpen={rest.setNodeSettingsAreOpen}
-            lvlUped={lvlUped}
-            setLvlUped={setLvlUped}
             id={id}
           />
         )}
       </Box>
-      <NodeButton lvlUped={lvlUped} id={id} />
+      <NodeButton id={id} />
       <Arrow />
     </Box>
   );

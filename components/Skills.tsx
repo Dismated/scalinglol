@@ -19,7 +19,7 @@ const CurvedCorner1Styles = {
 };
 const PaperStyles = {
   borderRadius: [0, "30px"],
-  pl: [0, "15px"],
+  pl: 0,
   overflow: "clip",
   overflowClipMargin: "30px",
 };
@@ -40,12 +40,6 @@ const ComponentAdding = () => {
   const backgroundColorLvlUp =
     switchValue === "lvlUp" ? "primary.main" : darkerPrimary;
 
-  const colorTimer =
-    switchValue === "timer" ? " white" : theme.palette.background.default;
-
-  const colorLvlUp =
-    switchValue === "lvlUp" ? "white" : theme.palette.background.default;
-
   const cornerTimer =
     switchValue === "timer" ? theme.palette.primary.main : darkerPrimary;
   const cornerLvlUp =
@@ -53,7 +47,7 @@ const ComponentAdding = () => {
 
   const timerBoxStyles = {
     backgroundColor: `${backgroundColorTimer}`,
-    color: `${colorTimer}`,
+    color: `${theme.palette.background.default}`,
     borderBottomLeftRadius: 23,
     fontSize: 24,
     pl: ["10px", "20px"],
@@ -65,7 +59,7 @@ const ComponentAdding = () => {
 
   const lvlUpBoxStyles = {
     backgroundColor: `${backgroundColorLvlUp}`,
-    color: `${colorLvlUp}`,
+    color: `${theme.palette.background.default}`,
     borderTopRightRadius: [0, "30px"],
     pl: "20px",
     pr: ["5px", "20px"],
@@ -76,7 +70,10 @@ const ComponentAdding = () => {
 
   return (
     <Paper sx={PaperStyles}>
-      <Typography variant="h4" sx={{ display: "inline-block", pt: "5px" }}>
+      <Typography
+        variant="h4"
+        sx={{ display: "inline-block", pt: "5px", pl: [0, "15px"] }}
+      >
         {t("champPage.skillsContainer.header")}
       </Typography>
       <Box sx={ButtonGroupStyles}>

@@ -17,7 +17,8 @@ const MultiNodeSlider = () => {
       sx={{
         py: "20px",
         pr: [0, "15px"],
-        pl: 0,
+        pl: "15px",
+        minWidth: "600px",
       }}
     >
       {nodes}

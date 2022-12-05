@@ -2,8 +2,8 @@ import { Box, ClickAwayListener } from "@mui/material";
 import Draggable, { DraggableEvent } from "react-draggable";
 import { useEffect, useRef, useState } from "react";
 
-import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
 import NodeOrientation from "./NodeOrientation";
+import { secondsToTimer } from "../helpers/TimerConversions";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
 const maxContainerWidth = 1200;
@@ -22,13 +22,13 @@ const Node = ({ id }: { id: number }) => {
   const startOfTheLineX = -5 - nodeSide * id;
 
   const containerWidth = () => {
-    if (windowWidth >= maxContainerWidth) return maxContainerWidth - 30;
+    if (windowWidth >= maxContainerWidth) return maxContainerWidth - 48 - 30;
     if (windowWidth >= 900) return windowWidth - 48 - 30;
     if (windowWidth >= 600) return windowWidth - 32 - 30;
-    return windowWidth;
+    return windowWidth - 30;
   };
 
-  const pxPerSec = () => containerWidth() / timerToSeconds(matchLength);
+  const pxPerSec = () => containerWidth() / matchLength;
 
   useEffect(() => {
     setX(xToWindowWidthRatio * windowWidth);

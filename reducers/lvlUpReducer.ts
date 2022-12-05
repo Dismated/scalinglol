@@ -1,17 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { LvlsType } from "../types/types";
-
-const emptyLvls: LvlsType[] = new Array(18).fill({
-  Q: 0,
-  W: 0,
-  E: 0,
-  R: 0,
-});
+import updateLvls, { emptyLvls, lvlUpR } from "../helpers/UpdateLvls";
 
 const lvlUpSlice = createSlice({
   name: "lvlUp",
-  initialState: emptyLvls,
+  initialState: updateLvls("R", lvlUpR, emptyLvls),
   reducers: {
     setLvlUp(state, action) {
       return action.payload;

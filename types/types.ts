@@ -62,10 +62,13 @@ export type SpellStats = {
 
 export type DmgType = "magic" | "physical" | "true";
 export type SpellName = "Q" | "W" | "E" | "R" | "A" | "P";
+export type LvlUpableSpellName = "Q" | "W" | "E" | "R";
 export interface SpellProps {
   name: number;
   section: number;
   count: number;
 }
 
-export type LvlsType = { [key in SpellName]: number };
+export type LvlsType = {
+  [key in LvlUpableSpellName]: number;
+};

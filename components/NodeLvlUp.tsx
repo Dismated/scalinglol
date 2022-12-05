@@ -1,6 +1,6 @@
 import { Box, Button, ClickAwayListener } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { LvlsType, SpellName } from "../types/types";
+import { LvlUpableSpellName, SpellName } from "../types/types";
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setLvlUp } from "../reducers/lvlUpReducer";
 
@@ -15,36 +15,13 @@ const buttonStyles = {
 
 interface NodeLvlUpProps {
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
-  lvlUped: SpellName | undefined;
-  setLvlUped: Dispatch<SetStateAction<SpellName | undefined>>;
   id: number;
 }
 
-const NodeLvlUp = ({
-  setNodeSettingsAreOpen,
-  lvlUped,
-  setLvlUped,
-  id,
-}: NodeLvlUpProps) => {
-  const spellNames: SpellName[] = ["Q", "W", "E", "R"];
+const NodeLvlUp = ({ setNodeSettingsAreOpen, id }: NodeLvlUpProps) => {
+  const spellNames: LvlUpableSpellName[] = ["Q", "W", "E", "R"];
   const dispatch = useAppDispatch();
   const lvlUps = useAppSelector((state) => state.lvlUp);
-
-  const changeSpellLvlUp = (
-    newSpell: SpellName,
-    previousSpell: SpellName | undefined = undefined
-  ) =>
-    lvlUps.map((lvlUp, i) => {
-      if (i >= id) {
-        const newObj: LvlsType = { ...lvlUp };
-        if (previousSpell) newObj[previousSpell] -= 1;
-
-        newObj[newSpell] += 1;
-
-        return newObj;
-      }
-      return lvlUp;
-    });
 
   const boxStyles = {
     position: "absolute",
@@ -54,12 +31,14 @@ const NodeLvlUp = ({
   };
 
   const handleClick = (spellName: SpellName) => {
-    if (lvlUped) {
-      dispatch(setLvlUp(changeSpellLvlUp(spellName, lvlUped)));
-    } else {
-      dispatch(setLvlUp(changeSpellLvlUp(spellName)));
-    }
-    setLvlUped(spellName);
+    dispatch(
+      setLvlUp(
+        lvlUps.map((lvlUp, i) => {
+          if (i === id) return spellName;
+          return lvlUp;
+        })
+      )
+    );
   };
 
   return (

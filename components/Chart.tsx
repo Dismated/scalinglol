@@ -5,8 +5,8 @@ import { Scatter } from "react-chartjs-2";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 
-import { secondsToTimer, timerToSeconds } from "../helpers/TimerConversions";
-import { SpellStats } from "../types/types";
+import { LvlsType, SpellStats } from "../types/types";
+import { secondsToTimer } from "../helpers/TimerConversions";
 import spellDmg from "../calculations/calculations";
 import { useAppSelector } from "../hooks/preTypedHooks";
 
@@ -17,6 +17,13 @@ const PaperStyles = {
   pt: "5px",
 };
 
+const upgradesLvlZero: LvlsType[] = new Array(18).fill({
+  Q: 0,
+  W: 0,
+  E: 0,
+  R: 0,
+});
+
 const Chart = () => {
   const { skillTime, spells, lvlUp, matchLength, champStats } = useAppSelector(
     (state) => state
@@ -25,7 +32,17 @@ const Chart = () => {
   const theme = useTheme();
   const { t } = useTranslation("common");
 
-  const dmg = lvlUp.map((skillLvls, lvl) =>
+  const upgradesPerLvl = upgradesLvlZero.map((lvl, lvlIndex) => {
+    const newLvl = { ...lvl };
+    return lvlUp.reduce((acc, skill, skillIndex) => {
+      if (lvlIndex >= skillIndex) {
+        newLvl[skill] += 1;
+      }
+      return newLvl;
+    }, newLvl);
+  });
+
+  const dmg = upgradesPerLvl.map((skillLvls, lvl) =>
     spells.reduce((acc, spell) => {
       const statsShort = { ...champStats.stats };
       const spellStats: SpellStats =
@@ -76,7 +93,7 @@ const Chart = () => {
                 displayFormats: { second: "mm:ss" },
               },
               grid: { color: "#424242" },
-              max: timerToSeconds(matchLength) * 1000,
+              max: matchLength * 1000,
             },
             y: { grid: { color: "#424242" }, beginAtZero: true },
           },

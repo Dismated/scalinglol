@@ -1,13 +1,15 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { ChampName, LvlsType } from "../../types/types";
+import updateLvls, { emptyLvls, lvlUpR } from "../../helpers/UpdateLvls";
+import { ChampName } from "../../types/types";
 import Chart from "../../components/Chart";
 import Combo from "../../components/Combo";
+import SkillOrder from "../../components/SkillOrder";
 import Skills from "../../components/Skills";
 import TopRow from "../../components/TopRow";
 import { setChampStats } from "../../reducers/champStatsReducer";
@@ -18,18 +20,12 @@ import stats from "../../champStats/champStats.json";
 import { useAppDispatch } from "../../hooks/preTypedHooks";
 import useWindowSize from "../../hooks/useWindowSize";
 
-const emptyLvls: LvlsType[] = new Array(18).fill({
-  Q: 0,
-  W: 0,
-  E: 0,
-  R: 0,
-});
-
 const ChampionDetails = () => {
   const { query } = useRouter();
   const champion = query.Champion as ChampName;
   const windowWidth = useWindowSize();
   const dispatch = useAppDispatch();
+  const [skillsLvlUped, setSkillsLvlUped] = useState(false);
 
   useEffect(() => {
     dispatch(setWindowWidth(windowWidth));
@@ -38,7 +34,7 @@ const ChampionDetails = () => {
   useEffect(() => {
     dispatch(setChampStats(stats[champion]));
     dispatch(setSpells([]));
-    dispatch(setLvlUp(emptyLvls));
+    dispatch(setLvlUp(updateLvls("R", lvlUpR, emptyLvls)));
   }, [dispatch, champion]);
 
   return (
@@ -48,8 +44,12 @@ const ChampionDetails = () => {
       </Head>
       <Container sx={{ px: [0, "16px", "24px"] }}>
         <TopRow />
+        {skillsLvlUped ? (
+          <Skills />
+        ) : (
+          <SkillOrder setSkillsLvlUped={setSkillsLvlUped} />
+        )}
         <Combo />
-        <Skills />
         <Chart />
       </Container>
     </>

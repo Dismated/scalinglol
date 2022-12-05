@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const matchLengthSlice = createSlice({
   name: "matchLength",
-  initialState: "40:00",
+  initialState: 2400,
   reducers: {
     setMatchLength(state, action) {
       return action.payload;

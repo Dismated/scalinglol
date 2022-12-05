@@ -39,12 +39,15 @@ const NodeTimer = ({
 }: NodeTimerProps) => {
   const dispatch = useAppDispatch();
   const skillTimes = useAppSelector((state) => state.skillTime);
+  const matchLength = useAppSelector((state) => state.matchLength);
 
   const IconStyles = {
     cursor: "pointer",
     position: "absolute",
     left: "21px",
     bottom: "25px",
+    backgroundColor: "#1e1e1e",
+    borderRadius: "5px",
   };
 
   const timerFormat = /^\d{2}:\d{2}$/;
@@ -52,10 +55,15 @@ const NodeTimer = ({
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const seconds = timerToSeconds(e.target.value);
     setDisplayTime(e.target.value);
-    if (timerFormat.test(e.target.value)) {
+    if (
+      timerFormat.test(e.target.value) &&
+      seconds >= 0 &&
+      seconds <= matchLength
+    ) {
       const newTime = skillTimes.map((skillTime, i) => {
-        if (i === id) return timerToSeconds(e.target.value);
+        if (i === id) return seconds;
         return skillTime;
       });
       dispatch(setSkillTime(newTime));
