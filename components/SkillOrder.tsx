@@ -9,23 +9,22 @@ interface SkillOrderType {
   order: number;
 }
 
-const defaultSkillOrder: SkillOrderType[] = [
-  {
-    name: "Q",
-    order: 0,
-  },
-  {
-    name: "W",
-    order: 0,
-  },
-  { name: "E", order: 0 },
-];
-
 const SkillOrder = ({
   setSkillsLvlUped,
 }: {
   setSkillsLvlUped: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const defaultSkillOrder: SkillOrderType[] = [
+    {
+      name: "Q",
+      order: 0,
+    },
+    {
+      name: "W",
+      order: 0,
+    },
+    { name: "E", order: 0 },
+  ];
   const [skillOrders, setSkillOrders] = useState(defaultSkillOrder);
   const lvlUp = useAppSelector((state) => state.lvlUp);
   const dispatch = useAppDispatch();
