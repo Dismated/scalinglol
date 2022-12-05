@@ -5,7 +5,7 @@ import { Scatter } from "react-chartjs-2";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 
-import { LvlsType, SpellStats } from "../types/types";
+import { LvlUpableSpellName, LvlsType, SpellStats } from "../types/types";
 import { secondsToTimer } from "../helpers/TimerConversions";
 import spellDmg from "../calculations/calculations";
 import { useAppSelector } from "../hooks/preTypedHooks";
@@ -47,12 +47,14 @@ const Chart = () => {
       const statsShort = { ...champStats.stats };
       const spellStats: SpellStats =
         champStats.spells[spell.name].variant[spell.section].stats;
+      const lvlUpableSpells = champStats.spells[spell.name]
+        .name as LvlUpableSpellName;
 
       return (
         acc +
         spellDmg({
           ...spellStats,
-          skillLvl: skillLvls[champStats.spells[spell.name].name],
+          skillLvl: skillLvls[lvlUpableSpells],
           champLvl: lvl,
           ad: statsShort.attackdamage,
           count: spell.count,
