@@ -1,5 +1,7 @@
 import { Box, Button, Paper } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useTranslation } from "next-i18next";
+
 import updateLvls, { lvlUpPatterns } from "../helpers/UpdateLvls";
 import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setLvlUp } from "../reducers/lvlUpReducer";
@@ -8,26 +10,27 @@ interface SkillOrderType {
   name: "Q" | "W" | "E";
   order: number;
 }
+const defaultSkillOrder: SkillOrderType[] = [
+  {
+    name: "Q",
+    order: 0,
+  },
+  {
+    name: "W",
+    order: 0,
+  },
+  { name: "E", order: 0 },
+];
 
 const SkillOrder = ({
   setSkillsLvlUped,
 }: {
   setSkillsLvlUped: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const defaultSkillOrder: SkillOrderType[] = [
-    {
-      name: "Q",
-      order: 0,
-    },
-    {
-      name: "W",
-      order: 0,
-    },
-    { name: "E", order: 0 },
-  ];
   const [skillOrders, setSkillOrders] = useState(defaultSkillOrder);
   const lvlUp = useAppSelector((state) => state.lvlUp);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const handleButtonClick = (i: number) => {
     const newSkillOrders = [...skillOrders];
@@ -91,7 +94,7 @@ const SkillOrder = ({
           fontFamily: "Karla",
         }}
       >
-        Select level up order of skills:
+        {t("champPage.skillsContainer.pickSkillOrder")}
       </Box>
       <Box sx={{ display: "flex", gap: "20px", py: "10px" }}>
         {generateButtons()}

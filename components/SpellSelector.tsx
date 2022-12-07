@@ -40,6 +40,9 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
       ? "BasicAttack"
       : champStats.name;
 
+  const iconLink =
+    champStats.spells[spellIndex].name === "P" ? "passives" : "spells";
+
   const SpellsButtonStyles = {
     height: "64px",
     width: "64px",
@@ -74,7 +77,7 @@ const SpellSelector = ({ id, spellIndex }: SpellSelectorProps) => {
       >
         <Button sx={SpellsButtonStyles} onClick={() => handleSpellClick()}>
           <Image
-            src={`/icons/spells/${linkName}${champStats.spells[spellIndex].name}.png`}
+            src={`/icons/${iconLink}/${linkName}${champStats.spells[spellIndex].name}.png`}
             alt={champStats.spells[spellIndex].name}
             width="64"
             height="64"

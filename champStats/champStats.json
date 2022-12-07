@@ -1,4 +1,122 @@
 {
+  "Ahri": {
+    "name": "Ahri",
+    "key": "103",
+    "title": "the Nine-Tailed Fox",
+    "image": "Ahri.png",
+    "color": "blue",
+    "stats": {
+      "hp": 500,
+      "hpperlevel": 82,
+      "mp": 418,
+      "mpperlevel": 25,
+      "movespeed": 330,
+      "armor": 18,
+      "armorperlevel": 3.5,
+      "spellblock": 30,
+      "spellblockperlevel": 0.5,
+      "attackrange": 550,
+      "hpregen": 2.5,
+      "hpregenperlevel": 0.6,
+      "mpregen": 8,
+      "mpregenperlevel": 0.8,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 53,
+      "attackdamageperlevel": 3,
+      "attackspeedperlevel": 2,
+      "attackspeed": 0.668,
+      "dmgCrit": 175
+    },
+    "spells": [
+      {
+        "name": "Q",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 40,
+              "dmgPerSkillLvl": 25,
+              "apModifier": 0.45
+            }
+          },
+          {
+            "name": "return ",
+            "stats": {
+              "dmgType": "true",
+              "initialDmg": 40,
+              "dmgPerSkillLvl": 25,
+              "apModifier": 0.45
+            }
+          }
+        ]
+      },
+      {
+        "name": "W",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 50,
+              "dmgPerSkillLvl": 25,
+              "apModifier": 0.3
+            }
+          },
+          {
+            "name": "reduced",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 15,
+              "dmgPerSkillLvl": 7.5,
+              "apModifier": 0.09
+            }
+          }
+        ]
+      },
+      {
+        "name": "E",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 80,
+              "dmgPerSkillLvl": 30,
+              "apModifier": 0.6
+            }
+          }
+        ]
+      },
+      {
+        "name": "R",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 60,
+              "dmgPerSkillLvl": 30,
+              "apModifier": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "name": "A",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "physical",
+              "adModifier": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
   "Alistar": {
     "name": "Alistar",
     "key": "12",
@@ -884,6 +1002,206 @@
       }
     ]
   },
+  "Nami": {
+    "name": "Nami",
+    "key": "267",
+    "title": "the Tidecaller",
+    "image": "Nami.png",
+    "color": "blue",
+    "stats": {
+      "hp": 490,
+      "hpperlevel": 74,
+      "mp": 365,
+      "mpperlevel": 43,
+      "movespeed": 335,
+      "armor": 29,
+      "armorperlevel": 4,
+      "spellblock": 30,
+      "spellblockperlevel": 0.5,
+      "attackrange": 550,
+      "hpregen": 5.5,
+      "hpregenperlevel": 0.55,
+      "mpregen": 11.5,
+      "mpregenperlevel": 0.4,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 51,
+      "attackdamageperlevel": 3.1,
+      "attackspeedperlevel": 2.61,
+      "attackspeed": 0.644,
+      "dmgCrit": 175
+    },
+    "spells": [
+      {
+        "name": "Q",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 75,
+              "dmgPerSkillLvl": 55,
+              "apModifier": 0.5
+            }
+          }
+        ]
+      },
+      {
+        "name": "W",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 70,
+              "dmgPerSkillLvl": 40,
+              "apModifier": 0.5
+            }
+          }
+        ]
+      },
+      {
+        "name": "E",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 25,
+              "dmgPerSkillLvl": 15,
+              "apModifier": 0.2
+            }
+          }
+        ]
+      },
+      {
+        "name": "R",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 150,
+              "dmgPerSkillLvl": 100,
+              "apModifier": 0.6
+            }
+          }
+        ]
+      },
+      {
+        "name": "A",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "physical",
+              "adModifier": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "Lux": {
+    "name": "Lux",
+    "key": "99",
+    "title": "the Lady of Luminosity",
+    "image": "Lux.png",
+    "color": "yellow",
+    "stats": {
+      "hp": 490,
+      "hpperlevel": 85,
+      "mp": 480,
+      "mpperlevel": 23.5,
+      "movespeed": 330,
+      "armor": 19,
+      "armorperlevel": 4,
+      "spellblock": 30,
+      "spellblockperlevel": 0.5,
+      "attackrange": 550,
+      "hpregen": 5.5,
+      "hpregenperlevel": 0.55,
+      "mpregen": 8,
+      "mpregenperlevel": 0.8,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 54,
+      "attackdamageperlevel": 3.3,
+      "attackspeedperlevel": 2,
+      "attackspeed": 0.669,
+      "dmgCrit": 175
+    },
+    "spells": [
+      {
+        "name": "P",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 20,
+              "dmgPerChampLvl": 10,
+              "apModifier": 0.2
+            }
+          }
+        ]
+      },
+      {
+        "name": "Q",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 80,
+              "dmgPerSkillLvl": 40,
+              "apModifier": 0.6
+            }
+          }
+        ]
+      },
+      {
+        "name": "E",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 70,
+              "dmgPerSkillLvl": 50,
+              "apModifier": 0.7
+            }
+          }
+        ]
+      },
+      {
+        "name": "R",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 300,
+              "dmgPerSkillLvl": 100,
+              "apModifier": 1
+            }
+          }
+        ]
+      },
+      {
+        "name": "A",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "physical",
+              "adModifier": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
   "LeBlanc": {
     "name": "LeBlanc",
     "key": "7",
@@ -1309,13 +1627,227 @@
               "dmgPerSkillLvl": 25,
               "apModifier": 0.5
             }
+          }
+        ]
+      },
+      {
+        "name": "A",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "physical",
+              "adModifier": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "Viktor": {
+    "name": "Viktor",
+    "key": "112",
+    "title": "the Machine Herald",
+    "image": "Viktor.png",
+    "color": "orange",
+    "stats": {
+      "hp": 530,
+      "hpperlevel": 90,
+      "mp": 405,
+      "mpperlevel": 45,
+      "movespeed": 335,
+      "armor": 23,
+      "armorperlevel": 4,
+      "spellblock": 30,
+      "spellblockperlevel": 0.5,
+      "attackrange": 525,
+      "hpregen": 8,
+      "hpregenperlevel": 0.65,
+      "mpregen": 8,
+      "mpregenperlevel": 0.8,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 53,
+      "attackdamageperlevel": 3,
+      "attackspeedperlevel": 2.11,
+      "attackspeed": 0.658,
+      "dmgCrit": 175
+    },
+    "spells": [
+      {
+        "name": "Q",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 60,
+              "dmgPerSkillLvl": 15,
+              "apModifier": 0.4
+            }
           },
           {
             "name": "attack modifier",
             "stats": {
               "dmgType": "magic",
               "initialDmg": 20,
-              "dmgPerChampLvl": 15
+              "dmgPerSkillLvl": 25,
+              "apModifier": 0.6,
+              "adModifier": 1
+            }
+          }
+        ]
+      },
+      {
+        "name": "E",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 70,
+              "dmgPerSkillLvl": 40,
+              "apModifier": 0.5
+            }
+          },
+          {
+            "name": "aftershock",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 20,
+              "dmgPerSkillLvl": 30,
+              "apModifier": 0.8
+            }
+          }
+        ]
+      },
+      {
+        "name": "R",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 100,
+              "dmgPerSkillLvl": 75,
+              "apModifier": 0.5
+            }
+          },
+          {
+            "name": "tick dmg",
+            "stats": {
+              "dmgType": "65",
+              "initialDmg": 40,
+              "dmgPerSkillLvl": 0.45
+            }
+          }
+        ]
+      },
+      {
+        "name": "A",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "physical",
+              "adModifier": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "Xerath": {
+    "name": "Xerath",
+    "key": "101",
+    "title": "the Magus Ascendant",
+    "image": "Xerath.png",
+    "color": "blue",
+    "stats": {
+      "hp": 526,
+      "hpperlevel": 92,
+      "mp": 459,
+      "mpperlevel": 22,
+      "movespeed": 340,
+      "armor": 22,
+      "armorperlevel": 3.5,
+      "spellblock": 30,
+      "spellblockperlevel": 0.5,
+      "attackrange": 525,
+      "hpregen": 5.5,
+      "hpregenperlevel": 0.55,
+      "mpregen": 8,
+      "mpregenperlevel": 0.8,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 55,
+      "attackdamageperlevel": 3,
+      "attackspeedperlevel": 1.36,
+      "attackspeed": 0.625,
+      "dmgCrit": 175
+    },
+    "spells": [
+      {
+        "name": "Q",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 70,
+              "dmgPerSkillLvl": 40,
+              "apModifier": 0.85
+            }
+          }
+        ]
+      },
+      {
+        "name": "W",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 60,
+              "dmgPerSkillLvl": 35,
+              "apModifier": 0.6
+            }
+          },
+          {
+            "name": "increased",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 100,
+              "dmgPerSkillLvl": 58.37,
+              "apModifier": 1
+            }
+          }
+        ]
+      },
+      {
+        "name": "E",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 80,
+              "dmgPerSkillLvl": 30,
+              "apModifier": 0.45
+            }
+          }
+        ]
+      },
+      {
+        "name": "R",
+        "variant": [
+          {
+            "name": "basic",
+            "stats": {
+              "dmgType": "magic",
+              "initialDmg": 200,
+              "dmgPerSkillLvl": 50,
+              "apModifier": 0.45
             }
           }
         ]

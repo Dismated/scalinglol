@@ -75,6 +75,7 @@ const MatchLengthTimer = () => {
               style: {
                 textAlign: "center",
               },
+              "aria-label": "Match length",
             }}
           />
         </FormControl>

@@ -16,6 +16,7 @@
     },
     "skillsContainer": {
       "header": "Skills",
+      "pickSkillOrder": "Select level up order of skills:",
       "timer": "Timer",
       "levelUp": "LvlUp"
     },

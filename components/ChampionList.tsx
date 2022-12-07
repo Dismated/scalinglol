@@ -60,6 +60,9 @@ const ChampionList = ({ champStats }: { champStats: ChampName[] }) => {
           sx={InputBaseStyles}
           onChange={(event) => filterChampions(event.target.value)}
           autoFocus
+          inputProps={{
+            "aria-label": "Filter champions",
+          }}
         />
       </Box>
       <Paper sx={PaperStyles}>

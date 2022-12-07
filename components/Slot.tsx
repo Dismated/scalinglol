@@ -46,6 +46,7 @@ const Slot = ({ id, setSlotPressed }: SlotProps) => {
 
   const slotSpell = champStats.spells[spells[id].name];
   const linkName = slotSpell.name === "A" ? "BasicAttack" : champStats.name;
+  const iconLink = slotSpell.name === "P" ? "passives" : "spells";
 
   return (
     <Box sx={{ display: "inline-block", mr: "30px" }}>
@@ -75,7 +76,7 @@ const Slot = ({ id, setSlotPressed }: SlotProps) => {
           >
             <Box sx={SlotBoxStyles}>
               <Image
-                src={`/icons/spells/${linkName}${slotSpell.name}.png`}
+                src={`/icons/${iconLink}/${linkName}${slotSpell.name}.png`}
                 alt={slotSpell.name}
                 width="80"
                 height="80"

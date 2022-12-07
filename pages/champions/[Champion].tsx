@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 
 import updateLvls, { emptyLvls, lvlUpR } from "../../helpers/UpdateLvls";
 import { ChampName } from "../../types/types";
-import Chart from "../../components/Chart";
 import Combo from "../../components/Combo";
 import SkillOrder from "../../components/SkillOrder";
 import Skills from "../../components/Skills";
@@ -19,6 +18,8 @@ import { setWindowWidth } from "../../reducers/windowWidthReducer";
 import stats from "../../champStats/champStats.json";
 import { useAppDispatch } from "../../hooks/preTypedHooks";
 import useWindowSize from "../../hooks/useWindowSize";
+
+const Chart = lazy(() => import("../../components/Chart"));
 
 const ChampionDetails = () => {
   const { query } = useRouter();

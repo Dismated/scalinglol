@@ -3,12 +3,22 @@ export type ChampionType = {
 };
 
 export type ChampName =
+  | "Ahri"
   | "Alistar"
+  | "Anivia"
   | "Annie"
+  | "Ezreal"
+  | "Fizz"
+  | "Janna"
+  | "Jax"
+  | "Karthus"
+  | "LeBlanc"
   | "Twisted Fate"
   | "Soraka"
   | "Teemo"
-  | "Jax";
+  | "Twisted Fate"
+  | "Xerath"
+  | "Zilean";
 
 export interface Champion {
   name: ChampName;

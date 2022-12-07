@@ -89,6 +89,7 @@ const NodeTimer = ({
             onChange={handleChange}
             sx={inputBaseStyles}
             inputProps={{
+              "aria-label": "Node timer",
               style: {
                 textAlign: "center",
                 width: "100%",
