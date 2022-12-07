@@ -6,7 +6,7 @@ import {
   responsiveFontSizes,
 } from "@mui/material";
 import { NextComponentType, NextPageContext } from "next";
-import { useAppSelector } from "../hooks/preTypedHooks";
+import { useAppSelector } from "@hooks/preTypedHooks";
 
 const ColorsWithType: Record<string, { [c: string]: string }> = { ...Colors };
 

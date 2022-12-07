@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
+import { useAppSelector } from "@hooks/preTypedHooks";
 import MatchLengthTimer from "./MatchLengthTimer";
-import { useAppSelector } from "../hooks/preTypedHooks";
 
 const TopRow = () => {
   const champStats = useAppSelector((state) => state.champStats);

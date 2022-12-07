@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Champion } from "../types/types";
-import stats from "../champStats/champStats.json";
+import { Champion } from "@customTypes/customTypes";
+import stats from "@champStats/champStats.json";
 
 const initialState = stats.Alistar as Champion;
 

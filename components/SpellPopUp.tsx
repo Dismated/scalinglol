@@ -8,10 +8,10 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import { useAppSelector } from "@hooks/preTypedHooks";
 import SpellCountSelector from "./SpellCountSelector";
 import SpellSectionSelector from "./SpellSectionSelector";
 import SpellSelector from "./SpellSelector";
-import { useAppSelector } from "../hooks/preTypedHooks";
 
 interface SpellPopUpProps {
   setSlotPressed: Dispatch<SetStateAction<number>>;

@@ -1,11 +1,11 @@
 import { Box, Paper, Typography, useTheme } from "@mui/material";
-import Color from "color";
 import { useTranslation } from "react-i18next";
+import Color from "color";
 
-import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
+import { setAttackSwitch } from "@reducers/attackSwitchReducer";
+import { useAppDispatch, useAppSelector } from "@hooks/preTypedHooks";
 import CurvedCorner from "./CurvedCorner";
 import MultiNodeSlider from "./MultiNodeSlider";
-import { setAttackSwitch } from "../reducers/attackSwitchReducer";
 
 const ButtonGroupStyles = {
   display: "inline-block",
@@ -24,7 +24,7 @@ const PaperStyles = {
   overflowClipMargin: "30px",
 };
 
-const ComponentAdding = () => {
+const YourLvl = () => {
   const dispatch = useAppDispatch();
   const switchValue = useAppSelector((state) => state.attackSwitch);
   const theme = useTheme();
@@ -120,10 +120,9 @@ const ComponentAdding = () => {
           </Typography>
         </Box>
       </Box>
-
-      <MultiNodeSlider />
+      <MultiNodeSlider nodeOptions="your" />
     </Paper>
   );
 };
 
-export default ComponentAdding;
+export default YourLvl;

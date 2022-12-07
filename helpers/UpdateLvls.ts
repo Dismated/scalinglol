@@ -1,4 +1,4 @@
-import { LvlUpableSpellName } from "../types/types";
+import { LvlUpableSpellName } from "@customTypes/customTypes";
 
 export const lvlUpR = [6, 11, 16];
 export const lvlUpPatterns = [

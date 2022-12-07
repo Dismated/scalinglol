@@ -1,8 +1,8 @@
 import { Badge, Box, Button } from "@mui/material";
 import Image from "next/image";
 
-import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setSpells } from "../reducers/spellsReducer";
+import { useAppDispatch, useAppSelector } from "@hooks/preTypedHooks";
 
 interface SpellSelectorProps {
   id: number;

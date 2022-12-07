@@ -1,15 +1,19 @@
 import { Box } from "@mui/material";
+import { NodeOptions } from "@customTypes/customTypes";
 import { useMemo } from "react";
 
 import Line from "./Line";
 import Node from "./Node";
 
-const MultiNodeSlider = () => {
+const MultiNodeSlider = ({ nodeOptions }: { nodeOptions: NodeOptions }) => {
   const lvlNodes = Array.from(Array(18).keys());
 
   const nodes = useMemo(
-    () => lvlNodes.map((node) => <Node key={node} id={node} />),
-    [lvlNodes]
+    () =>
+      lvlNodes.map((node) => (
+        <Node key={node} id={node} nodeOptions={nodeOptions} />
+      )),
+    [lvlNodes, nodeOptions]
   );
 
   return (

@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 
-import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
 import { setSpells } from "../reducers/spellsReducer";
+import { useAppDispatch, useAppSelector } from "@hooks/preTypedHooks";
 
 interface SpellSectionSelectorProps {
   sectionName: string;

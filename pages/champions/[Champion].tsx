@@ -1,23 +1,24 @@
+import { Container } from "@mui/material";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { lazy, useEffect, useState } from "react";
-import { Container } from "@mui/material";
-import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
-import updateLvls, { emptyLvls, lvlUpR } from "../../helpers/UpdateLvls";
-import { ChampName } from "../../types/types";
-import Combo from "../../components/Combo";
-import SkillOrder from "../../components/SkillOrder";
-import Skills from "../../components/Skills";
-import TopRow from "../../components/TopRow";
-import { setChampStats } from "../../reducers/champStatsReducer";
-import { setLvlUp } from "../../reducers/lvlUpReducer";
-import { setSpells } from "../../reducers/spellsReducer";
-import { setWindowWidth } from "../../reducers/windowWidthReducer";
-import stats from "../../champStats/champStats.json";
-import { useAppDispatch } from "../../hooks/preTypedHooks";
-import useWindowSize from "../../hooks/useWindowSize";
+import { ChampName } from "@customTypes/customTypes";
+import { setChampStats } from "@reducers/champStatsReducer";
+import { setLvlUp } from "@reducers/lvlUpReducer";
+import { setSpells } from "@reducers/spellsReducer";
+import { setWindowWidth } from "@reducers/windowWidthReducer";
+import { useAppDispatch } from "@hooks/preTypedHooks";
+import Combo from "@components/Combo";
+import EnemyLvl from "@components/EnemyLvl";
+import SkillOrder from "@components/SkillOrder";
+import TopRow from "@components/TopRow";
+import YourLvl from "@components/YourLvl";
+import stats from "@champStats/champStats.json";
+import updateLvls, { emptyLvls, lvlUpR } from "@helpers/UpdateLvls";
+import useWindowSize from "@hooks/useWindowSize";
 
 const Chart = lazy(() => import("../../components/Chart"));
 
@@ -46,11 +47,12 @@ const ChampionDetails = () => {
       <Container sx={{ px: [0, "16px", "24px"] }}>
         <TopRow />
         {skillsLvlUped ? (
-          <Skills />
+          <YourLvl />
         ) : (
           <SkillOrder setSkillsLvlUped={setSkillsLvlUped} />
         )}
         <Combo />
+        <EnemyLvl />
         <Chart />
       </Container>
     </>

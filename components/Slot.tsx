@@ -2,7 +2,7 @@ import { Badge, Box, Button, Typography } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
-import { useAppSelector } from "../hooks/preTypedHooks";
+import { useAppSelector } from "@hooks/preTypedHooks";
 
 const SlotButtonStyles = {
   width: "80px",

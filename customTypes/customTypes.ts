@@ -82,3 +82,5 @@ export interface SpellProps {
 export type LvlsType = {
   [key in LvlUpableSpellName]: number;
 };
+
+export type NodeOptions = "your" | "enemy";

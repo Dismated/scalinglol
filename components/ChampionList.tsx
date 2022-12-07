@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ChampName } from "../types/types";
+import { ChampName } from "@customTypes/customTypes";
 
 const InputBaseStyles = {
   borderStyle: "solid",

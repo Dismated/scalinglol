@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { SpellProps } from "../types/types";
+import { SpellProps } from "@customTypes/customTypes";
 
 const initialState: SpellProps[] = [];
 

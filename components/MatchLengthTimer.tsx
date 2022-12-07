@@ -2,9 +2,9 @@ import { Box, FormControl, InputBase, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "next-i18next";
 
-import { setMatchLength } from "../reducers/matchLengthReducer";
-import { timerToSeconds } from "../helpers/TimerConversions";
-import { useAppDispatch } from "../hooks/preTypedHooks";
+import { setMatchLength } from "@reducers/matchLengthReducer";
+import { timerToSeconds } from "@helpers/TimerConversions";
+import { useAppDispatch } from "@hooks/preTypedHooks";
 
 const InputBaseStyles = {
   fontSize: 24,

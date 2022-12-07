@@ -2,12 +2,12 @@ import { Box, Button, Paper, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
+import { setPrimaryColor } from "@reducers/primaryColorReducer";
+import { setSpells } from "@reducers/spellsReducer";
+import { useAppDispatch, useAppSelector } from "@hooks/preTypedHooks";
 import CurvedCorner from "./CurvedCorner";
 import Slot from "./Slot";
 import SpellPopUp from "./SpellPopUp";
-import { setPrimaryColor } from "../reducers/primaryColorReducer";
-import { setSpells } from "../reducers/spellsReducer";
 
 const boxStyles = {
   backgroundColor: "primary.main",

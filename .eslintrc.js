@@ -4,7 +4,7 @@ module.exports = {
     project: "./tsconfig.json",
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["prettier"],
+  plugins: ["prettier", "sort-imports-es6-autofix"],
   rules: {
     "react/jsx-filename-extension": [1, { extensions: [".tsx", ".ts"] }],
     "react/react-in-jsx-scope": "off",
@@ -26,14 +26,12 @@ module.exports = {
     ],
     "@typescript-eslint/no-explicit-any": "warn",
     "object-shorthand": ["error", "always"],
-    "sort-imports": [
-      "error",
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      2,
       {
         ignoreCase: false,
-        ignoreDeclarationSort: false,
         ignoreMemberSort: false,
         memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
-        allowSeparatedGroups: true,
       },
     ],
     "jsx-a11y/anchor-is-valid": [

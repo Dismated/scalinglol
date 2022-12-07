@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import updateLvls, { emptyLvls, lvlUpR } from "../helpers/UpdateLvls";
+import updateLvls, { emptyLvls, lvlUpR } from "@helpers/UpdateLvls";
 
 const lvlUpSlice = createSlice({
   name: "lvlUp",

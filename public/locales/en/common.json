@@ -20,6 +20,9 @@
       "timer": "Timer",
       "levelUp": "LvlUp"
     },
+    "enemyContainer": {
+      "header": "Enemy Level"
+    },
     "chartContainer": { "header": "Chart", "label": "Damage" }
   }
 }

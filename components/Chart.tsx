@@ -1,14 +1,17 @@
 import "chart.js/auto";
 import "chartjs-adapter-moment";
+import {
+  LvlUpableSpellName,
+  LvlsType,
+  SpellStats,
+} from "@customTypes/customTypes";
 import { Paper, Typography } from "@mui/material";
 import { Scatter } from "react-chartjs-2";
+import { secondsToTimer } from "@helpers/TimerConversions";
+import { useAppSelector } from "@hooks/preTypedHooks";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-
-import { LvlUpableSpellName, LvlsType, SpellStats } from "../types/types";
-import { secondsToTimer } from "../helpers/TimerConversions";
-import spellDmg from "../calculations/calculations";
-import { useAppSelector } from "../hooks/preTypedHooks";
+import spellDmg from "@calculations/calculations";
 
 const PaperStyles = {
   maxWidth: "1200px",

@@ -2,8 +2,8 @@ import { Box, InputBase, Typography } from "@mui/material";
 import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector } from "../hooks/preTypedHooks";
-import { setSpells } from "../reducers/spellsReducer";
+import { setSpells } from "@reducers/spellsReducer";
+import { useAppDispatch, useAppSelector } from "@hooks/preTypedHooks";
 
 const InputStyles = {
   "z-index": 10,

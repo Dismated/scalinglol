@@ -1,12 +1,22 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-import { useAppSelector } from "../hooks/preTypedHooks";
+import { NodeOptions } from "@customTypes/customTypes";
+import { useAppSelector } from "@hooks/preTypedHooks";
 
-const NodeButton = ({ id }: { id: number }) => {
+const NodeButton = ({
+  id,
+  nodeOptions,
+}: {
+  id: number;
+  nodeOptions: NodeOptions;
+}) => {
   const nodeSide = useAppSelector((state) => state.nodeSide);
   const lvlUp = useAppSelector((state) => state.lvlUp);
   const nodeSidePx = `${nodeSide}px`;
+
+  const backgroundColor = nodeOptions === "your" ? "primary.main" : "black";
+  const color = nodeOptions === "your" ? "black" : "primary.main";
 
   const ButtonStyles = {
     minHeight: nodeSidePx,
@@ -17,13 +27,13 @@ const NodeButton = ({ id }: { id: number }) => {
     borderColor: "primary.main",
     position: "relative",
     left: "-5px",
-    backgroundColor: "primary.main",
-    color: "black",
+    backgroundColor,
+    color,
   };
 
   return (
     <Button variant="contained" sx={ButtonStyles}>
-      {lvlUp[id]}
+      {nodeOptions === "your" ? lvlUp[id] : id + 1}
     </Button>
   );
 };

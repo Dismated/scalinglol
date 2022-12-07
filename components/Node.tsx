@@ -1,14 +1,21 @@
 import { Box, ClickAwayListener } from "@mui/material";
-import Draggable, { DraggableEvent } from "react-draggable";
 import { useEffect, useRef, useState } from "react";
+import Draggable, { DraggableEvent } from "react-draggable";
 
+import { NodeOptions } from "@customTypes/customTypes";
+import { secondsToTimer } from "@helpers/TimerConversions";
+import { useAppSelector } from "@hooks/preTypedHooks";
 import NodeOrientation from "./NodeOrientation";
-import { secondsToTimer } from "../helpers/TimerConversions";
-import { useAppSelector } from "../hooks/preTypedHooks";
 
 const maxContainerWidth = 1200;
 
-const Node = ({ id }: { id: number }) => {
+const Node = ({
+  id,
+  nodeOptions,
+}: {
+  id: number;
+  nodeOptions: NodeOptions;
+}) => {
   const { windowWidth, skillTime, nodeSide, matchLength } = useAppSelector(
     (state) => state
   );
@@ -78,6 +85,7 @@ const Node = ({ id }: { id: number }) => {
               id={id}
               x={x}
               setX={setX}
+              nodeOptions={nodeOptions}
             />
           </Box>
         </Draggable>

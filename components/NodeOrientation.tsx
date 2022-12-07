@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction } from "react";
 import { Box } from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
 
+import { NodeOptions } from "@customTypes/customTypes";
 import Arrow from "./Arrow";
 import NodeButton from "./NodeButton";
-import NodeLvlUp from "./NodeLvlUp";
 import NodeTimer from "./NodeTimer";
-import { useAppSelector } from "../hooks/preTypedHooks";
+import YourNodeOptions from "./YourNodeOptions";
 
 interface NodeOrientationProps {
   nodeSettingsAreOpen: boolean;
@@ -16,6 +16,7 @@ interface NodeOrientationProps {
   setNodeSettingsAreOpen: Dispatch<SetStateAction<boolean>>;
   x: number;
   setX: Dispatch<SetStateAction<number>>;
+  nodeOptions: NodeOptions;
 }
 
 const BoxStyles = {
@@ -27,26 +28,24 @@ const BoxStyles = {
 const NodeOrientation = ({
   id,
   nodeSettingsAreOpen,
+  nodeOptions,
   ...rest
-}: NodeOrientationProps) => {
-  const switchValue = useAppSelector((state) => state.attackSwitch);
-
-  return (
-    <Box sx={BoxStyles}>
-      <Box sx={{ position: "absolute" }}>
-        {switchValue === "timer" && nodeSettingsAreOpen && (
-          <NodeTimer {...rest} id={id} />
-        )}
-        {switchValue === "lvlUp" && nodeSettingsAreOpen && (
-          <NodeLvlUp
-            setNodeSettingsAreOpen={rest.setNodeSettingsAreOpen}
-            id={id}
-          />
-        )}
-      </Box>
-      <NodeButton id={id} />
-      <Arrow />
+}: NodeOrientationProps) => (
+  <Box sx={BoxStyles}>
+    <Box sx={{ position: "absolute" }}>
+      {nodeOptions === "enemy" ? (
+        nodeSettingsAreOpen && <NodeTimer {...rest} id={id} />
+      ) : (
+        <YourNodeOptions
+          id={id}
+          nodeSettingsAreOpen={nodeSettingsAreOpen}
+          {...rest}
+        />
+      )}
     </Box>
-  );
-};
+    <NodeButton id={id} nodeOptions={nodeOptions} />
+    <Arrow />
+  </Box>
+);
+
 export default NodeOrientation;

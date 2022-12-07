@@ -1,11 +1,11 @@
 import { Box, Container, Typography } from "@mui/material";
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
-import { ChampName, ChampionType } from "../types/types";
-import ChampionList from "../components/ChampionList";
-import stats from "../champStats/champStats.json";
+import { ChampName, ChampionType } from "@customTypes/customTypes";
+import ChampionList from "@components/ChampionList";
+import stats from "@champStats/champStats.json";
 
 const TypographyStyles = {
   textAlign: "center",
