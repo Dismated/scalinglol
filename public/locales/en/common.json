@@ -23,6 +23,10 @@
     "enemyContainer": {
       "header": "Enemy Level"
     },
-    "chartContainer": { "header": "Chart", "label": "Damage" }
+    "chartContainer": {
+      "header": "Chart",
+      "dmg": "Your Damage",
+      "enemyHp": "Enemy Health"
+    }
   }
 }
