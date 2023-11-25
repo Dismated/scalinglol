@@ -6,10 +6,10 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import { ChampName } from '@customTypes/customTypes';
-import { setChampStats } from '@reducers/champStatsReducer';
-import { setLvlUp } from '@reducers/lvlUpReducer';
-import { setSpells } from '@reducers/spellsReducer';
-import { setWindowWidth } from '@reducers/windowWidthReducer';
+import { setChampStats } from '@reducers/champs/champStatsReducer';
+import { setLvlUp } from '@reducers/champs/lvlUpReducer';
+import { setSpells } from '@reducers/champs/spellsReducer';
+import { setWindowWidth } from '@reducers/champs/windowWidthReducer';
 import { useAppDispatch } from '@hooks/preTypedHooks';
 import Combo from '@components/champs/Combo';
 import EnemyLvl from '@components/champs/EnemyLvl';

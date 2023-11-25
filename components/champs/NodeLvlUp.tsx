@@ -1,7 +1,7 @@
 import { Box, Button, ClickAwayListener } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 import { LvlUpableSpellName, SpellName } from '@customTypes/customTypes';
-import { setLvlUp } from '@reducers/lvlUpReducer';
+import { setLvlUp } from '@reducers/champs/lvlUpReducer';
 import { useAppDispatch, useAppSelector } from '@hooks/preTypedHooks';
 
 const buttonStyles = {

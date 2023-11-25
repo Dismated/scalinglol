@@ -2,7 +2,7 @@ import { Box, ClickAwayListener, FormControl, InputBase } from '@mui/material';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import OpenWithOutlinedIcon from '@mui/icons-material/OpenWithOutlined';
 
-import { setSkillTime } from '@reducers/skillTimeReducer';
+import { setSkillTime } from '@reducers/champs/skillTimeReducer';
 import { timerToSeconds } from '@helpers/TimerConversions';
 import { useAppDispatch, useAppSelector } from '@hooks/preTypedHooks';
 

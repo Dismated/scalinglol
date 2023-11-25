@@ -2,7 +2,7 @@ import { Box, InputBase, Typography } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { setSpells } from '@reducers/spellsReducer';
+import { setSpells } from '@reducers/champs/spellsReducer';
 import { useAppDispatch, useAppSelector } from '@hooks/preTypedHooks';
 
 const InputStyles = {

@@ -2,8 +2,8 @@ import { Box, Button, Paper, Typography, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { setPrimaryColor } from '@reducers/primaryColorReducer';
-import { setSpells } from '@reducers/spellsReducer';
+import { setPrimaryColor } from '@reducers/champs/primaryColorReducer';
+import { setSpells } from '@reducers/champs/spellsReducer';
 import { useAppDispatch, useAppSelector } from '@hooks/preTypedHooks';
 import CurvedCorner from './CurvedCorner';
 import Slot from './Slot';

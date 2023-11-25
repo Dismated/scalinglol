@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { useAppDispatch, useAppSelector } from '@hooks/preTypedHooks';
 
-import { setSpells } from '../../reducers/spellsReducer';
+import { setSpells } from '../../reducers/champs/spellsReducer';
 
 interface SpellSelectorProps {
     id: number;

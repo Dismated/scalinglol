@@ -2,7 +2,7 @@ import { Box, Button, Paper } from '@mui/material';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
-import { setLvlUp } from '@reducers/lvlUpReducer';
+import { setLvlUp } from '@reducers/champs/lvlUpReducer';
 import { useAppDispatch, useAppSelector } from '@hooks/preTypedHooks';
 import updateLvls, { lvlUpPatterns } from '@helpers/UpdateLvls';
 

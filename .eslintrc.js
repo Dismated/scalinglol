@@ -6,7 +6,9 @@ module.exports = {
         'next/core-web-vitals',
     ],
     parserOptions: {
-        project: './tsconfig.json',
+        project: ['./tsconfig.json', './eslintrc.js'],
+        tsconfigRootDir: __dirname,
+        sourceType: 'module',
     },
     parser: '@typescript-eslint/parser',
     plugins: ['prettier', 'sort-imports-es6-autofix'],
