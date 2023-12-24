@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import { useTheme } from '@mui/material/styles';
 import React, { useEffect, useRef } from 'react';
 
 interface MultiLineProps {
@@ -24,8 +23,6 @@ interface MultiLineProps {
 const MultiLine = ({ data }: MultiLineProps) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
 
-    const theme = useTheme();
-
     const {
         width,
         height,
@@ -46,6 +43,11 @@ const MultiLine = ({ data }: MultiLineProps) => {
             matchData,
         ) => {
             matchData.goldB.forEach((e, i) => {
+                console.log(
+                    e[1],
+                    matchData.goldR[i][1],
+                    e[1] - matchData.goldR[i][1],
+                );
                 acc.push({
                     time: e[0],
                     gold: e[1] - matchData.goldR[i][1],
